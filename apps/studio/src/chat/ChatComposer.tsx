@@ -3,6 +3,7 @@ import { Button, ButtonPlain, Group, Text, Textarea } from "../compose"
 import { Box, Image } from "../primitives"
 import { AppIcon } from "../app-icons"
 import { t } from "../i18n"
+import { isSendKey } from "./composer-keys"
 
 export type ComposerAttachment = {
   name: string
@@ -24,8 +25,9 @@ export type ChatComposerProps = {
 export function ChatComposer(props: ChatComposerProps): JSX.Element {
   const onKeyDown = (event: KeyboardEvent) => {
     if (event.key === "Enter" && !event.shiftKey) {
+      if (event.isComposing) return
       event.preventDefault()
-      if (props.canSend) props.onSend()
+      if (isSendKey(event) && props.canSend) props.onSend()
     } else if (event.key === "Escape" && props.running) {
       // docs/ux-review.md: Esc stops the run from the composer.
       event.preventDefault()
