@@ -71,3 +71,12 @@
   --text-lg: 20px;
   --text-xl: 28px;
 }
+
+/* Status colours as utilities (text-ok, bg-danger/10…) for compositions styled with Tailwind. */
+@theme inline {
+  --color-ok: var(--ok);
+  --color-warn: var(--warn);
+  --color-info: var(--info);
+  --color-danger: var(--danger);
+  --color-brand: var(--brand);
+}

@@ -45,12 +45,6 @@ body {
 a { color: inherit; text-decoration: none; }
 button, input { font: inherit; }
 .muted { color: var(--text-muted); }
-.boot {
-  display: grid;
-  place-items: center;
-  height: 100%;
-  color: var(--text-muted);
-}
 
 .btn {
   display: inline-flex;
@@ -179,31 +173,7 @@ button, input { font: inherit; }
   border-radius: var(--radius);
   background: var(--panel);
 }
-.runtime-picker {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin: 0 0 0.85rem;
-}
-.runtime-option {
-  appearance: none;
-  border: 1px solid var(--border);
-  background: transparent;
-  border-radius: 6px;
-  padding: 0.35rem 0.75rem;
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  cursor: pointer;
-}
-.runtime-option:hover {
-  color: var(--fg);
-  border-color: color-mix(in srgb, var(--brand) 40%, transparent);
-}
-.runtime-option.selected {
-  color: var(--fg);
-  border-color: color-mix(in srgb, var(--brand) 55%, transparent);
-  background: color-mix(in srgb, var(--brand) 10%, transparent);
-}
+
 .settings-card-title {
   margin: 0 0 0.35rem;
   font-size: 1.05rem;
@@ -248,14 +218,6 @@ button, input { font: inherit; }
   font-size: 0.875rem;
   color: var(--text-muted);
 }
-.user-chip {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  font-size: 0.9rem;
-  line-height: 1.2;
-}
-.user-email { font-size: 0.75rem; color: var(--text-muted); }
 
 .projects-hero { margin-bottom: 1.75rem; }
 .projects-title {
@@ -634,11 +596,7 @@ button, input { font: inherit; }
   background: color-mix(in srgb, var(--brand) 12%, transparent);
   color: var(--brand);
 }
-.studio-runner {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-}
+
 .studio-account {
   position: relative;
   margin-left: 0.15rem;
@@ -959,30 +917,7 @@ button, input { font: inherit; }
   overflow: hidden;
   background: var(--bg);
 }
-.editor-pane {
-  overflow: hidden;
-  background: var(--bg);
-}
-.pane-label {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-  min-height: 2.25rem;
-  box-sizing: border-box;
-  padding: 0 0.75rem;
-  border-bottom: 1px solid var(--border);
-  color: var(--text-muted);
-  font-size: 0.7rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  background: var(--bg-elevated);
-  flex-shrink: 0;
-}
-.agent-pane .pane-label {
-  display: none;
-}
+
 .sheet-collapse {
   display: inline-flex;
   align-items: center;
@@ -1066,11 +1001,7 @@ button, input { font: inherit; }
   height: 100%;
   flex: 1;
 }
-.ws-editor-actions {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-}
+
 .ws-editor-banner {
   padding: 0.4rem 0.75rem;
   background: color-mix(in srgb, var(--danger) 12%, transparent);
@@ -1763,9 +1694,7 @@ button, input { font: inherit; }
 .chat-todos-item-cancelled .chat-todos-text {
   text-decoration: line-through;
 }
-.chat-trace-kind-plan {
-  border-left-color: color-mix(in srgb, var(--brand) 55%, transparent);
-}
+
 .chat-runtime-badge {
   font-size: 10px;
   text-transform: uppercase;
@@ -2087,9 +2016,7 @@ button, input { font: inherit; }
 .chat-trace-label {
   color: var(--text-muted);
 }
-.chat-trace-prompt {
-  color: var(--cyan);
-}
+
 .chat-trace-meta {
   color: var(--text-muted);
   opacity: 0.85;
@@ -2108,66 +2035,8 @@ button, input { font: inherit; }
   max-height: 12rem;
   overflow: auto;
 }
-.chat-trace-term {
-  border: 1px solid color-mix(in srgb, var(--border) 85%, transparent);
-  border-radius: 6px;
-  background: color-mix(in srgb, var(--panel) 70%, var(--bg));
-  overflow: hidden;
-}
-.chat-trace-term .chat-trace-head {
-  padding: 0.35rem 0.55rem;
-  border-bottom: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
-  background: color-mix(in srgb, var(--panel-2, var(--panel)) 80%, var(--shadow));
-  gap: 0.4rem;
-}
-.chat-trace-cmd {
-  flex: 1;
-  min-width: 0;
-  color: var(--cyan);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.chat-trace-kind {
-  flex-shrink: 0;
-  font-size: 9px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  padding: 0.05rem 0.3rem;
-  border-radius: 3px;
-  border: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
-  color: var(--text-muted);
-  opacity: 0.95;
-}
-.chat-trace-kind-search .chat-trace-kind {
-  color: color-mix(in srgb, var(--accent-emphasis) 80%, var(--text-muted));
-  border-color: color-mix(in srgb, var(--accent-emphasis) 35%, var(--border));
-}
-.chat-trace-kind-agent .chat-trace-kind {
-  color: color-mix(in srgb, var(--cyan) 85%, var(--white));
-  border-color: color-mix(in srgb, var(--cyan) 40%, var(--border));
-}
-.chat-trace-kind-search .chat-trace-cmd {
-  color: color-mix(in srgb, var(--accent-emphasis) 70%, var(--cyan));
-}
-.chat-trace-kind-agent .chat-trace-cmd {
-  color: var(--cyan);
-}
-.chat-trace-term-body {
-  margin: 0;
-  padding: 0.4rem 0.55rem 0.5rem;
-  max-height: 12rem;
-  overflow: auto;
-  color: color-mix(in srgb, var(--fg) 72%, var(--text-muted));
-  background: transparent;
-}
+
 .chat-trace-streaming .chat-trace-label {
-  color: var(--accent-emphasis);
-}
-.chat-trace-tool .chat-trace-label {
-  color: var(--cyan);
-}
-.chat-trace-tool.chat-trace-streaming .chat-trace-cmd {
   color: var(--accent-emphasis);
 }
 

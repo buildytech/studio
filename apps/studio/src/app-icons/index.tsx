@@ -5,7 +5,7 @@
  */
 import { For, type JSX } from "solid-js"
 import { Dynamic } from "solid-js/web"
-import { ChevronDown, ChevronLeft, ChevronRight, Ellipsis, ExternalLink, PanelLeftClose, PanelLeftOpen, Play, RotateCw, Paperclip, Plus, Square, X, type IconNode } from "lucide"
+import { ChevronDown, FilePen, FileText, Monitor, Search, Terminal, Wrench, ChevronLeft, ChevronRight, Ellipsis, ExternalLink, PanelLeftClose, PanelLeftOpen, Play, RotateCw, Paperclip, Plus, Square, X, type IconNode } from "lucide"
 import { LucideIcon as Frame } from "../compose"
 
 const GLYPHS = {
@@ -14,13 +14,19 @@ const GLYPHS = {
   "chevron-right": ChevronRight,
   ellipsis: Ellipsis,
   "external-link": ExternalLink,
+  "file-pen": FilePen,
+  "file-text": FileText,
+  monitor: Monitor,
   "panel-left-close": PanelLeftClose,
   "panel-left-open": PanelLeftOpen,
   paperclip: Paperclip,
   play: Play,
   plus: Plus,
   refresh: RotateCw,
+  search: Search,
   stop: Square,
+  terminal: Terminal,
+  wrench: Wrench,
   x: X,
 } satisfies Record<string, IconNode>
 

@@ -22,7 +22,9 @@ export type CachedChatMessage = {
   /** thinking duration / tool run state for compact live-trace rows. */
   meta?: {
     durationMs?: number
-    toolStatus?: "running" | "done" | "error"
+    toolStatus?: "running" | "done" | "error" | "cancelled"
+    /** The head of `detail` was dropped to keep the last TOOL_OUTPUT_MAX characters. */
+    truncated?: boolean
     /** Tool name (shell, webSearch, task, …) — header shows command in `text`. */
     tool?: string
     /** Coarse kind for badge: shell | search | agent | file | mcp | tool. */

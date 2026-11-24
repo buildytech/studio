@@ -32,3 +32,14 @@ had no live status for screen readers.
 
 - The chat panel consumes one reducer; the duplicate fold goes.
 - Adding e.g. a «deploy» tool is a renderer file and a registry line.
+
+## Implementation (2026-11-24)
+
+- `model.ts` (reducer, grouping), `registry.ts`, `ToolCall.tsx` (composite), `renderers.tsx` (registry entries,
+  `ToolCallView`, `ToolGroupView`, `ToolLiveRegion`), `rows.ts` (chat rows ↔ calls, `createChatItems`,
+  `CHAT_RENDER_WINDOW`).
+- `ChatPanel` keeps one `ToolState` per session and applies every `tool.*` event and the run end through
+  `reduceToolEvent`; the old `event-reduce.ts` fold is gone. Tool rows are still not persisted (behaviour unchanged).
+- Tests: reducer and rows on the fixtures (`bun run test:unit`), DOM/ARIA of the composite, groups and the live region
+  in happy-dom (`bun run test:dom`, `*.dom.test.tsx`, preload `test/dom-setup.ts`, `--conditions browser`).
+- Screens: `after-tools-stream.png`, `after-tools-group.png` (fixture replayed into the real Studio, dark).

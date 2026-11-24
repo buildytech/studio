@@ -21,5 +21,12 @@ jobs:
       - name: Host seam drift (host-seam.json is generated from packages/agent-contract/src/host.ts)
         run: bun run gen:host-seam && git diff --exit-code -- packages/agent-contract/host-seam.json
       - run: bun run verify
+      - name: Coverage (unit tests, text + lcov)
+        run: bun run coverage
+      - uses: actions/upload-artifact@v4
+        with:
+          name: coverage-lcov
+          path: apps/studio/coverage/lcov.info
+          if-no-files-found: error
       - name: Working tree stays clean
         run: git diff --exit-code

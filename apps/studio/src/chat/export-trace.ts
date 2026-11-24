@@ -13,7 +13,7 @@ export type ChatBundleTraceRow = {
   runId?: string
   meta?: {
     durationMs?: number
-    toolStatus?: "running" | "done" | "error"
+    toolStatus?: "running" | "done" | "error" | "cancelled"
     tool?: string
     detail?: string
   }

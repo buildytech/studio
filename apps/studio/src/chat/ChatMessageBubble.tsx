@@ -8,6 +8,8 @@ import { MarkdownView } from "../vendor-ui/MarkdownView"
 import { Box, Button, Text, Textarea } from "../primitives"
 import { AppIcon } from "../app-icons"
 import { t } from "../i18n"
+import { ToolCallView } from "./tools/renderers"
+import { rowToCall } from "./tools/rows"
 
 export type ChatFeedbackPayload = {
   rating: "up" | "down"
@@ -25,44 +27,6 @@ function formatThinkingDuration(ms: number | undefined): string | null {
   if (typeof ms !== "number" || !Number.isFinite(ms) || ms < 0) return null
   if (ms < 1000) return `${Math.round(ms)}ms`
   return `${(ms / 1000).toFixed(1)}s`
-}
-
-function toolPromptGlyph(kind: string | undefined): string {
-  switch (kind) {
-    case "search":
-      return "⌕"
-    case "agent":
-      return "▸▸"
-    case "shell":
-      return ">_"
-    case "mcp":
-      return "⬡"
-    case "file":
-      return "∷"
-    case "plan":
-      return "☰"
-    default:
-      return ">_"
-  }
-}
-
-function toolKindLabel(kind: string | undefined): string | null {
-  switch (kind) {
-    case "search":
-      return "web"
-    case "agent":
-      return "agent"
-    case "shell":
-      return "shell"
-    case "mcp":
-      return "mcp"
-    case "file":
-      return "file"
-    case "plan":
-      return "plan"
-    default:
-      return null
-  }
 }
 
 export function ChatMessageBubble(props: ChatMessageBubbleProps): JSX.Element {
@@ -227,11 +191,10 @@ export function ChatMessageBubble(props: ChatMessageBubbleProps): JSX.Element {
       }
     >
       <Box
-        class="chat-trace"
+        class={role() === "tool" ? "mr-auto w-full max-w-[720px]" : "chat-trace"}
         classList={{
           "chat-trace-thinking": role() === "thinking",
-          "chat-trace-tool": role() === "tool",
-          "chat-trace-streaming": Boolean(msg().streaming),
+          "chat-trace-streaming": role() === "thinking" && Boolean(msg().streaming),
         }}
       >
         <Show when={role() === "thinking"}>
@@ -246,43 +209,7 @@ export function ChatMessageBubble(props: ChatMessageBubbleProps): JSX.Element {
           <Text tag="pre" class="chat-trace-body">{msg().text}</Text>
         </Show>
         <Show when={role() === "tool"}>
-          <Box
-            class="chat-trace-term"
-            classList={{
-              "chat-trace-kind-search": msg().meta?.kind === "search",
-              "chat-trace-kind-agent": msg().meta?.kind === "agent",
-              "chat-trace-kind-shell": msg().meta?.kind === "shell",
-              "chat-trace-kind-plan": msg().meta?.kind === "plan",
-            }}
-          >
-            <Box class="chat-trace-head">
-              <Text tag="span" class="chat-trace-prompt">
-                {toolPromptGlyph(msg().meta?.kind)}
-              </Text>
-              <Show when={toolKindLabel(msg().meta?.kind)}>
-                {(label) => (
-                  <Text tag="span" class="chat-trace-kind">{label()}</Text>
-                )}
-              </Show>
-              <Text tag="span" class="chat-trace-label chat-trace-cmd" title={msg().text}>
-                {msg().text}
-              </Text>
-              <Show when={msg().meta?.toolStatus === "running"}>
-                <Text tag="span" class="chat-trace-meta">{t("chat.running")}</Text>
-              </Show>
-              <Show when={msg().meta?.toolStatus === "done"}>
-                <Text tag="span" class="chat-trace-meta">{t("chat.done")}</Text>
-              </Show>
-              <Show when={msg().meta?.toolStatus === "error"}>
-                <Text tag="span" class="chat-trace-meta">{t("chat.error")}</Text>
-              </Show>
-            </Box>
-            <Show when={msg().meta?.detail}>
-              <Text tag="pre" class="chat-trace-body chat-trace-term-body">
-                {msg().meta?.detail}
-              </Text>
-            </Show>
-          </Box>
+          <ToolCallView call={rowToCall(msg())} />
         </Show>
       </Box>
     </Show>

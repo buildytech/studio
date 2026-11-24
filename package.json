@@ -13,9 +13,11 @@
     "test": "bun test ./scripts && bun run --cwd packages/agent-contract test && bun run --cwd packages/studio-panel-contract test && bun run --cwd apps/studio test",
     "typecheck": "bun run --cwd packages/agent-contract typecheck && bun run --cwd packages/studio-panel-contract typecheck && bun run --cwd apps/studio typecheck",
     "gen:host-seam": "bun scripts/gen-host-seam.ts",
-    "verify": "bun run check:kit && bun run rules:check && bun run typecheck && bun run test && bun run build:desktop",
+    "verify": "bun run check:kit && bun run rules:check && bun run typecheck && bun run test && bun run build:desktop && bun run check:budgets",
     "check:kit": "bun run --cwd apps/studio check:kit",
-    "rules:check": "bun run --cwd apps/studio rules:check"
+    "rules:check": "bun run --cwd apps/studio rules:check",
+    "check:budgets": "bun scripts/check-budgets.ts apps/studio/dist",
+    "coverage": "bun run --cwd apps/studio test:coverage"
   },
   "packageManager": "bun@1.4.4"
 }

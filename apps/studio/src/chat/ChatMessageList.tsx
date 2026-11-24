@@ -1,4 +1,4 @@
-import { For, Show, createMemo, type JSX } from "solid-js"
+import { For, Show, createMemo, createSignal, type JSX } from "solid-js"
 import { Stack } from "../compose"
 import type { CachedChatMessage } from "../chat-store"
 import {
@@ -7,12 +7,10 @@ import {
 } from "./ChatMessageBubble"
 import { Box, Button, Text } from "../primitives"
 import { t } from "../i18n"
+import { CHAT_RENDER_WINDOW, createChatItems, rowToCall } from "./tools/rows"
+import { ToolGroupView, ToolLiveRegion } from "./tools/renderers"
 
-const STARTERS = [
-  "Improve the welcome page layout and typography",
-  "Find and fix the most obvious UI bugs",
-  "Explain how this project’s main page is structured",
-] as const
+const STARTERS = ["chat.starter.layout", "chat.starter.bugs", "chat.starter.explain"] as const
 
 /** Seed composer after a product brief import. */
 export const BRIEF_REBUILD_STARTER =
@@ -48,6 +46,17 @@ export type ChatMessageListProps = {
 
 export function ChatMessageList(props: ChatMessageListProps): JSX.Element {
   const feedbackId = createMemo(() => props.feedbackMessageId ?? null)
+  const toItems = createChatItems()
+  const items = createMemo(() => toItems(props.messages))
+  const [windowSize, setWindowSize] = createSignal(CHAT_RENDER_WINDOW)
+  const hiddenCount = () => Math.max(0, items().length - windowSize())
+  const visibleItems = createMemo(() => items().slice(hiddenCount()))
+  const lastTool = createMemo(() => {
+    for (let i = props.messages.length - 1; i >= 0; i--) {
+      if (props.messages[i]!.role === "tool") return rowToCall(props.messages[i]!)
+    }
+    return undefined
+  })
 
   return (
     <Box class="chat-messages" ref={props.scrollRef}>
@@ -103,7 +112,7 @@ export function ChatMessageList(props: ChatMessageListProps): JSX.Element {
                 </Show>
                 <Show when={props.onStarter}>
                   <Box class="chat-starters">
-                    <For each={[...STARTERS]}>
+                    <For each={STARTERS.map((key) => t(key))}>
                       {(hint) => (
                         <Button
                           type="button"
@@ -121,19 +130,29 @@ export function ChatMessageList(props: ChatMessageListProps): JSX.Element {
           }
         >
           <Stack class="gap-3 p-3">
-            <For each={props.messages}>
-              {(msg) => (
-                <ChatMessageBubble
-                  message={msg}
-                  showFeedback={feedbackId() === msg.id}
-                  onFeedback={
-                    props.onFeedback && msg.runId
-                      ? (payload) =>
-                          props.onFeedback?.(msg.id, msg.runId!, payload)
-                      : undefined
-                  }
-                />
-              )}
+            <ToolLiveRegion call={lastTool()} />
+            <Show when={hiddenCount() > 0}>
+              <Button type="button" class="btn ghost self-center" onClick={() => setWindowSize((n) => n + CHAT_RENDER_WINDOW)}>
+                {t("chat.showEarlier", { count: hiddenCount() })}
+              </Button>
+            </Show>
+            <For each={visibleItems()}>
+              {(item) =>
+                item.type === "tools" ? (
+                  <Box class="mr-auto w-full max-w-[720px]"><ToolGroupView kind={item.kind} calls={item.rows.map(rowToCall)} /></Box>
+                ) : (
+                  <ChatMessageBubble
+                    message={item.message}
+                    showFeedback={feedbackId() === item.message.id}
+                    onFeedback={
+                      props.onFeedback && item.message.runId
+                        ? (payload) =>
+                            props.onFeedback?.(item.message.id, item.message.runId!, payload)
+                        : undefined
+                    }
+                  />
+                )
+              }
             </For>
           </Stack>
         </Show>

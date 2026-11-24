@@ -76,6 +76,8 @@ import {
 } from "./session-todos"
 import type { AgentTodoItem } from "@buildy/agent-contract"
 import { Box, Input } from "../primitives"
+import { changedCalls, upsertToolRows } from "./tools/rows"
+import { createToolState, reduceToolEvent, type ToolState } from "./tools/model"
 
 type ChatMessage = CachedChatMessage
 
@@ -436,117 +438,18 @@ export function ChatPanel(props: ChatPanelProps): JSX.Element {
     persistCurrent()
   }
 
-  const appendToolTrace = (
-    tool: string,
-    status: "running" | "done" | "error",
-    opts?: {
-      summary?: string
-      detail?: string
-      callId?: string
-      kind?: string
-    },
-  ) => {
+  /** Tool calls per session, folded by the one reducer of ADR 0005; the chat shows them as tool rows. */
+  const toolStates = new Map<string, ToolState>()
+
+  const applyToolEvent = (event: AgentEvent) => {
     if (!chatUi().showToolTrace) return
-    const header = opts?.summary?.trim() || tool
-    setMessages((prev) => {
-      const matchRunning = (row: CachedChatMessage) => {
-        if (row.role !== "tool" || row.meta?.toolStatus !== "running") return false
-        if (opts?.callId) return row.meta?.callId === opts.callId
-        return (
-          row.meta?.tool === tool
-          || row.text === header
-          || row.text.startsWith(tool)
-        )
-      }
-
-      if (status === "running" && opts?.callId) {
-        for (let i = prev.length - 1; i >= 0; i -= 1) {
-          const row = prev[i]!
-          if (row.role === "tool" && row.meta?.callId === opts.callId) {
-            const next = prev.slice()
-            next[i] = {
-              ...row,
-              text: header,
-              streaming: true,
-              meta: {
-                ...row.meta,
-                tool,
-                toolStatus: "running",
-                callId: opts.callId,
-                detail: opts.detail ?? row.meta?.detail,
-                ...(opts.kind ? { kind: opts.kind } : {}),
-              },
-            }
-            return next
-          }
-        }
-      }
-
-      if (status !== "running") {
-        for (let i = prev.length - 1; i >= 0; i -= 1) {
-          const row = prev[i]!
-          if (!matchRunning(row)) continue
-          const next = prev.slice()
-          next[i] = {
-            ...row,
-            text: header,
-            streaming: false,
-            meta: {
-              ...row.meta,
-              tool,
-              toolStatus: status,
-              detail: opts?.detail || row.meta?.detail,
-              ...(opts?.callId ? { callId: opts.callId } : {}),
-              ...(opts?.kind ? { kind: opts.kind } : {}),
-            },
-          }
-          return next
-        }
-      }
-
-      return [
-        ...prev,
-        {
-          id: nextMessageId("t"),
-          role: "tool" as const,
-          text: header,
-          streaming: status === "running",
-          meta: {
-            tool,
-            toolStatus: status,
-            ...(opts?.callId ? { callId: opts.callId } : {}),
-            ...(opts?.detail ? { detail: opts.detail } : {}),
-            ...(opts?.kind ? { kind: opts.kind } : {}),
-          },
-        },
-      ]
-    })
+    const before = toolStates.get(event.sessionId) ?? createToolState()
+    const after = reduceToolEvent(before, event)
+    if (after === before) return
+    toolStates.set(event.sessionId, after)
+    const changed = changedCalls(before.calls, after.calls)
+    setMessages((prev) => upsertToolRows(prev, changed, () => nextMessageId("t")))
     scrollToBottom()
-  }
-
-  const appendToolDelta = (tool: string, text: string, callId?: string) => {
-    if (!chatUi().showToolTrace || !text) return
-    setMessages((prev) => {
-      for (let i = prev.length - 1; i >= 0; i -= 1) {
-        const row = prev[i]!
-        if (row.role !== "tool" || row.meta?.toolStatus !== "running") continue
-        if (callId) {
-          if (row.meta?.callId !== callId) continue
-        } else if (row.meta?.tool !== tool) {
-          continue
-        }
-        const next = prev.slice()
-        next[i] = {
-          ...row,
-          meta: {
-            ...row.meta,
-            detail: `${row.meta?.detail ?? ""}${text}`,
-          },
-        }
-        return next
-      }
-      return prev
-    })
   }
 
   const finishAssistant = () => {
@@ -579,27 +482,17 @@ export function ChatPanel(props: ChatPanelProps): JSX.Element {
         break
       case "tool.started":
         setTools((t) => [...t.filter((x) => x !== event.tool), event.tool])
-        appendToolTrace(event.tool, "running", {
-          summary: event.summary,
-          detail: event.detail,
-          callId: event.callId,
-          kind: event.kind,
-        })
+        applyToolEvent(event)
         if (event.todos?.length) {
           applySessionTodos(event.sessionId, event.todos)
         }
         break
       case "tool.delta":
-        appendToolDelta(event.tool, event.text, event.callId)
+        applyToolEvent(event)
         break
       case "tool.finished":
         setTools((t) => t.filter((x) => x !== event.tool))
-        appendToolTrace(event.tool, "done", {
-          summary: event.summary,
-          detail: event.detail,
-          callId: event.callId,
-          kind: event.kind,
-        })
+        applyToolEvent(event)
         if (event.todos?.length) {
           applySessionTodos(event.sessionId, event.todos)
         }
@@ -635,9 +528,11 @@ export function ChatPanel(props: ChatPanelProps): JSX.Element {
           setAgentStatus("running")
         } else if (event.status === "error") {
           setAgentStatus("error")
+          applyToolEvent(event)
           finishAssistant()
         } else {
           setAgentStatus("idle")
+          applyToolEvent(event)
           finishAssistant()
           setTools([])
         }

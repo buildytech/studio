@@ -6,11 +6,14 @@
     "dev": "vite",
     "build": "vite build",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "test": "bun test src scripts",
+    "test": "bun run test:unit && bun run test:dom",
     "build:desktop": "vite build --mode desktop",
     "check:kit": "ui8kit check",
     "rules:check": "bun scripts/rules-check.ts",
-    "rules:baseline": "bun scripts/rules-check.ts --write"
+    "rules:baseline": "bun scripts/rules-check.ts --write",
+    "test:unit": "bun test src scripts --path-ignore-patterns='**/*.dom.test.tsx'",
+    "test:dom": "bun test --preload ./test/dom-setup.ts --conditions browser dom.test",
+    "test:coverage": "bun test src scripts --path-ignore-patterns='**/*.dom.test.tsx' --coverage --coverage-reporter=text --coverage-reporter=lcov"
   },
   "dependencies": {
     "@buildy/agent-contract": "workspace:*",
@@ -37,9 +40,13 @@
     "tailwind-merge": "^3.5.0"
   },
   "devDependencies": {
+    "@babel/core": "7",
+    "@babel/preset-typescript": "7",
+    "@happy-dom/global-registrator": "^21.0.4",
     "@tailwindcss/vite": "^4.2.2",
     "@types/bun": "latest",
     "@types/jsdom": "^28.0.3",
+    "babel-preset-solid": "1.9",
     "jsdom": "^29.1.1",
     "tailwindcss": "^4.2.2",
     "typescript": "^5.8.2",
