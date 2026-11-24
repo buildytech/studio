@@ -4,6 +4,9 @@ import {
   ensureExportIncludeTraceDefault,
   readExportIncludeTrace,
 } from "../chat-export-prefs"
+import { Box, Button, Text } from "../primitives"
+import { AppIcon } from "../app-icons"
+import { t } from "../i18n"
 
 export type ChatTabsProps = {
   sessions: AgentSession[]
@@ -32,7 +35,7 @@ export function ChatTabs(props: ChatTabsProps): JSX.Element {
   const [exportIncludeTrace, setExportIncludeTrace] = createSignal(
     ensureExportIncludeTraceDefault(),
   )
-  let menuRoot: HTMLDivElement | undefined
+  let menuRoot: HTMLElement | undefined
 
   const hasMenu =
     () =>
@@ -79,17 +82,17 @@ export function ChatTabs(props: ChatTabsProps): JSX.Element {
   }
 
   return (
-    <div class="chat-tabs" role="tablist" aria-label="Agents">
-      <div class="chat-tabs-scroll">
+    <Box class="chat-tabs" role="tablist" aria-label={t("chat.agents")}>
+      <Box class="chat-tabs-scroll">
         <For each={props.sessions}>
           {(s) => (
-            <button
+            <Button
               type="button"
               role="tab"
               class="chat-tab"
               classList={{ active: s.id === props.activeId }}
               aria-selected={s.id === props.activeId}
-              title={props.titles[s.id] ?? "Agent"}
+              title={props.titles[s.id] ?? t("chat.agent")}
               disabled={props.disabled}
               onClick={() => {
                 if (s.id === props.activeId) return
@@ -97,151 +100,151 @@ export function ChatTabs(props: ChatTabsProps): JSX.Element {
                 props.onSelect(s)
               }}
             >
-              <span class="chat-tab-label">
-                {props.titles[s.id] ?? "Agent"}
-              </span>
+              <Text tag="span" class="chat-tab-label">
+                {props.titles[s.id] ?? t("chat.agent")}
+              </Text>
               <Show when={props.importedIds?.has(s.id)}>
-                <span class="chat-tab-badge" title="Imported agent">
-                  Imported
-                </span>
+                <Text tag="span" class="chat-tab-badge" title={t("chat.importedAgent")}>
+                  {t("chat.imported")}
+                </Text>
               </Show>
               <Show when={props.sessions.length > 1}>
-                <button
+                <Button
                   type="button"
                   class="chat-tab-close"
-                  aria-label="Close agent tab"
+                  aria-label={t("chat.closeAgentTab")}
                   onClick={(e) => props.onClose(s.id, e)}
                 >
-                  ×
-                </button>
+                  <AppIcon name="x" size={12} />
+                </Button>
               </Show>
-            </button>
+            </Button>
           )}
         </For>
-      </div>
+      </Box>
 
-      <div class="chat-tabs-actions">
+      <Box class="chat-tabs-actions">
         <Show when={props.onCollapse}>
-          <button
+          <Button
             type="button"
             class="chat-tab-action sheet-collapse"
-            aria-label="Collapse chat"
-            title="Collapse chat"
+            aria-label={t("chat.collapseChat")}
+            title={t("chat.collapseChat")}
             disabled={props.disabled}
             onClick={() => props.onCollapse?.()}
           >
-            ‹
-          </button>
+            <AppIcon name="chevron-left" size={14} />
+          </Button>
         </Show>
-        <button
+        <Button
           type="button"
           class="chat-tab-action chat-tab-new"
-          title="New Agent"
-          aria-label="New Agent"
+          title={t("chat.newAgent")}
+          aria-label={t("chat.newAgent")}
           disabled={props.disabled || props.switchLocked}
           onClick={() => props.onNew()}
         >
-          +
-        </button>
+          <AppIcon name="plus" size={14} />
+        </Button>
         <Show when={hasMenu()}>
-          <div
+          <Box
             class="chat-tabs-menu"
             ref={(el) => {
               menuRoot = el
             }}
           >
-            <button
+            <Button
               type="button"
               class="chat-tab-action chat-tab-menu-trigger"
-              title="Chat actions"
-              aria-label="Chat actions"
+              title={t("chat.chatActions")}
+              aria-label={t("chat.chatActions")}
               aria-haspopup="menu"
               aria-expanded={menuOpen()}
               disabled={props.disabled}
               onClick={() => toggleMenu()}
             >
-              ⋯
-            </button>
+              <AppIcon name="ellipsis" size={14} />
+            </Button>
             <Show when={menuOpen()}>
-              <div class="chat-tab-menu-popover" role="menu">
+              <Box class="chat-tab-menu-popover" role="menu">
                 <Show when={props.onImportPick}>
-                  <button
+                  <Button
                     type="button"
                     role="menuitem"
                     class="chat-tab-menu-item"
                     disabled={props.switchLocked}
                     onClick={() => runAndClose(props.onImportPick)}
                   >
-                    Import transcript
-                  </button>
+                    {t("chat.importTranscript")}
+                  </Button>
                 </Show>
                 <Show when={props.onExport}>
-                  <button
+                  <Button
                     type="button"
                     role="menuitem"
                     class="chat-tab-menu-item chat-tab-menu-item-row"
                     disabled={!props.activeId}
                     onClick={() => runAndClose(props.onExport)}
                   >
-                    <span>Export transcript</span>
+                    <Text tag="span">{t("chat.exportTranscript")}</Text>
                     <Show when={exportIncludeTrace()}>
-                      <span
+                      <Text tag="span"
                         class="chat-tab-menu-if is-on"
-                        title="Includes thinking & tool trace (Settings)"
+                        title={t("chat.includesThinkingToolTrace")}
                       >
-                        IF
-                      </span>
+                        {t("chat.includesTraceBadge")}
+                      </Text>
                     </Show>
-                  </button>
+                  </Button>
                 </Show>
                 <Show when={props.onImportBriefPick}>
-                  <button
+                  <Button
                     type="button"
                     role="menuitem"
                     class="chat-tab-menu-item"
                     disabled={props.switchLocked}
                     onClick={() => runAndClose(props.onImportBriefPick)}
                   >
-                    Import brief
-                  </button>
+                    {t("chat.importBrief")}
+                  </Button>
                 </Show>
                 <Show when={props.onRecognizeScreenshot}>
-                  <button
+                  <Button
                     type="button"
                     role="menuitem"
                     class="chat-tab-menu-item"
                     disabled={props.switchLocked}
                     onClick={() => runAndClose(props.onRecognizeScreenshot)}
                   >
-                    Attach screenshot
-                  </button>
+                    {t("chat.attachScreenshot")}
+                  </Button>
                 </Show>
                 <Show when={props.onExportBrief}>
-                  <button
+                  <Button
                     type="button"
                     role="menuitem"
                     class="chat-tab-menu-item"
                     onClick={() => runAndClose(props.onExportBrief)}
                   >
-                    Export brief
-                  </button>
+                    {t("chat.exportBrief")}
+                  </Button>
                 </Show>
                 <Show when={props.onCopyRequestId}>
-                  <button
+                  <Button
                     type="button"
                     role="menuitem"
                     class="chat-tab-menu-item"
                     disabled={!props.activeId}
                     onClick={() => runAndClose(props.onCopyRequestId)}
                   >
-                    Copy Request ID
-                  </button>
+                    {t("chat.copyRequestId")}
+                  </Button>
                 </Show>
-              </div>
+              </Box>
             </Show>
-          </div>
+          </Box>
         </Show>
-      </div>
-    </div>
+      </Box>
+    </Box>
   )
 }

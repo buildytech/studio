@@ -75,6 +75,7 @@ import {
   saveSessionTodos,
 } from "./session-todos"
 import type { AgentTodoItem } from "@buildy/agent-contract"
+import { Box, Input } from "../primitives"
 
 type ChatMessage = CachedChatMessage
 
@@ -187,7 +188,7 @@ export function ChatPanel(props: ChatPanelProps): JSX.Element {
   const [bootstrapping, setBootstrapping] = createSignal(true)
   const [importedIds, setImportedIds] = createSignal<Set<string>>(new Set())
   const [dropActive, setDropActive] = createSignal(false)
-  let scrollEl: HTMLDivElement | undefined
+  let scrollEl: HTMLElement | undefined
   let importInput: HTMLInputElement | undefined
   let briefImportInput: HTMLInputElement | undefined
   let visionImportInput: HTMLInputElement | undefined
@@ -1274,7 +1275,7 @@ export function ChatPanel(props: ChatPanelProps): JSX.Element {
   }
 
   return (
-    <div
+    <Box
       class="chat"
       classList={{ "chat-drop-active": dropActive() }}
       onDragEnter={onDragEnter}
@@ -1282,7 +1283,7 @@ export function ChatPanel(props: ChatPanelProps): JSX.Element {
       onDragOver={onDragOver}
       onDrop={onDrop}
     >
-      <input
+      <Input
         ref={(el) => {
           importInput = el
         }}
@@ -1295,7 +1296,7 @@ export function ChatPanel(props: ChatPanelProps): JSX.Element {
           if (file) void importFromFile(file)
         }}
       />
-      <input
+      <Input
         ref={(el) => {
           briefImportInput = el
         }}
@@ -1308,7 +1309,7 @@ export function ChatPanel(props: ChatPanelProps): JSX.Element {
           if (file) void importBriefFromFile(file)
         }}
       />
-      <input
+      <Input
         ref={(el) => {
           visionImportInput = el
         }}
@@ -1421,6 +1422,6 @@ export function ChatPanel(props: ChatPanelProps): JSX.Element {
         onSend={() => void send()}
         onAbort={() => void abort()}
       />
-    </div>
+    </Box>
   )
 }

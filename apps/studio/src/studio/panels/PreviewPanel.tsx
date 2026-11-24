@@ -11,61 +11,10 @@ import {
   stableStatusWhileFramed,
 } from "../../preview-lifecycle"
 import type { StudioPanelProps } from "./types"
-
-function PlayIcon(): JSX.Element {
-  return (
-    <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true">
-      <path d="M8 5v14l11-7z" />
-    </svg>
-  )
-}
-
-function StopIcon(): JSX.Element {
-  return (
-    <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true">
-      <rect x="6" y="6" width="12" height="12" rx="1" />
-    </svg>
-  )
-}
-
-function RefreshIcon(): JSX.Element {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      width="15"
-      height="15"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      aria-hidden="true"
-    >
-      <path d="M21 12a9 9 0 1 1-2.6-6.2" />
-      <path d="M21 3v6h-6" />
-    </svg>
-  )
-}
-
-function ExternalIcon(): JSX.Element {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      width="15"
-      height="15"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      aria-hidden="true"
-    >
-      <path d="M15 3h6v6" />
-      <path d="M10 14 21 3" />
-      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-    </svg>
-  )
-}
+import { Box, Button, Input, Text } from "../../primitives"
+import { AppIcon } from "../../app-icons"
+import { PreviewFrame } from "../../vendor-ui/PreviewFrame"
+import { t } from "../../i18n"
 
 export default function PreviewPanel(props: StudioPanelProps): JSX.Element {
   const [status, setStatus] = createSignal("idle")
@@ -275,16 +224,16 @@ export default function PreviewPanel(props: StudioPanelProps): JSX.Element {
   }
 
   return (
-    <div class="studio-panel-surface preview-panel-surface">
-      <div class="panel-provider-toolbar preview-provider-toolbar">
-        <div class="side-route">
-          <input
+    <Box class="studio-panel-surface preview-panel-surface">
+      <Box class="panel-provider-toolbar preview-provider-toolbar">
+        <Box class="side-route">
+          <Input
             class="side-route-input"
             type="text"
             value={routeDraft()}
             spellcheck={false}
             autocomplete="off"
-            aria-label="Preview route"
+            aria-label={t("preview.previewRoute")}
             placeholder="/"
             onInput={(event) => setRouteDraft(event.currentTarget.value)}
             onKeyDown={(event) => {
@@ -293,100 +242,107 @@ export default function PreviewPanel(props: StudioPanelProps): JSX.Element {
               openPreviewInNewTab()
             }}
           />
-          <button
+          <Button
             type="button"
             class="side-icon-btn"
-            title="Open in new window"
-            aria-label="Open preview in new window"
+            title={t("preview.openInNewWindow")}
+            aria-label={t("preview.openPreviewInNew")}
             onClick={openPreviewInNewTab}
           >
-            <ExternalIcon />
-          </button>
-        </div>
-        <div class="side-toolbar-actions" role="group" aria-label="Runner">
+            <AppIcon name="external-link" size={15} />
+          </Button>
+        </Box>
+        <Box class="side-toolbar-actions" role="group" aria-label={t("preview.runner")}>
           <Show
             when={runnerLive()}
             fallback={
-              <button
+              <Button
                 type="button"
                 class="side-icon-btn primary"
-                title={runnerStarting() ? "Starting…" : "Start"}
-                aria-label={runnerStarting() ? "Starting preview" : "Start preview"}
+                title={runnerStarting() ? t("preview.starting") : t("preview.startShort")}
+                aria-label={runnerStarting() ? t("preview.startingPreview") : t("preview.start")}
                 disabled={runnerStarting()}
                 onClick={() => void ensure()}
               >
-                <PlayIcon />
-              </button>
+                <AppIcon name="play" size={15} filled />
+              </Button>
             }
           >
-            <button
+            <Button
               type="button"
               class="side-icon-btn"
-              title="Stop"
-              aria-label="Stop preview"
+              title={t("common.stop")}
+              aria-label={t("preview.stopPreview")}
               onClick={() => void stop()}
             >
-              <StopIcon />
-            </button>
+              <AppIcon name="stop" size={14} filled />
+            </Button>
           </Show>
-          <button
+          <Button
             type="button"
             class="side-icon-btn"
-            title="Refresh"
-            aria-label="Refresh preview"
+            title={t("preview.refresh")}
+            aria-label={t("preview.refreshPreview")}
             disabled={runnerStarting()}
             onClick={() => void ensure()}
           >
-            <RefreshIcon />
-          </button>
-        </div>
-      </div>
+            <AppIcon name="refresh" size={15} />
+          </Button>
+        </Box>
+      </Box>
 
-      <div class="studio-panel-content preview-pane">
+      <Box class="studio-panel-content preview-pane">
         <Show
           when={frameGen() > 0}
           fallback={
-            <div class="pane-empty">
+            <Box class="pane-empty">
               <Show
                 when={booting() || status() === "starting"}
                 fallback={
-                  <p>
-                    {status() === "running"
-                      ? "The live preview is ready. Use Refresh to open it."
-                      : `Preview is ${status() === "exited" ? "stopped" : status()}. Use Play to boot the Vite runner.`}
-                    {" "}Edits use HMR — the frame is not remounted automatically.
-                  </p>
+                  <Show
+                    when={status() !== "running"}
+                    fallback={<Text>{t("preview.readyLead")}</Text>}
+                  >
+                    <Box class="flex flex-col items-center gap-3">
+                      <Text>{t("preview.stoppedLead")}</Text>
+                      <Button
+                        type="button"
+                        class="btn primary"
+                        disabled={runnerStarting()}
+                        onClick={() => void ensure()}
+                      >
+                        <AppIcon name="play" size={14} filled />
+                        {t("preview.start")}
+                      </Button>
+                    </Box>
+                  </Show>
                 }
               >
-                <p>
+                <Text>
                   {status() === "running"
-                    ? "Opening live preview…"
-                    : "Starting runner…"}
-                </p>
+                    ? t("preview.openingLivePreview")
+                    : t("preview.startingRunner")}
+                </Text>
               </Show>
-            </div>
+            </Box>
           }
         >
-          <div class="preview-frame-wrap">
-            <iframe
+          <Box class="preview-frame-wrap">
+            <PreviewFrame
               ref={bindPreviewFrame}
-              title="App preview"
+              title={t("preview.appPreview")}
               class="frame preview-frame"
-              // Cross-origin preview (app.* → *.preview.*) needs explicit
-              // Permissions-Policy delegation or Clipboard API paste/copy fails
-              // (Simple Table / spreadsheet Ctrl+V → "blocked by permissions policy").
-              allow="clipboard-read *; clipboard-write *"
               onLoad={() => setBooting(false)}
             />
             <Show when={booting()}>
-              <div class="preview-frame-overlay" aria-live="polite">
-                Starting preview…
-              </div>
+              <Box class="preview-frame-overlay" aria-live="polite">
+                {t("preview.startingPreviewEllipsis")}
+              </Box>
             </Show>
-          </div>
+          </Box>
         </Show>
-      </div>
-    </div>
+      </Box>
+    </Box>
   )
 }
 

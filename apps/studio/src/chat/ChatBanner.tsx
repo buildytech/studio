@@ -2,6 +2,9 @@ import type { JSX } from "solid-js"
 import { Show } from "solid-js"
 import { A } from "@solidjs/router"
 import type { ChatBannerModel } from "./banner"
+import { Box, Button, Text } from "../primitives"
+import { AppIcon } from "../app-icons"
+import { t } from "../i18n"
 
 export type ChatBannerProps = ChatBannerModel & {
   onDismiss?: () => void
@@ -13,29 +16,29 @@ export function ChatBanner(props: ChatBannerProps): JSX.Element {
     || props.message.toLowerCase().includes("reconnect")
 
   return (
-    <div
+    <Box
       class="chat-banner"
       classList={{ "chat-banner-warn": isWarn() }}
       role="alert"
     >
-      <span class="chat-banner-text">{props.message}</span>
+      <Text tag="span" class="chat-banner-text">{props.message}</Text>
       <Show when={props.settingsHref}>
         {(href) => (
           <A class="chat-banner-settings" href={href()}>
-            Settings
+            {t("nav.settings")}
           </A>
         )}
       </Show>
       <Show when={props.onDismiss}>
-        <button
+        <Button
           type="button"
           class="chat-banner-dismiss"
-          aria-label="Dismiss"
+          aria-label={t("common.dismiss")}
           onClick={() => props.onDismiss?.()}
         >
-          ×
-        </button>
+          <AppIcon name="x" size={12} />
+        </Button>
       </Show>
-    </div>
+    </Box>
   )
 }

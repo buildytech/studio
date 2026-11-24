@@ -1,6 +1,9 @@
 import { For, Show, type JSX } from "solid-js"
 import type { AgentTodoItem, AgentTodoStatus } from "@buildy/agent-contract"
 import { todosProgress } from "./session-todos"
+import { Box, Button, Text } from "../primitives"
+import { AppIcon } from "../app-icons"
+import { t } from "../i18n"
 
 export type ChatTodosPanelProps = {
   todos: AgentTodoItem[]
@@ -46,46 +49,44 @@ export function ChatTodosPanel(props: ChatTodosPanelProps): JSX.Element {
 
   return (
     <Show when={props.todos.length > 0}>
-      <div class="chat-todos" role="region" aria-label="Agent tasks">
-        <div class="chat-todos-head">
-          <button
+      <Box class="chat-todos" role="region" aria-label={t("chat.agentTasks")}>
+        <Box class="chat-todos-head">
+          <Button
             type="button"
             class="chat-todos-toggle"
             aria-expanded={!props.collapsed}
             onClick={() => props.onToggle?.()}
           >
-            <span class="chat-todos-title">{label()}</span>
-            <span class="chat-todos-chevron" aria-hidden="true">
-              {props.collapsed ? "▸" : "▾"}
-            </span>
-          </button>
+            <Text tag="span" class="chat-todos-title">{label()}</Text>
+            <AppIcon name={props.collapsed ? "chevron-right" : "chevron-down"} size={12} class="chat-todos-chevron" />
+          </Button>
           <Show when={props.onDismiss}>
-            <button
+            <Button
               type="button"
               class="chat-todos-dismiss"
-              title="Hide tasks"
-              aria-label="Hide tasks"
+              title={t("chat.hideTasks")}
+              aria-label={t("chat.hideTasks")}
               onClick={() => props.onDismiss?.()}
             >
-              ×
-            </button>
+              <AppIcon name="x" size={12} />
+            </Button>
           </Show>
-        </div>
+        </Box>
         <Show when={!props.collapsed}>
-          <ul class="chat-todos-list">
+          <Box tag="ul" class="chat-todos-list">
             <For each={props.todos}>
               {(item) => (
-                <li class={`chat-todos-item ${statusClass(item.status)}`}>
-                  <span class="chat-todos-mark" aria-hidden="true">
+                <Box tag="li" class={`chat-todos-item ${statusClass(item.status)}`}>
+                  <Text tag="span" class="chat-todos-mark" aria-hidden="true">
                     {mark(item.status)}
-                  </span>
-                  <span class="chat-todos-text">{item.content}</span>
-                </li>
+                  </Text>
+                  <Text tag="span" class="chat-todos-text">{item.content}</Text>
+                </Box>
               )}
             </For>
-          </ul>
+          </Box>
         </Show>
-      </div>
+      </Box>
     </Show>
   )
 }

@@ -13,6 +13,8 @@ import {
   shouldRenderPanel,
 } from "./mount-state"
 import type { ResolvedStudioPanel } from "./registry"
+import { Box } from "../../primitives"
+import { t } from "../../i18n"
 
 export type PanelHostProps = {
   panels: readonly ResolvedStudioPanel[]
@@ -40,7 +42,7 @@ export function PanelHost(props: PanelHostProps): JSX.Element {
   })
 
   return (
-    <div class="side-sheet-body">
+    <Box class="side-sheet-body">
       <For each={props.panels}>
         {(panel) => {
           const Panel = lazy(panel.provider.load)
@@ -53,7 +55,7 @@ export function PanelHost(props: PanelHostProps): JSX.Element {
             )
           return (
             <Show when={rendered()}>
-              <div
+              <Box
                 class="side-layer studio-panel-layer"
                 classList={{ "is-active": active() }}
                 aria-hidden={!active()}
@@ -61,9 +63,9 @@ export function PanelHost(props: PanelHostProps): JSX.Element {
               >
                 <Suspense
                   fallback={
-                    <div class="pane-empty">
-                      Loading {panel.schema.label.toLowerCase()}…
-                    </div>
+                    <Box class="pane-empty">
+                      {t("panels.loading", { name: panel.schema.label.toLowerCase() })}
+                    </Box>
                   }
                 >
                   <Panel
@@ -76,12 +78,12 @@ export function PanelHost(props: PanelHostProps): JSX.Element {
                     onStatusChange={props.onStatusChange}
                   />
                 </Suspense>
-              </div>
+              </Box>
             </Show>
           )
         }}
       </For>
-    </div>
+    </Box>
   )
 }
 

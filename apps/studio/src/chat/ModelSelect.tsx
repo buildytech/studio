@@ -8,6 +8,8 @@ import {
 } from "solid-js"
 import type { AgentModel } from "../api"
 import { grokOptsKey, opusOptsKey } from "../chat-store"
+import { Box, Button, Checkbox, Input, Label, Radio, Select, SelectOption, Text } from "../primitives"
+import { t } from "../i18n"
 
 export type ModelParam = { id: string; value: string }
 
@@ -113,14 +115,14 @@ export function ModelSelect(props: ModelSelectProps): JSX.Element {
   }
 
   return (
-    <div class="chat-model-select-wrap" ref={root}>
+    <Box class="chat-model-select-wrap" ref={root}>
       {/* Fixed-width left slot: Edit for parameterized models, spacer otherwise. */}
-      <div class="chat-model-edit-slot">
+      <Box class="chat-model-edit-slot">
         <Show
           when={hasModes()}
-          fallback={<span class="chat-model-edit-spacer" aria-hidden="true" />}
+          fallback={<Text tag="span" class="chat-model-edit-spacer" aria-hidden="true" />}
         >
-          <button
+          <Button
             type="button"
             class="chat-model-edit"
             disabled={props.disabled}
@@ -129,68 +131,66 @@ export function ModelSelect(props: ModelSelectProps): JSX.Element {
             title={editTitle()}
             onClick={() => setOpen((v) => !v)}
           >
-            Edit
-          </button>
+            {t("common.edit")}
+          </Button>
           <Show when={open()}>
-            <div
+            <Box
               class="chat-model-popover"
               role="dialog"
               aria-label={popoverTitle()}
             >
-              <div class="chat-model-popover-title">Effort</div>
-              <div class="chat-model-effort" role="radiogroup" aria-label="Effort">
+              <Box class="chat-model-popover-title">{t("chat.effort")}</Box>
+              <Box class="chat-model-effort" role="radiogroup" aria-label={t("chat.effort")}>
                 <For each={[...effortLevels()]}>
                   {(level) => (
-                    <label class="chat-model-effort-opt">
-                      <input
-                        type="radio"
+                    <Label class="chat-model-effort-opt">
+                      <Radio
                         name={effortName()}
                         checked={currentEffort() === level}
                         onChange={() => setEffort(level)}
                       />
-                      <span>{EFFORT_LABELS[level] ?? level}</span>
-                    </label>
+                      <Text tag="span">{EFFORT_LABELS[level] ?? level}</Text>
+                    </Label>
                   )}
                 </For>
-              </div>
+              </Box>
               <Show when={isGrok()}>
-                <div class="chat-model-popover-divider" role="separator" />
-                <div class="chat-model-popover-title">Context</div>
-                <div class="chat-model-effort" role="radiogroup" aria-label="Context">
+                <Box class="chat-model-popover-divider" role="separator" />
+                <Box class="chat-model-popover-title">{t("chat.context")}</Box>
+                <Box class="chat-model-effort" role="radiogroup" aria-label={t("chat.context")}>
                   <For each={[...GROK_CONTEXTS]}>
                     {(ctx) => (
-                      <label class="chat-model-effort-opt">
-                        <input
-                          type="radio"
+                      <Label class="chat-model-effort-opt">
+                        <Radio
                           name="grok-context"
                           checked={props.grok.context === ctx}
                           onChange={() => props.onGrokChange({ ...props.grok, context: ctx })}
                         />
-                        <span>{ctx.toUpperCase()}</span>
-                      </label>
+                        <Text tag="span">{ctx.toUpperCase()}</Text>
+                      </Label>
                     )}
                   </For>
-                </div>
+                </Box>
               </Show>
-              <div class="chat-model-popover-divider" role="separator" />
-              <label class="chat-model-fast">
-                <span>Fast</span>
-                <input
-                  type="checkbox"
+              <Box class="chat-model-popover-divider" role="separator" />
+              <Label class="chat-model-fast">
+                <Text tag="span">{t("chat.fast")}</Text>
+                <Checkbox
+                 
                   role="switch"
                   checked={currentFast()}
                   onChange={(e) => setFast(e.currentTarget.checked)}
                 />
-              </label>
-              <div class="chat-model-popover-summary">{modeSummary()}</div>
-            </div>
+              </Label>
+              <Box class="chat-model-popover-summary">{modeSummary()}</Box>
+            </Box>
           </Show>
         </Show>
-      </div>
+      </Box>
 
-      <label class="chat-model">
-        <span class="sr-only">Model</span>
-        <select
+      <Label class="chat-model">
+        <Text tag="span" class="sr-only">{t("chat.model")}</Text>
+        <Select
           class="chat-model-select"
           value={props.modelId}
           disabled={props.disabled}
@@ -200,11 +200,11 @@ export function ModelSelect(props: ModelSelectProps): JSX.Element {
           }}
         >
           <For each={props.models}>
-            {(m) => <option value={m.id}>{m.label}</option>}
+            {(m) => <SelectOption value={m.id}>{m.label}</SelectOption>}
           </For>
-        </select>
-      </label>
-    </div>
+        </Select>
+      </Label>
+    </Box>
   )
 }
 

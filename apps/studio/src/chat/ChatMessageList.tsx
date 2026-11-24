@@ -1,10 +1,12 @@
 import { For, Show, createMemo, type JSX } from "solid-js"
-import { Stack, Text } from "../compose"
+import { Stack } from "../compose"
 import type { CachedChatMessage } from "../chat-store"
 import {
   ChatMessageBubble,
   type ChatFeedbackPayload,
 } from "./ChatMessageBubble"
+import { Box, Button, Text } from "../primitives"
+import { t } from "../i18n"
 
 const STARTERS = [
   "Improve the welcome page layout and typography",
@@ -30,7 +32,7 @@ export const SCREENSHOT_ATTACH_STARTER =
 export type ChatMessageListProps = {
   bootstrapping: boolean
   messages: CachedChatMessage[]
-  scrollRef: (el: HTMLDivElement) => void
+  scrollRef: (el: HTMLElement) => void
   onStarter?: (text: string) => void
   onImportBrief?: () => void
   onRecognizeScreenshot?: () => void
@@ -48,13 +50,13 @@ export function ChatMessageList(props: ChatMessageListProps): JSX.Element {
   const feedbackId = createMemo(() => props.feedbackMessageId ?? null)
 
   return (
-    <div class="chat-messages" ref={props.scrollRef}>
+    <Box class="chat-messages" ref={props.scrollRef}>
       <Show
         when={!props.bootstrapping}
         fallback={
-          <div class="pane-empty chat-empty">
-            <Text class="text-sm text-muted-foreground">Connecting to agent…</Text>
-          </div>
+          <Box class="pane-empty chat-empty">
+            <Text class="text-sm text-muted-foreground">{t("chat.connectingToAgent")}</Text>
+          </Box>
         }
       >
         <Show
@@ -62,64 +64,60 @@ export function ChatMessageList(props: ChatMessageListProps): JSX.Element {
             (m) => m.role === "user" || m.role === "assistant",
           )}
           fallback={
-            <div class="pane-empty chat-empty">
+            <Box class="pane-empty chat-empty">
               <Stack class="items-center gap-3 max-w-md px-4">
-                <Text class="chat-empty-title">What should we change?</Text>
+                <Text class="chat-empty-title">{t("chat.whatShouldWeChange")}</Text>
                 <Text class="text-sm text-muted-foreground text-center">
-                  Describe an edit, or import a product brief SPEC to rebuild
-                  another project 1:1 on this template.
+                  {t("chat.describeAnEditOr")}
                 </Text>
                 <Show when={props.onImportBrief}>
-                  <button
+                  <Button
                     type="button"
                     class="chat-brief-card"
                     onClick={() => props.onImportBrief?.()}
                   >
-                    <span class="chat-brief-card-title">
-                      Import Project Brief
-                    </span>
-                    <span class="chat-brief-card-sub">
-                      Load a <code>buildy.brief.v1</code> SPEC — identity,
-                      design, screens, and bricks. The agent rebuilds from
-                      <code>.buildy/brief.json</code>.
-                    </span>
-                  </button>
+                    <Text tag="span" class="chat-brief-card-title">
+                      {t("chat.importProjectBrief")}
+                    </Text>
+                    <Text tag="span" class="chat-brief-card-sub">
+                      {t("chat.briefCardLead", { spec: "buildy.brief.v1", file: ".buildy/brief.json" })}
+                    </Text>
+                  </Button>
                 </Show>
                 <Show when={props.onRecognizeScreenshot}>
-                  <button
+                  <Button
                     type="button"
                     class="chat-brief-card chat-brief-card-vision"
                     disabled={props.recognizeBusy}
                     onClick={() => props.onRecognizeScreenshot?.()}
                   >
-                    <span class="chat-brief-card-title">
+                    <Text tag="span" class="chat-brief-card-title">
                       {props.recognizeBusy
-                        ? "Adding screenshot…"
-                        : "Attach screenshot"}
-                    </span>
-                    <span class="chat-brief-card-sub">
-                      Add an image to the next chat message (UI mock, bug,
-                      reference — anything). Not tied to the product brief.
-                    </span>
-                  </button>
+                        ? t("chat.addingScreenshot")
+                        : t("chat.attachScreenshot")}
+                    </Text>
+                    <Text tag="span" class="chat-brief-card-sub">
+                      {t("chat.addAnImageTo")}
+                    </Text>
+                  </Button>
                 </Show>
                 <Show when={props.onStarter}>
-                  <div class="chat-starters">
+                  <Box class="chat-starters">
                     <For each={[...STARTERS]}>
                       {(hint) => (
-                        <button
+                        <Button
                           type="button"
                           class="chat-starter"
                           onClick={() => props.onStarter?.(hint)}
                         >
                           {hint}
-                        </button>
+                        </Button>
                       )}
                     </For>
-                  </div>
+                  </Box>
                 </Show>
               </Stack>
-            </div>
+            </Box>
           }
         >
           <Stack class="gap-3 p-3">
@@ -140,6 +138,6 @@ export function ChatMessageList(props: ChatMessageListProps): JSX.Element {
           </Stack>
         </Show>
       </Show>
-    </div>
+    </Box>
   )
 }

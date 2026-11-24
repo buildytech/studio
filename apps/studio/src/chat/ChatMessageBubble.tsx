@@ -1,11 +1,13 @@
 import { For, Show, createSignal, type JSX } from "solid-js"
-import { Text } from "../compose"
 import {
   FEEDBACK_DOWN_TAGS,
   type CachedChatMessage,
   type FeedbackDownTag,
 } from "../chat-store"
 import { MarkdownView } from "../vendor-ui/MarkdownView"
+import { Box, Button, Text, Textarea } from "../primitives"
+import { AppIcon } from "../app-icons"
+import { t } from "../i18n"
 
 export type ChatFeedbackPayload = {
   rating: "up" | "down"
@@ -100,7 +102,7 @@ export function ChatMessageBubble(props: ChatMessageBubbleProps): JSX.Element {
     <Show
       when={role() === "thinking" || role() === "tool"}
       fallback={
-        <div
+        <Box
           class="chat-bubble"
           classList={{
             "chat-bubble-user": role() === "user",
@@ -108,19 +110,19 @@ export function ChatMessageBubble(props: ChatMessageBubbleProps): JSX.Element {
             "chat-bubble-streaming": Boolean(msg().streaming),
           }}
         >
-          <div class="chat-bubble-meta">
+          <Box class="chat-bubble-meta">
             <Text class="chat-bubble-role">
-              {role() === "assistant" ? "Assistant" : "You"}
+              {role() === "assistant" ? t("chat.assistant") : t("chat.you")}
             </Text>
             <Show when={msg().streaming}>
-              <span class="chat-streaming-label">streaming</span>
+              <Text tag="span" class="chat-streaming-label">{t("chat.streaming")}</Text>
             </Show>
             <Show when={msg().attachmentName}>
-              <span class="chat-attach-badge" title={msg().attachmentName}>
-                📎 {msg().attachmentName}
-              </span>
+              <Text tag="span" class="chat-attach-badge" title={msg().attachmentName}>
+                <AppIcon name="paperclip" size={12} /> {msg().attachmentName}
+              </Text>
             </Show>
-          </div>
+          </Box>
           <Show
             when={role() === "assistant"}
             fallback={<Text class="chat-bubble-plain">{msg().text}</Text>}
@@ -137,45 +139,45 @@ export function ChatMessageBubble(props: ChatMessageBubbleProps): JSX.Element {
               <MarkdownView class="chat-md" source={msg().text} />
             </Show>
             <Show when={props.showFeedback && msg().runId}>
-              <div class="chat-feedback">
-                <div class="chat-feedback-row">
-                  <button
+              <Box class="chat-feedback">
+                <Box class="chat-feedback-row">
+                  <Button
                     type="button"
                     class="chat-feedback-btn"
                     classList={{
                       "chat-feedback-btn-active": latched() === "up",
                     }}
                     disabled={disabled()}
-                    aria-label="Thumbs up"
+                    aria-label={t("chat.thumbsUp")}
                     onClick={() => void submit({ rating: "up" })}
                   >
                     👍
-                  </button>
-                  <button
+                  </Button>
+                  <Button
                     type="button"
                     class="chat-feedback-btn"
                     classList={{
                       "chat-feedback-btn-active": latched() === "down",
                     }}
                     disabled={disabled()}
-                    aria-label="Thumbs down"
+                    aria-label={t("chat.thumbsDown")}
                     onClick={() => {
                       if (disabled()) return
                       setDownOpen((v) => !v)
                     }}
                   >
                     👎
-                  </button>
+                  </Button>
                   <Show when={latched()}>
-                    <span class="chat-feedback-latched">Thanks</span>
+                    <Text tag="span" class="chat-feedback-latched">{t("chat.thanks")}</Text>
                   </Show>
-                </div>
+                </Box>
                 <Show when={downOpen() && !latched()}>
-                  <div class="chat-feedback-down">
-                    <div class="chat-feedback-chips">
+                  <Box class="chat-feedback-down">
+                    <Box class="chat-feedback-chips">
                       <For each={[...FEEDBACK_DOWN_TAGS]}>
                         {(tag) => (
-                          <button
+                          <Button
                             type="button"
                             class="chat-feedback-chip"
                             classList={{
@@ -185,19 +187,19 @@ export function ChatMessageBubble(props: ChatMessageBubbleProps): JSX.Element {
                             onClick={() => toggleTag(tag)}
                           >
                             {tag}
-                          </button>
+                          </Button>
                         )}
                       </For>
-                    </div>
-                    <textarea
+                    </Box>
+                    <Textarea
                       class="chat-feedback-comment"
                       rows={2}
-                      placeholder="Optional comment"
+                      placeholder={t("chat.optionalComment")}
                       value={comment()}
                       disabled={busy()}
                       onInput={(e) => setComment(e.currentTarget.value)}
                     />
-                    <button
+                    <Button
                       type="button"
                       class="chat-feedback-submit"
                       disabled={busy()}
@@ -211,20 +213,20 @@ export function ChatMessageBubble(props: ChatMessageBubbleProps): JSX.Element {
                         })
                       }
                     >
-                      Submit
-                    </button>
-                  </div>
+                      {t("chat.submit")}
+                    </Button>
+                  </Box>
                 </Show>
                 <Show when={hint()}>
                   <Text class="chat-feedback-hint">{hint()}</Text>
                 </Show>
-              </div>
+              </Box>
             </Show>
           </Show>
-        </div>
+        </Box>
       }
     >
-      <div
+      <Box
         class="chat-trace"
         classList={{
           "chat-trace-thinking": role() === "thinking",
@@ -233,18 +235,18 @@ export function ChatMessageBubble(props: ChatMessageBubbleProps): JSX.Element {
         }}
       >
         <Show when={role() === "thinking"}>
-          <div class="chat-trace-head">
-            <span class="chat-trace-label">
-              {msg().streaming ? "Thinking" : "Thought"}
-            </span>
+          <Box class="chat-trace-head">
+            <Text tag="span" class="chat-trace-label">
+              {msg().streaming ? t("chat.thinking") : t("chat.thought")}
+            </Text>
             <Show when={formatThinkingDuration(msg().meta?.durationMs)}>
-              {(label) => <span class="chat-trace-meta">{label()}</span>}
+              {(label) => <Text tag="span" class="chat-trace-meta">{label()}</Text>}
             </Show>
-          </div>
-          <pre class="chat-trace-body">{msg().text}</pre>
+          </Box>
+          <Text tag="pre" class="chat-trace-body">{msg().text}</Text>
         </Show>
         <Show when={role() === "tool"}>
-          <div
+          <Box
             class="chat-trace-term"
             classList={{
               "chat-trace-kind-search": msg().meta?.kind === "search",
@@ -253,36 +255,36 @@ export function ChatMessageBubble(props: ChatMessageBubbleProps): JSX.Element {
               "chat-trace-kind-plan": msg().meta?.kind === "plan",
             }}
           >
-            <div class="chat-trace-head">
-              <span class="chat-trace-prompt">
+            <Box class="chat-trace-head">
+              <Text tag="span" class="chat-trace-prompt">
                 {toolPromptGlyph(msg().meta?.kind)}
-              </span>
+              </Text>
               <Show when={toolKindLabel(msg().meta?.kind)}>
                 {(label) => (
-                  <span class="chat-trace-kind">{label()}</span>
+                  <Text tag="span" class="chat-trace-kind">{label()}</Text>
                 )}
               </Show>
-              <span class="chat-trace-label chat-trace-cmd" title={msg().text}>
+              <Text tag="span" class="chat-trace-label chat-trace-cmd" title={msg().text}>
                 {msg().text}
-              </span>
+              </Text>
               <Show when={msg().meta?.toolStatus === "running"}>
-                <span class="chat-trace-meta">running</span>
+                <Text tag="span" class="chat-trace-meta">{t("chat.running")}</Text>
               </Show>
               <Show when={msg().meta?.toolStatus === "done"}>
-                <span class="chat-trace-meta">done</span>
+                <Text tag="span" class="chat-trace-meta">{t("chat.done")}</Text>
               </Show>
               <Show when={msg().meta?.toolStatus === "error"}>
-                <span class="chat-trace-meta">error</span>
+                <Text tag="span" class="chat-trace-meta">{t("chat.error")}</Text>
               </Show>
-            </div>
+            </Box>
             <Show when={msg().meta?.detail}>
-              <pre class="chat-trace-body chat-trace-term-body">
+              <Text tag="pre" class="chat-trace-body chat-trace-term-body">
                 {msg().meta?.detail}
-              </pre>
+              </Text>
             </Show>
-          </div>
+          </Box>
         </Show>
-      </div>
+      </Box>
     </Show>
   )
 }

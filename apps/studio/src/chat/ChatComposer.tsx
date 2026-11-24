@@ -1,5 +1,8 @@
 import { Show, type JSX } from "solid-js"
-import { Button, Group, Text, Textarea } from "../compose"
+import { Button, ButtonPlain, Group, Text, Textarea } from "../compose"
+import { Box, Image } from "../primitives"
+import { AppIcon } from "../app-icons"
+import { t } from "../i18n"
 
 export type ComposerAttachment = {
   name: string
@@ -23,35 +26,39 @@ export function ChatComposer(props: ChatComposerProps): JSX.Element {
     if (event.key === "Enter" && !event.shiftKey) {
       event.preventDefault()
       if (props.canSend) props.onSend()
+    } else if (event.key === "Escape" && props.running) {
+      // docs/ux-review.md: Esc stops the run from the composer.
+      event.preventDefault()
+      props.onAbort()
     }
   }
 
   return (
-    <div class="chat-composer">
+    <Box class="chat-composer">
       <Show when={props.attachment}>
         {(att) => (
-          <div class="chat-attach-chip" aria-live="polite">
-            <img
+          <Box class="chat-attach-chip" aria-live="polite">
+            <Image
               class="chat-attach-thumb"
               src={att().previewUrl}
               alt=""
             />
-            <div class="chat-attach-meta">
-              <Text class="chat-attach-label">Screenshot attached</Text>
+            <Box class="chat-attach-meta">
+              <Text class="chat-attach-label">{t("chat.screenshotAttached")}</Text>
               <Text class="chat-attach-name">{att().name}</Text>
-            </div>
+            </Box>
             <Show when={props.onClearAttachment}>
-              <button
+              <ButtonPlain
                 type="button"
                 class="chat-attach-clear"
-                aria-label="Remove screenshot"
+                aria-label={t("chat.removeScreenshot")}
                 disabled={props.disabled || props.running}
                 onClick={() => props.onClearAttachment?.()}
               >
-                ×
-              </button>
+                <AppIcon name="x" size={12} />
+              </ButtonPlain>
             </Show>
-          </div>
+          </Box>
         )}
       </Show>
       <Textarea
@@ -61,8 +68,8 @@ export function ChatComposer(props: ChatComposerProps): JSX.Element {
         disabled={props.disabled}
         placeholder={
           props.attachment
-            ? "Describe what to do with the screenshot…"
-            : "Message the agent…"
+            ? t("chat.describeWhatToDo")
+            : t("chat.messageTheAgent")
         }
         onInput={(e: InputEvent & { currentTarget: HTMLTextAreaElement }) =>
           props.onDraftChange(e.currentTarget.value)
@@ -72,8 +79,8 @@ export function ChatComposer(props: ChatComposerProps): JSX.Element {
       <Group class="chat-composer-bar items-center justify-between gap-2">
         <Text class="chat-composer-hint">
           {props.attachment
-            ? "Screenshot ready · Enter send · Shift+Enter newline"
-            : "Enter send · Shift+Enter newline"}
+            ? t("chat.screenshotReadyEnterSend")
+            : t("chat.enterSendShiftEnter")}
         </Text>
         <Group class="gap-2">
           <Show when={props.running}>
@@ -83,7 +90,7 @@ export function ChatComposer(props: ChatComposerProps): JSX.Element {
               size="sm"
               onClick={() => props.onAbort()}
             >
-              Stop
+              {t("common.stop")}
             </Button>
           </Show>
           <Button
@@ -93,10 +100,10 @@ export function ChatComposer(props: ChatComposerProps): JSX.Element {
             disabled={!props.canSend}
             onClick={() => props.onSend()}
           >
-            {props.running ? "Working…" : "Send"}
+            {props.running ? t("chat.working") : t("chat.send")}
           </Button>
         </Group>
       </Group>
-    </div>
+    </Box>
   )
 }

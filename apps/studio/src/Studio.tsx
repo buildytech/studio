@@ -37,6 +37,10 @@ import {
   defaultStudioPanelId,
   resolveStudioPanels,
 } from "./studio/panels/registry"
+import { Box, Button, Text } from "./primitives"
+import { cssVars } from "./lib/css-vars"
+import { AppIcon } from "./app-icons"
+import { t } from "./i18n"
 
 const CHAT_OPEN_KEY = "buildy.chatOpen"
 const STUDIO_PANELS = resolveStudioPanels(
@@ -134,7 +138,7 @@ export function Studio(props: { user: User }): JSX.Element {
 
   const sideOpen = () => activePanelId() !== null
 
-  let panesEl: HTMLDivElement | undefined
+  let panesEl: HTMLElement | undefined
 
   const startSplitDrag = (event: PointerEvent) => {
     if (!sideOpen() || !chatOpen() || !panesEl) return
@@ -228,80 +232,61 @@ export function Studio(props: { user: User }): JSX.Element {
   })
 
   return (
-    <div class="studio">
-      <header class="studio-bar">
-        <div class="studio-bar-left">
+    <Box class="studio">
+      <Box tag="header" class="studio-bar">
+        <Box class="studio-bar-left">
           <A href="/" class="brand compact">
-            Buildy
+            {t("brand.name")}
           </A>
-          <span class="bar-sep" aria-hidden="true" />
-          <Show when={project()} fallback={<span class="muted">Loading…</span>}>
-            {(p) => <h1 class="studio-title">{p().name}</h1>}
+          <Text tag="span" class="bar-sep" aria-hidden="true" />
+          <Show when={project()} fallback={<Text tag="span" class="muted">{t("common.loading")}</Text>}>
+            {(p) => <Text tag="h1" class="studio-title">{p().name}</Text>}
           </Show>
-          <span class={`status-pill status-${status()}`}>{statusLabel(status())}</span>
-        </div>
-        <div class="studio-bar-right">
-          <button
-            type="button"
-            class="btn ghost"
-            disabled
-            title="Coming soon"
-          >
-            Remix
-          </button>
-          <button
-            type="button"
-            class="btn ghost"
-            disabled
-            title="Coming soon"
-          >
-            Publish
-          </button>
-
-          <div class="studio-account">
-            <button
+          <Text tag="span" class={`status-pill status-${status()}`}>{statusLabel(status())}</Text>
+        </Box>
+        <Box class="studio-bar-right">
+          <Box class="studio-account">
+            <Button
               type="button"
               class="studio-account-trigger"
               aria-haspopup="menu"
               aria-expanded={accountMenuOpen()}
               title={
                 cursorAccount()?.email
-                  ? `Cursor · ${cursorAccount()!.email}`
-                  : "Account"
+                  ? t("studio.accountCursor", { email: cursorAccount()!.email ?? "" })
+                  : t("studio.account")
               }
               onClick={() => setAccountMenuOpen((open) => !open)}
             >
-              <span class="studio-cursor-user">{accountLabel()}</span>
-              <span class="studio-account-caret" aria-hidden="true">
-                ▾
-              </span>
-            </button>
+              <Text tag="span" class="studio-cursor-user">{accountLabel()}</Text>
+              <AppIcon name="chevron-down" size={12} class="studio-account-caret" />
+            </Button>
             <Show when={accountMenuOpen()}>
-              <div class="studio-account-menu" role="menu">
+              <Box class="studio-account-menu" role="menu">
                 <A
                   class="studio-account-item"
                   href="/settings"
                   role="menuitem"
                   onClick={() => setAccountMenuOpen(false)}
                 >
-                  Settings
+                  {t("nav.settings")}
                 </A>
-              </div>
+              </Box>
             </Show>
-          </div>
-        </div>
-      </header>
+          </Box>
+        </Box>
+      </Box>
 
       <Show when={error()}>
-        <div class="studio-banner">{error()}</div>
+        <Box class="studio-banner">{error()}</Box>
       </Show>
       <Show when={!hostCaps.loading}>
         <For each={hostNotices(hostCaps())}>
-          {(note) => <div class="studio-banner">{note}</div>}
+          {(note) => <Box class="studio-banner">{note}</Box>}
         </For>
       </Show>
 
-      <div
+      <Box
         class="studio-panes"
         classList={{
           "side-collapsed": !sideOpen(),
@@ -309,18 +294,18 @@ export function Studio(props: { user: User }): JSX.Element {
           "chat-collapsed": !chatOpen(),
           "is-splitting": splitting(),
         }}
-        style={{ "--studio-side-width": `${sidePct()}%` }}
         ref={(el) => {
           panesEl = el
+          cssVars(el, () => ({ "--studio-side-width": `${sidePct()}%` }))
         }}
       >
-        <section
+        <Box tag="section"
           class="studio-pane agent-pane"
           aria-hidden={!chatOpen()}
         >
           <Show
             when={projectId()}
-            fallback={<div class="pane-empty">Select a project</div>}
+            fallback={<Box class="pane-empty">{t("studio.selectAProject")}</Box>}
           >
             {(id) => (
               <Chat
@@ -330,13 +315,13 @@ export function Studio(props: { user: User }): JSX.Element {
               />
             )}
           </Show>
-        </section>
+        </Box>
         <Show when={sideOpen() && chatOpen()}>
-          <div
+          <Box
             class="studio-split"
             role="separator"
             aria-orientation="vertical"
-            aria-label="Resize chat and side panel"
+            aria-label={t("studio.resizeChatAndSide")}
             aria-valuemin={MIN_SIDE_PCT}
             aria-valuemax={MAX_SIDE_PCT}
             aria-valuenow={Math.round(sidePct())}
@@ -352,18 +337,18 @@ export function Studio(props: { user: User }): JSX.Element {
             }}
           />
         </Show>
-        <section
+        <Box tag="section"
           id="studio-side-sheet"
           class="studio-pane side-sheet"
           aria-hidden={!sideOpen()}
         >
-          <div class="side-toolbar">
-            <div class="studio-segment" role="group" aria-label="Side panel">
+          <Box class="side-toolbar">
+            <Box class="studio-segment" role="group" aria-label={t("studio.sidePanel")}>
               <For each={STUDIO_PANELS}>
                 {(panel) => {
                   const active = () => activePanelId() === panel.schema.id
                   return (
-                    <button
+                    <Button
                       type="button"
                       class="studio-segment-btn"
                       classList={{ active: active() }}
@@ -372,21 +357,21 @@ export function Studio(props: { user: User }): JSX.Element {
                       onClick={() => togglePanel(panel.schema.id)}
                     >
                       {panel.schema.label}
-                    </button>
+                    </Button>
                   )
                 }}
               </For>
-            </div>
-            <span />
-            <button
+            </Box>
+            <Text tag="span" />
+            <Button
               type="button"
               class="sheet-collapse"
-              aria-label="Collapse side panel"
+              aria-label={t("studio.collapseSidePanel")}
               onClick={collapseSide}
             >
-              ›
-            </button>
-          </div>
+              <AppIcon name="chevron-right" size={14} />
+            </Button>
+          </Box>
 
           <PanelHost
             panels={STUDIO_PANELS}
@@ -398,29 +383,29 @@ export function Studio(props: { user: User }): JSX.Element {
             onProjectChange={setProject}
             onStatusChange={setStatus}
           />
-        </section>
+        </Box>
         <Show when={!sideOpen()}>
-          <button
+          <Button
             type="button"
             class="preview-rail"
             aria-label={`Show ${lastPanelId() || DEFAULT_STUDIO_PANEL_ID} panel`}
             onClick={() => setPanel(lastPanelId() || DEFAULT_STUDIO_PANEL_ID)}
           >
             {STUDIO_PANELS.find((panel) => panel.schema.id === lastPanelId())
-              ?.schema.label ?? "Panel"}
-          </button>
+              ?.schema.label ?? t("studio.panel")}
+          </Button>
         </Show>
         <Show when={!chatOpen()}>
-          <button
+          <Button
             type="button"
             class="chat-rail"
-            aria-label="Show chat"
+            aria-label={t("studio.showChat")}
             onClick={toggleChat}
           >
-            Chat
-          </button>
+            {t("studio.chat")}
+          </Button>
         </Show>
-      </div>
-    </div>
+      </Box>
+    </Box>
   )
 }

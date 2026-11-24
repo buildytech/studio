@@ -14,6 +14,12 @@ describe("rules:check detectors", () => {
     expect(detectors("a.tsx", `const A = () => <Text class="text-sm" aria-label={t("close")}>{t("save")}</Text>`)).toEqual([])
   })
 
+  test("strings rendered from JSX expressions are literal text; strings passed to functions are not", () => {
+    expect(detectors("a.tsx", `const A = () => <Button title={busy ? "Saving now" : "Save it"}>{busy ? "Saving…" : "Save"}</Button>`))
+      .toEqual(["literal-text", "literal-text", "literal-text", "literal-text"])
+    expect(detectors("a.tsx", `const A = () => <Box classList={{ open: on("menu open") }}>{t("save")}{fmt("Some words")}</Box>`)).toEqual([])
+  })
+
   test("colors in code and CSS are found, outside comments", () => {
     expect(detectors("a.ts", `const c = "#fab283"; const d = \`rgb(1 2 3)\``)).toEqual(["hardcoded-color", "hardcoded-color"])
     expect(detectors("a.css", `/* #fff */\n.a { color: #707070; }`)).toEqual(["hardcoded-color"])

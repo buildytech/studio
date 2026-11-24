@@ -38,12 +38,42 @@ const SVG_TAGS = new Set(["svg", "path", "circle", "rect", "line", "polyline", "
 
 const hasWords = (s: string) => /\p{L}{2,}/u.test(s)
 
+/**
+ * A string that reaches the screen from a JSX expression: `{busy ? "Saving…" : "Save"}` as a child, or as the
+ * value of a read-out attribute. Strings passed to functions (t keys, classList, handlers) are not.
+ */
+function rendered(node: ts.Node): boolean {
+  let cur: ts.Node = node
+  for (;;) {
+    const parent: ts.Node = cur.parent
+    if (ts.isParenthesizedExpression(parent) || ts.isConditionalExpression(parent) && parent.condition !== cur) {
+      cur = parent
+      continue
+    }
+    if (ts.isBinaryExpression(parent) && parent.right === cur &&
+      [ts.SyntaxKind.BarBarToken, ts.SyntaxKind.QuestionQuestionToken, ts.SyntaxKind.AmpersandAmpersandToken].includes(parent.operatorToken.kind)) {
+      cur = parent
+      continue
+    }
+    if (ts.isBinaryExpression(parent) && parent.left === cur &&
+      [ts.SyntaxKind.BarBarToken, ts.SyntaxKind.QuestionQuestionToken].includes(parent.operatorToken.kind)) {
+      cur = parent
+      continue
+    }
+    if (!ts.isJsxExpression(parent) || parent.expression !== cur) return false
+    const holder = parent.parent
+    if (ts.isJsxElement(holder) || ts.isJsxFragment(holder)) return true
+    // A literal attribute value is reported by the attribute check; this covers expressions only.
+    return ts.isJsxAttribute(holder) && TEXT_ATTRS.has(holder.name.getText()) && cur !== node
+  }
+}
+
 export function scanSource(file: string, source: string): Finding[] {
   if (file.endsWith(".css")) return scanCss(source)
   const sf = ts.createSourceFile(file, source, ts.ScriptTarget.Latest, true, file.endsWith(".tsx") ? ts.ScriptKind.TSX : ts.ScriptKind.TS)
   const out: Finding[] = []
   const add = (detector: Detector, node: ts.Node, text = node.getText(sf)) =>
-    out.push({ detector, line: sf.getLineAndCharacterOfPosition(node.getStart(sf)).line + 1, text: text.trim().slice(0, 80) })
+    out.push({ detector, line: sf.getLineAndCharacterOfPosition(node.getStart(sf)).line + 1, text: text.replace(/\s+/g, " ").trim().slice(0, 80) })
 
   const visit = (node: ts.Node) => {
     if (ts.isJsxOpeningElement(node) || ts.isJsxSelfClosingElement(node)) {
@@ -74,6 +104,7 @@ export function scanSource(file: string, source: string): Finding[] {
       add("raw-html", node)
     } else if (ts.isStringLiteralLike(node) || ts.isTemplateHead(node) || ts.isTemplateMiddle(node) || ts.isTemplateTail(node)) {
       for (const m of node.getText(sf).matchAll(COLOR)) add("hardcoded-color", node, m[0])
+      if (ts.isStringLiteralLike(node) && hasWords(node.text) && rendered(node)) add("literal-text", node)
     }
     ts.forEachChild(node, visit)
   }

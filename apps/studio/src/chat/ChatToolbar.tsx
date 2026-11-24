@@ -12,6 +12,8 @@ import {
   type GrokOptions,
   type OpusOptions,
 } from "./ModelSelect"
+import { Box, Text } from "../primitives"
+import { t } from "../i18n"
 
 export type AgentUiStatus = "idle" | "running" | "error"
 
@@ -35,49 +37,51 @@ export type ChatToolbarProps = {
 
 export function ChatToolbar(props: ChatToolbarProps): JSX.Element {
   return (
-    <div class="chat-toolbar">
+    <Box class="chat-toolbar">
       <Group class="items-center gap-2 flex-wrap">
         <Badge variant="outline" class="chat-runtime-badge">
           {formatRuntimeLabel(props.runtimeLabel, props.runtime)}
         </Badge>
-        <span
+        <Text tag="span"
           class="chat-status"
+          role="status"
+          aria-live="polite"
           classList={{
             "chat-status-running": props.status === "running",
             "chat-status-error": props.status === "error",
             "chat-status-idle": props.status === "idle",
           }}
         >
-          <span class="chat-status-dot" aria-hidden="true" />
+          <Text tag="span" class="chat-status-dot" aria-hidden="true" />
           {props.status === "running"
-            ? "Running"
+            ? t("chat.statusRunning")
             : props.status === "error"
-              ? "Error"
-              : "Ready"}
-        </span>
+              ? t("chat.statusError")
+              : t("chat.ready")}
+        </Text>
         <Show when={props.tools.length > 0}>
-          <div class="chat-tools" aria-label="Active tools">
+          <Box class="chat-tools" aria-label={t("chat.activeTools")}>
             <For each={props.tools}>
               {(tool) => (
-                <span class="chat-tool-chip">{tool}</span>
+                <Text tag="span" class="chat-tool-chip">{tool}</Text>
               )}
             </For>
-          </div>
+          </Box>
         </Show>
         <Show when={props.usage}>
           {(u) => (
-            <span class="chat-usage" title={formatUsageTitle(u())}>
+            <Text tag="span" class="chat-usage" title={formatUsageTitle(u())}>
               {formatUsageLine(u())}
-            </span>
+            </Text>
           )}
         </Show>
         <Show when={(props.evidenceFiles ?? 0) > 0}>
-          <span
+          <Text tag="span"
             class="chat-evidence"
-            title="Server-selected evidence files attached to the last prompt"
+            title={t("chat.serverSelectedEvidenceFiles")}
           >
-            {props.evidenceFiles} files
-          </span>
+            {t("chat.evidenceFiles", { count: props.evidenceFiles ?? 0 })}
+          </Text>
         </Show>
       </Group>
       <Show when={props.models.length > 0}>
@@ -92,6 +96,6 @@ export function ChatToolbar(props: ChatToolbarProps): JSX.Element {
           onOpusChange={props.onOpusChange}
         />
       </Show>
-    </div>
+    </Box>
   )
 }

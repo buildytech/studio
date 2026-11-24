@@ -21,55 +21,15 @@ import {
   MAX_TREE_PCT,
   MIN_TREE_PCT,
 } from "./tree-split"
+import { Box, Button, Text } from "../primitives"
+import { cssVars } from "../lib/css-vars"
+import { AppIcon } from "../app-icons"
+import { t } from "../i18n"
 
 export type WorkspaceEditorProps = {
   projectId: string
   /** Bump to reload the file tree (shared side toolbar Refresh). */
   refreshTick?: number
-}
-
-/** Lucide-style panel-left-close (tree visible → collapse). */
-function PanelLeftCloseIcon(): JSX.Element {
-  return (
-    <svg
-      class="ws-tree-toggle-icon"
-      viewBox="0 0 24 24"
-      width="16"
-      height="16"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      aria-hidden="true"
-    >
-      <rect width="18" height="18" x="3" y="3" rx="2" />
-      <path d="M9 3v18" />
-      <path d="m16 15-3-3 3-3" />
-    </svg>
-  )
-}
-
-/** Lucide-style panel-left-open (tree hidden → expand). */
-function PanelLeftOpenIcon(): JSX.Element {
-  return (
-    <svg
-      class="ws-tree-toggle-icon"
-      viewBox="0 0 24 24"
-      width="16"
-      height="16"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      aria-hidden="true"
-    >
-      <rect width="18" height="18" x="3" y="3" rx="2" />
-      <path d="M9 3v18" />
-      <path d="m14 9 3 3-3 3" />
-    </svg>
-  )
 }
 
 function isMarkdownPath(filePath: string): boolean {
@@ -88,24 +48,26 @@ function TreeNode(props: {
     !isDir() && props.selected === props.node.path
 
   return (
-    <li class="ws-tree-item" classList={{ "is-dir": isDir() }}>
-      <button
+    <Box tag="li" class="ws-tree-item" classList={{ "is-dir": isDir() }}>
+      <Button
         type="button"
         class="ws-tree-row"
         classList={{ selected: isSelected() }}
-        style={{ "padding-left": `${0.4 + props.depth * 0.75}rem` }}
+        ref={(el) => cssVars(el, () => ({ "--ws-depth": String(props.depth) }))}
         onClick={() => {
           if (isDir()) setOpen((v) => !v)
           else props.onOpen(props.node.path)
         }}
       >
-        <span class="ws-tree-glyph" aria-hidden="true">
-          {isDir() ? (open() ? "▾" : "▸") : "·"}
-        </span>
-        <span class="ws-tree-name">{props.node.name}</span>
-      </button>
+        <Text tag="span" class="ws-tree-glyph" aria-hidden="true">
+          <Show when={isDir()}>
+            <AppIcon name={open() ? "chevron-down" : "chevron-right"} size={12} />
+          </Show>
+        </Text>
+        <Text tag="span" class="ws-tree-name">{props.node.name}</Text>
+      </Button>
       <Show when={isDir() && open() && props.node.children?.length}>
-        <ul class="ws-tree-children">
+        <Box tag="ul" class="ws-tree-children">
           <For each={props.node.children}>
             {(child) => (
               <TreeNode
@@ -116,9 +78,9 @@ function TreeNode(props: {
               />
             )}
           </For>
-        </ul>
+        </Box>
       </Show>
-    </li>
+    </Box>
   )
 }
 
@@ -139,7 +101,7 @@ export function WorkspaceEditor(props: WorkspaceEditorProps): JSX.Element {
   const [treePct, setTreePct] = createSignal(readTreePct())
   const [treeOpen, setTreeOpen] = createSignal(readTreeOpen())
   const [splitting, setSplitting] = createSignal(false)
-  let bodyEl: HTMLDivElement | undefined
+  let bodyEl: HTMLElement | undefined
 
   const toggleTree = () => {
     setTreeOpen((open) => {
@@ -254,28 +216,28 @@ export function WorkspaceEditor(props: WorkspaceEditorProps): JSX.Element {
   }
 
   return (
-    <div class="workspace-editor">
+    <Box class="workspace-editor">
       <Show when={error()}>
-        <div class="ws-editor-banner">{error()}</div>
+        <Box class="ws-editor-banner">{error()}</Box>
       </Show>
 
-      <div
+      <Box
         class="ws-editor-body"
         classList={{
           "is-splitting": splitting(),
           "tree-collapsed": !treeOpen(),
         }}
-        style={{ "--ws-tree-width": `${treePct()}%` }}
         ref={(el) => {
           bodyEl = el
+          cssVars(el, () => ({ "--ws-tree-width": `${treePct()}%` }))
         }}
       >
-        <aside class="ws-tree-pane" aria-label="Workspace files" aria-hidden={!treeOpen()}>
+        <Box tag="aside" class="ws-tree-pane" aria-label={t("editor.workspaceFiles")} aria-hidden={!treeOpen()}>
           <Show
             when={tree().length > 0}
-            fallback={<div class="pane-empty compact">No files yet</div>}
+            fallback={<Box class="pane-empty compact">{t("editor.noFilesYet")}</Box>}
           >
-            <ul class="ws-tree">
+            <Box tag="ul" class="ws-tree">
               <For each={tree()}>
                 {(node) => (
                   <TreeNode
@@ -286,14 +248,14 @@ export function WorkspaceEditor(props: WorkspaceEditorProps): JSX.Element {
                   />
                 )}
               </For>
-            </ul>
+            </Box>
           </Show>
-        </aside>
-        <div
+        </Box>
+        <Box
           class="ws-editor-split"
           role="separator"
           aria-orientation="vertical"
-          aria-label="Resize file tree and editor"
+          aria-label={t("editor.resizeFileTreeAnd")}
           aria-valuemin={MIN_TREE_PCT}
           aria-valuemax={MAX_TREE_PCT}
           aria-valuenow={Math.round(treePct())}
@@ -310,88 +272,88 @@ export function WorkspaceEditor(props: WorkspaceEditorProps): JSX.Element {
             persistTreePct(next)
           }}
         />
-        <div class="ws-code-pane">
+        <Box class="ws-code-pane">
           <Show
             when={selected()}
             fallback={
               <>
-                <div class="ws-code-toolbar">
-                  <span class="ws-code-path">Select a file</span>
-                  <div class="ws-code-toolbar-right">
-                    <button
+                <Box class="ws-code-toolbar">
+                  <Text tag="span" class="ws-code-path">{t("editor.selectAFile")}</Text>
+                  <Box class="ws-code-toolbar-right">
+                    <Button
                       type="button"
                       class="btn ghost compact ws-tree-toggle"
-                      title={treeOpen() ? "Hide file tree" : "Show file tree"}
-                      aria-label={treeOpen() ? "Hide file tree" : "Show file tree"}
+                      title={treeOpen() ? t("editor.hideFileTree") : t("editor.showFileTree")}
+                      aria-label={treeOpen() ? t("editor.hideFileTree") : t("editor.showFileTree")}
                       aria-pressed={treeOpen()}
                       onClick={toggleTree}
                     >
-                      <Show when={treeOpen()} fallback={<PanelLeftOpenIcon />}>
-                        <PanelLeftCloseIcon />
+                      <Show when={treeOpen()} fallback={<AppIcon name="panel-left-open" class="ws-tree-toggle-icon" />}>
+                        <AppIcon name="panel-left-close" class="ws-tree-toggle-icon" />
                       </Show>
-                    </button>
-                  </div>
-                </div>
-                <div class="pane-empty">
-                  <p>Select a file from the tree to edit.</p>
-                </div>
+                    </Button>
+                  </Box>
+                </Box>
+                <Box class="pane-empty">
+                  <Text>{t("editor.selectAFileFrom")}</Text>
+                </Box>
               </>
             }
           >
             {(path) => (
               <>
-                <div class="ws-code-toolbar">
-                  <span class="ws-code-path" title={path()}>
+                <Box class="ws-code-toolbar">
+                  <Text tag="span" class="ws-code-path" title={path()}>
                     {path()}
                     <Show when={dirty()}>
-                      <span class="ws-dirty" title="Unsaved">
+                      <Text tag="span" class="ws-dirty" title={t("editor.unsaved")}>
                         *
-                      </span>
+                      </Text>
                     </Show>
-                  </span>
-                  <div class="ws-code-toolbar-right">
+                  </Text>
+                  <Box class="ws-code-toolbar-right">
                     <Show when={canPreview()}>
-                      <div class="ws-view-toggle" role="group" aria-label="View">
-                        <button
+                      <Box class="ws-view-toggle" role="group" aria-label={t("projects.view")}>
+                        <Button
                           type="button"
                           class="btn ghost compact"
                           classList={{ active: view() === "edit" }}
                           onClick={() => setView("edit")}
                         >
-                          Edit
-                        </button>
-                        <button
+                          {t("common.edit")}
+                        </Button>
+                        <Button
                           type="button"
                           class="btn ghost compact"
                           classList={{ active: view() === "preview" }}
                           onClick={() => setView("preview")}
                         >
-                          Preview
-                        </button>
-                      </div>
+                          {t("editor.preview")}
+                        </Button>
+                      </Box>
                     </Show>
-                    <button
+                    <Button
                       type="button"
                       class="btn ghost compact ws-tree-toggle"
-                      title={treeOpen() ? "Hide file tree" : "Show file tree"}
-                      aria-label={treeOpen() ? "Hide file tree" : "Show file tree"}
+                      title={treeOpen() ? t("editor.hideFileTree") : t("editor.showFileTree")}
+                      aria-label={treeOpen() ? t("editor.hideFileTree") : t("editor.showFileTree")}
                       aria-pressed={treeOpen()}
                       onClick={toggleTree}
                     >
-                      <Show when={treeOpen()} fallback={<PanelLeftOpenIcon />}>
-                        <PanelLeftCloseIcon />
+                      <Show when={treeOpen()} fallback={<AppIcon name="panel-left-open" class="ws-tree-toggle-icon" />}>
+                        <AppIcon name="panel-left-close" class="ws-tree-toggle-icon" />
                       </Show>
-                    </button>
-                    <button
+                    </Button>
+                    <Button
                       type="button"
                       class="btn primary compact"
                       disabled={!dirty() || saving() || loading()}
                       onClick={() => void save()}
                     >
-                      {saving() ? "Saving…" : "Save"}
-                    </button>
-                  </div>
-                </div>
+                      {saving() ? t("common.saving") : t("common.save")}
+                    </Button>
+                  </Box>
+                </Box>
                 <Show
                   when={view() === "preview" && canPreview()}
                   fallback={
@@ -409,9 +371,9 @@ export function WorkspaceEditor(props: WorkspaceEditorProps): JSX.Element {
               </>
             )}
           </Show>
-        </div>
-      </div>
-    </div>
+        </Box>
+      </Box>
+    </Box>
   )
 }
 

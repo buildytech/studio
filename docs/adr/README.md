@@ -7,5 +7,6 @@
 | [0003](0003-ui8kit-solid-app-layer.md) | UI8Kit 3 for Solid and the contract rules for the app layer | accepted |
 | [0004](0004-exceptions-markdown-codemirror-mermaid.md) | Exceptions: markdown, CodeMirror, mermaid | accepted |
 | [0005](0005-tool-call-stream.md) | Tool calls in the chat: one normalized model, composite view, renderer registry | accepted |
+| [0006](0006-preview-frame.md) | The preview frame is an exception (vendor-ui zone) | accepted |
 
 Format: context, decision, consequences. A decision changes only by a new ADR that supersedes the old one.
