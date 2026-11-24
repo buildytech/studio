@@ -6,6 +6,7 @@ import {
   ensureExportIncludeTraceDefault,
 } from "./chat-export-prefs"
 import { t, type MessageKey } from "./i18n"
+import { looksPastedTwice, pastedKey } from "./key-input"
 import { Box, Button, Checkbox, Input, Label, Text } from "./primitives"
 
 type KeySlot = {
@@ -63,6 +64,10 @@ export function Settings(props: {
   const save = async (slot: KeySlot) => {
     const value = (drafts()[slot.id] ?? "").trim()
     if (!value || busyId()) return
+    if (looksPastedTwice(value)) {
+      setError(t("settings.keyPastedTwice"))
+      return
+    }
     setBusyId(slot.id)
     setError("")
     setNotice("")
@@ -77,6 +82,7 @@ export function Settings(props: {
       })
       setDrafts((d) => ({ ...d, [slot.id]: "" }))
       setNotice(t("settings.keySaved", { name: t(slot.title) }))
+      if (res.warning) setError(res.warning)
     } catch (e) {
       setError(e instanceof Error ? e.message : t("settings.saveFailed"))
     } finally {
@@ -158,6 +164,13 @@ export function Settings(props: {
                       autocomplete="off"
                       placeholder={t("settings.keyPlaceholder")}
                       value={drafts()[slot.id] ?? ""}
+                      onFocus={(e) => e.currentTarget.select()}
+                      onPaste={(e) => {
+                        const text = e.clipboardData?.getData("text")
+                        if (text == null) return
+                        e.preventDefault()
+                        setDrafts((d) => ({ ...d, [slot.id]: pastedKey(text) }))
+                      }}
                       onInput={(e) =>
                         setDrafts((d) => ({
                           ...d,

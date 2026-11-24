@@ -133,6 +133,7 @@
     "settings.exportLead": "An exported transcript can include the thinking and tool rows of the open Studio tab (only while that tab is open). Turn it off for user and assistant messages only.",
     "settings.exportTitle": "Chat export",
     "settings.exportToggle": "Include thinking and tool trace in export",
+    "settings.keyPastedTwice": "Key appears to be pasted twice (Ключ вставлен дважды): clear the field and paste it once.",
     "settings.keyPlaceholder": "Paste key…",
     "settings.keyRemoved": "{name} key removed.",
     "settings.keySaved": "{name} key saved.",
