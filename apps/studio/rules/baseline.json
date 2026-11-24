@@ -1,12 +1,4 @@
 {
-  "src/Projects.tsx": {
-    "raw-native-tag": 54,
-    "literal-text": 21
-  },
-  "src/Settings.tsx": {
-    "raw-native-tag": 28,
-    "literal-text": 12
-  },
   "src/Studio.tsx": {
     "raw-native-tag": 29,
     "inline-style": 1,

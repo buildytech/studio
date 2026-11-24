@@ -22,10 +22,11 @@ export const DETECTORS = [
 export type Detector = (typeof DETECTORS)[number]
 export type Finding = { detector: Detector; line: number; text: string }
 
-/** Not scanned: generated kit (ui8kit add), the theme token source, the vendor-wrapper zone (ADR 0004), tests. */
+/** Not scanned: generated kit (ui8kit add), the theme token source, the vendor-wrapper zone (ADR 0004), the icon zone, tests. */
 export const SKIP = [
   /^src\/(kit|compose|icons|utils|presets|components|blocks|styles)\//,
   /^src\/vendor-ui\//,
+  /^src\/app-icons\//,
   /\.test\.tsx?$/,
   /\/fixtures\//,
 ]

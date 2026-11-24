@@ -10,6 +10,9 @@ import {
   type Template,
   type User,
 } from "./api"
+import { AppIcon } from "./app-icons"
+import { t } from "./i18n"
+import { Box, Button, Form, Input, Label, Text } from "./primitives"
 
 export function Projects(props: { user: User }): JSX.Element {
   const navigate = useNavigate()
@@ -31,8 +34,8 @@ export function Projects(props: { user: User }): JSX.Element {
     const [proj, tpl] = await Promise.all([api.listProjects(), api.listTemplates()])
     setProjects(proj.projects)
     setTemplates(tpl.templates)
-    const enabled = tpl.templates.find((t) => t.enabled)
-    if (enabled && !tpl.templates.some((t) => t.id === templateId() && t.enabled)) {
+    const enabled = tpl.templates.find((x) => x.enabled)
+    if (enabled && !tpl.templates.some((x) => x.id === templateId() && x.enabled)) {
       setTemplateId(enabled.id)
     }
     setLoaded(true)
@@ -70,7 +73,7 @@ export function Projects(props: { user: User }): JSX.Element {
 
   const create = async (e: Event) => {
     e.preventDefault()
-    const n = name().trim() || "Untitled app"
+    const n = name().trim() || t("projects.untitled")
     setCreating(true)
     setError("")
     try {
@@ -79,7 +82,7 @@ export function Projects(props: { user: User }): JSX.Element {
       await load()
       navigate(`/p/${res.project.id}`)
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Create failed")
+      setError(err instanceof Error ? err.message : t("projects.createFailed"))
     } finally {
       setCreating(false)
     }
@@ -100,7 +103,7 @@ export function Projects(props: { user: User }): JSX.Element {
       await load()
       navigate(`/p/${res.project.id}`)
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Clone failed")
+      setError(err instanceof Error ? err.message : t("projects.cloneFailed"))
     } finally {
       setBusyId(null)
     }
@@ -125,101 +128,101 @@ export function Projects(props: { user: User }): JSX.Element {
       setConfirmName("")
       await load()
     } catch (err) {
-      setDeleteError(err instanceof Error ? err.message : "Delete failed")
+      setDeleteError(err instanceof Error ? err.message : t("projects.deleteFailed"))
     } finally {
       setBusyId(null)
     }
   }
 
   return (
-    <div class="projects-page">
-      <header class="projects-top">
-        <div class="brand-lockup">
+    <Box class="projects-page">
+      <Box tag="header" class="projects-top">
+        <Box class="brand-lockup">
           <A href="/" class="brand">
-            Buildy
+            {t("brand.name")}
           </A>
-          <span class="brand-tag">Apps</span>
-        </div>
-        <div class="projects-top-right">
-          <A class="btn ghost" href="/settings">Settings</A>
-        </div>
-      </header>
+          <Text tag="span" class="brand-tag">{t("nav.apps")}</Text>
+        </Box>
+        <Box class="projects-top-right">
+          <A class="btn ghost" href="/settings">{t("nav.settings")}</A>
+        </Box>
+      </Box>
 
-      <div class="projects-hero">
-        <h1 class="projects-title">Your apps</h1>
-        <p class="projects-sub">Open a project to build with the agent, or start a new one.</p>
+      <Box class="projects-hero">
+        <Text tag="h1" class="projects-title">{t("projects.title")}</Text>
+        <Text class="projects-sub">{t("projects.lead")}</Text>
         <Show when={templates().length > 0}>
-          <div class="template-picker" role="radiogroup" aria-label="App template">
+          <Box class="template-picker" role="radiogroup" aria-label={t("projects.templatePicker")}>
             <For each={templates()}>
-              {(t) => (
-                <button
+              {(tpl) => (
+                <Button
                   type="button"
                   class="template-option"
                   classList={{
-                    selected: templateId() === t.id,
-                    disabled: !t.enabled,
+                    selected: templateId() === tpl.id,
+                    disabled: !tpl.enabled,
                   }}
                   role="radio"
-                  aria-checked={templateId() === t.id}
-                  disabled={!t.enabled}
-                  title={t.description}
+                  aria-checked={templateId() === tpl.id}
+                  disabled={!tpl.enabled}
+                  title={tpl.description}
                   onClick={() => {
-                    if (t.enabled) setTemplateId(t.id)
+                    if (tpl.enabled) setTemplateId(tpl.id)
                   }}
                 >
-                  <span class="template-stack">{t.stack}</span>
-                  <span class="template-name">{t.name}</span>
-                  <span class="template-desc">{t.description}</span>
-                  <Show when={!t.enabled}>
-                    <span class="template-soon">Soon</span>
+                  <Text tag="span" class="template-stack">{tpl.stack}</Text>
+                  <Text tag="span" class="template-name">{tpl.name}</Text>
+                  <Text tag="span" class="template-desc">{tpl.description}</Text>
+                  <Show when={!tpl.enabled}>
+                    <Text tag="span" class="template-soon">{t("projects.templateSoon")}</Text>
                   </Show>
-                </button>
+                </Button>
               )}
             </For>
-          </div>
+          </Box>
         </Show>
-        <form class="new-app-form" onSubmit={(e) => void create(e)}>
-          <input
+        <Form class="new-app-form" onSubmit={(e) => void create(e)}>
+          <Input
             class="input grow"
             value={name()}
             onInput={(e) => setName(e.currentTarget.value)}
-            placeholder="Name your next app…"
+            placeholder={t("projects.namePlaceholder")}
             maxlength={80}
           />
-          <button class="btn primary" type="submit" disabled={creating()}>
-            {creating() ? "Creating…" : "New app"}
-          </button>
-        </form>
+          <Button class="btn primary" type="submit" disabled={creating()}>
+            {creating() ? t("projects.creating") : t("projects.create")}
+          </Button>
+        </Form>
         <Show when={error()}>
-          <p class="form-error">{error()}</p>
+          <Text class="form-error">{error()}</Text>
         </Show>
         <Show when={notice()}>
-          <p class="form-notice">{notice()}</p>
+          <Text class="form-notice">{notice()}</Text>
         </Show>
-      </div>
+      </Box>
 
-      <Show when={loaded()} fallback={<p class="muted center-pad">Loading projects…</p>}>
+      <Show when={loaded()} fallback={<Text class="muted center-pad">{t("projects.loading")}</Text>}>
         <Show
           when={projects().length > 0}
           fallback={
-            <div class="empty-projects">
-              <p>No apps yet.</p>
-              <p class="muted">Create one above — you will land in the agent studio.</p>
-            </div>
+            <Box class="empty-projects">
+              <Text>{t("projects.emptyTitle")}</Text>
+              <Text class="muted">{t("projects.emptyLead")}</Text>
+            </Box>
           }
         >
-          <div class="project-grid">
+          <Box class="project-grid">
             <For each={projects()}>
               {(p) => (
-                <article
+                <Box tag="article"
                   class="project-card"
                   classList={{ "menu-open": menuId() === p.id, busy: busyId() === p.id }}
                 >
-                  <div class="card-menu">
-                    <button
+                  <Box class="card-menu">
+                    <Button
                       type="button"
                       class="card-menu-btn"
-                      aria-label={`Actions for ${p.name}`}
+                      aria-label={t("projects.actionsFor", { name: p.name })}
                       aria-expanded={menuId() === p.id}
                       aria-haspopup="menu"
                       disabled={busyId() === p.id}
@@ -229,61 +232,61 @@ export function Projects(props: { user: User }): JSX.Element {
                         setMenuId((id) => (id === p.id ? null : p.id))
                       }}
                     >
-                      ⋯
-                    </button>
+                      <AppIcon name="ellipsis" />
+                    </Button>
                     <Show when={menuId() === p.id}>
-                      <div class="card-menu-dropdown" role="menu">
-                        <button type="button" role="menuitem" onClick={() => viewProject(p)}>
-                          View
-                        </button>
-                        <button
+                      <Box class="card-menu-dropdown" role="menu">
+                        <Button type="button" role="menuitem" onClick={() => viewProject(p)}>
+                          {t("projects.view")}
+                        </Button>
+                        <Button
                           type="button"
                           role="menuitem"
                           disabled={busyId() === p.id}
                           onClick={() => void cloneProject(p)}
                         >
-                          Clone
-                        </button>
-                        <button
+                          {t("projects.clone")}
+                        </Button>
+                        <Button
                           type="button"
                           role="menuitem"
                           class="danger"
                           onClick={() => openDelete(p)}
                         >
-                          Delete
-                        </button>
-                      </div>
+                          {t("common.delete")}
+                        </Button>
+                      </Box>
                     </Show>
-                  </div>
+                  </Box>
 
                   <A href={`/p/${p.id}`} class="project-card-link">
-                    <div class="project-thumb" aria-hidden="true">
-                      <div class="thumb-placeholder">
-                        <span class="thumb-mark">B</span>
-                        <span class="thumb-hint">Preview soon</span>
-                      </div>
-                    </div>
-                    <div class="project-card-body">
-                      <div class="project-card-row">
-                        <h2 class="project-card-name">{p.name}</h2>
-                        <span class={`status-pill status-${p.status}`}>{statusLabel(p.status)}</span>
-                      </div>
-                      <div class="project-card-footer">
-                        <span class="stack-badge">{stackLabel(p.template_id, templates())}</span>
-                        <p class="project-card-meta">Updated {formatRelative(p.updated_at)}</p>
-                      </div>
-                    </div>
+                    <Box class="project-thumb" aria-hidden="true">
+                      <Box class="thumb-placeholder">
+                        <Text tag="span" class="thumb-mark">{t("projects.thumbMark")}</Text>
+                        <Text tag="span" class="thumb-hint">{t("projects.thumbHint")}</Text>
+                      </Box>
+                    </Box>
+                    <Box class="project-card-body">
+                      <Box class="project-card-row">
+                        <Text tag="h2" class="project-card-name">{p.name}</Text>
+                        <Text tag="span" class={`status-pill status-${p.status}`}>{statusLabel(p.status)}</Text>
+                      </Box>
+                      <Box class="project-card-footer">
+                        <Text tag="span" class="stack-badge">{stackLabel(p.template_id, templates())}</Text>
+                        <Text class="project-card-meta">{t("projects.updated", { when: formatRelative(p.updated_at) })}</Text>
+                      </Box>
+                    </Box>
                   </A>
-                </article>
+                </Box>
               )}
             </For>
-          </div>
+          </Box>
         </Show>
       </Show>
 
       <Show when={deleteTarget()}>
         {(p) => (
-          <div
+          <Box
             class="modal-backdrop"
             role="presentation"
             onClick={() => {
@@ -292,24 +295,21 @@ export function Projects(props: { user: User }): JSX.Element {
               setDeleteError("")
             }}
           >
-            <div
+            <Box
               class="modal-card"
               role="dialog"
               aria-modal="true"
               aria-labelledby="delete-app-title"
               onClick={(e) => e.stopPropagation()}
             >
-              <h2 id="delete-app-title" class="modal-title">
-                Delete app
-              </h2>
-              <p class="modal-copy">
-                This permanently deletes <strong>{p().name}</strong> and its workspace. Type the app
-                name to confirm.
-              </p>
-              <form class="modal-form" onSubmit={(e) => void confirmDelete(e)}>
-                <label class="field">
-                  App name
-                  <input
+              <Text tag="h2" id="delete-app-title" class="modal-title">
+                {t("projects.deleteTitle")}
+              </Text>
+              <Text class="modal-copy">{t("projects.deleteLead", { name: p().name })}</Text>
+              <Form class="modal-form" onSubmit={(e) => void confirmDelete(e)}>
+                <Label class="field">
+                  {t("projects.deleteNameLabel")}
+                  <Input
                     class="input"
                     value={confirmName()}
                     onInput={(e) => setConfirmName(e.currentTarget.value)}
@@ -317,12 +317,12 @@ export function Projects(props: { user: User }): JSX.Element {
                     autocomplete="off"
                     autofocus
                   />
-                </label>
+                </Label>
                 <Show when={deleteError()}>
-                  <p class="form-error">{deleteError()}</p>
+                  <Text class="form-error">{deleteError()}</Text>
                 </Show>
-                <div class="modal-actions">
-                  <button
+                <Box class="modal-actions">
+                  <Button
                     class="btn ghost"
                     type="button"
                     onClick={() => {
@@ -331,21 +331,21 @@ export function Projects(props: { user: User }): JSX.Element {
                       setDeleteError("")
                     }}
                   >
-                    Cancel
-                  </button>
-                  <button
+                    {t("common.cancel")}
+                  </Button>
+                  <Button
                     class="btn danger"
                     type="submit"
                     disabled={busyId() === p().id || confirmName().trim() !== p().name}
                   >
-                    {busyId() === p().id ? "Deleting…" : "Delete"}
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
+                    {busyId() === p().id ? t("common.deleting") : t("common.delete")}
+                  </Button>
+                </Box>
+              </Form>
+            </Box>
+          </Box>
         )}
       </Show>
-    </div>
+    </Box>
   )
 }

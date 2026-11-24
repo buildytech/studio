@@ -5,13 +5,15 @@ import {
   writeExportIncludeTrace,
   ensureExportIncludeTraceDefault,
 } from "./chat-export-prefs"
+import { t, type MessageKey } from "./i18n"
+import { Box, Button, Checkbox, Input, Label, Text } from "./primitives"
 
 type KeySlot = {
   id: string
   runtime: string
   providerId: string
-  title: string
-  blurb: string
+  title: MessageKey
+  blurb: MessageKey
 }
 
 const SLOTS: KeySlot[] = [
@@ -19,8 +21,8 @@ const SLOTS: KeySlot[] = [
     id: "cursor",
     runtime: "cursor-sdk",
     providerId: "cursor",
-    title: "Cursor",
-    blurb: "Studio agent (cursor-sdk). Your key → platform → env.",
+    title: "settings.cursorTitle",
+    blurb: "settings.cursorBlurb",
   },
 ]
 
@@ -74,9 +76,9 @@ export function Settings(props: {
         return [...rest, res.credential]
       })
       setDrafts((d) => ({ ...d, [slot.id]: "" }))
-      setNotice(`${slot.title} key saved.`)
+      setNotice(t("settings.keySaved", { name: t(slot.title) }))
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Save failed")
+      setError(e instanceof Error ? e.message : t("settings.saveFailed"))
     } finally {
       setBusyId(null)
     }
@@ -95,86 +97,66 @@ export function Settings(props: {
             !(c.runtime === slot.runtime && c.providerId === slot.providerId),
         ),
       )
-      setNotice(`${slot.title} key removed.`)
+      setNotice(t("settings.keyRemoved", { name: t(slot.title) }))
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Delete failed")
+      setError(e instanceof Error ? e.message : t("settings.deleteFailed"))
     } finally {
       setBusyId(null)
     }
   }
 
   return (
-    <div class="projects-page settings-page">
-      <header class="projects-top">
-        <div class="brand-lockup">
+    <Box class="projects-page settings-page">
+      <Box tag="header" class="projects-top">
+        <Box class="brand-lockup">
           <A href="/" class="brand">
-            Buildy
+            {t("brand.name")}
           </A>
-          <span class="brand-tag">Settings</span>
-        </div>
-        <div class="projects-top-right">
+          <Text tag="span" class="brand-tag">{t("nav.settings")}</Text>
+        </Box>
+        <Box class="projects-top-right">
           <A class="btn ghost" href="/">
-            Apps
+            {t("nav.apps")}
           </A>
-        </div>
-      </header>
+        </Box>
+      </Box>
 
-      <div class="projects-hero">
-        <h1 class="projects-title">API keys</h1>
-        <p class="projects-sub">
-          Bring your own keys for Cursor and Pi agents. Keys are encrypted at
-          rest and never shown again after save.
-        </p>
-      </div>
+      <Box class="projects-hero">
+        <Text tag="h1" class="projects-title">{t("settings.title")}</Text>
+        <Text class="projects-sub">{t("settings.lead")}</Text>
+      </Box>
 
       <Show when={error()}>
-        <p class="form-error settings-banner">{error()}</p>
+        <Text class="form-error settings-banner">{error()}</Text>
       </Show>
       <Show when={notice()}>
-        <p class="settings-notice">{notice()}</p>
+        <Text class="settings-notice">{notice()}</Text>
       </Show>
 
-      <Show when={loaded()} fallback={<p class="muted">Loading…</p>}>
-        <div class="settings-cards">
-          <section class="settings-card">
-            <h2 class="settings-card-title">Chat export</h2>
-            <p class="settings-card-sub">
-              Export transcript can include the live thinking and tool rows from
-              the open Studio tab (available only while that tab is still open).
-              On by default during development; turn off for user/assistant-only
-              bundles.
-            </p>
-            <label class="settings-check">
-              <input
-                type="checkbox"
-                checked={exportIncludeTrace()}
-                onChange={(e) => onExportIncludeTrace(e.currentTarget.checked)}
-              />
-              <span>Include thinking &amp; tool trace in export</span>
-            </label>
-          </section>
+      <Show when={loaded()} fallback={<Text class="muted">{t("common.loading")}</Text>}>
+        <Box class="settings-cards">
           <For each={SLOTS}>
             {(slot) => {
               const saved = () => findCred(slot)
               const busy = () => busyId() === slot.id
               return (
-                <section class="settings-card">
-                  <h2 class="settings-card-title">{slot.title}</h2>
-                  <p class="settings-card-sub">{slot.blurb}</p>
+                <Box tag="section" class="settings-card">
+                  <Text tag="h2" class="settings-card-title">{t(slot.title)}</Text>
+                  <Text class="settings-card-sub">{t(slot.blurb)}</Text>
                   <Show when={saved()}>
                     {(c) => (
-                      <p class="settings-masked">
-                        Saved key: <code>{c().masked}</code>
-                      </p>
+                      <Text class="settings-masked">
+                        {t("settings.savedKey")} <Text tag="code">{c().masked}</Text>
+                      </Text>
                     )}
                   </Show>
-                  <label class="field">
-                    {saved() ? "Replace key" : "API key"}
-                    <input
+                  <Label class="field">
+                    {saved() ? t("settings.replaceKey") : t("settings.apiKey")}
+                    <Input
                       class="input"
                       type="password"
                       autocomplete="off"
-                      placeholder="Paste key…"
+                      placeholder={t("settings.keyPlaceholder")}
                       value={drafts()[slot.id] ?? ""}
                       onInput={(e) =>
                         setDrafts((d) => ({
@@ -183,33 +165,44 @@ export function Settings(props: {
                         }))
                       }
                     />
-                  </label>
-                  <div class="settings-actions">
-                    <button
+                  </Label>
+                  <Box class="settings-actions">
+                    <Button
                       class="btn primary"
                       type="button"
                       disabled={busy() || !(drafts()[slot.id] ?? "").trim()}
                       onClick={() => void save(slot)}
                     >
-                      {busy() ? "Saving…" : "Save"}
-                    </button>
+                      {busy() ? t("common.saving") : t("common.save")}
+                    </Button>
                     <Show when={saved()}>
-                      <button
+                      <Button
                         class="btn ghost"
                         type="button"
                         disabled={busy()}
                         onClick={() => void remove(slot)}
                       >
-                        Remove
-                      </button>
+                        {t("common.remove")}
+                      </Button>
                     </Show>
-                  </div>
-                </section>
+                  </Box>
+                </Box>
               )
             }}
           </For>
-        </div>
+          <Box tag="section" class="settings-card">
+            <Text tag="h2" class="settings-card-title">{t("settings.exportTitle")}</Text>
+            <Text class="settings-card-sub">{t("settings.exportLead")}</Text>
+            <Label class="settings-check">
+              <Checkbox
+                checked={exportIncludeTrace()}
+                onChange={(e) => onExportIncludeTrace(e.currentTarget.checked)}
+              />
+              <Text tag="span">{t("settings.exportToggle")}</Text>
+            </Label>
+          </Box>
+        </Box>
       </Show>
-    </div>
+    </Box>
   )
 }
