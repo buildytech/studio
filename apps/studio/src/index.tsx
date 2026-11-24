@@ -4,7 +4,8 @@ import { Route, Router } from "@solidjs/router"
 import { Projects } from "./Projects"
 import { Settings } from "./Settings"
 import { Studio } from "./Studio"
-import { LOCAL_USER, clearLegacyBrowserToken } from "./api"
+import { LOCAL_USER, api, clearLegacyBrowserToken } from "./api"
+import { HostProvider } from "./host/context"
 import "./ui8kit.css"
 import "./styles.css"
 
@@ -18,11 +19,13 @@ clearLegacyBrowserToken()
 function App() {
   const user = LOCAL_USER
   return (
-    <Router>
-      <Route path="/" component={() => <Projects user={user} />} />
-      <Route path="/p/:id" component={() => <Studio user={user} />} />
-      <Route path="/settings" component={() => <Settings user={user} />} />
-    </Router>
+    <HostProvider client={api}>
+      <Router>
+        <Route path="/" component={() => <Projects user={user} />} />
+        <Route path="/p/:id" component={() => <Studio user={user} />} />
+        <Route path="/settings" component={() => <Settings user={user} />} />
+      </Router>
+    </HostProvider>
   )
 }
 
