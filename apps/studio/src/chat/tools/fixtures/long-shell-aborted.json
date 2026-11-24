@@ -1,0 +1,3280 @@
+{
+ "source": "synthetic: a long shell stream (400 deltas, ~26 KB) still running when the run ends, then three reads",
+ "events": [
+  {
+   "type": "session.status",
+   "sessionId": "s1",
+   "status": "running",
+   "runId": "r2"
+  },
+  {
+   "type": "tool.started",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "kind": "shell",
+   "summary": "bun run verify",
+   "callId": "c-verify"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0000 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0001 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0002 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0003 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0004 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0005 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0006 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0007 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0008 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0009 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0010 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0011 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0012 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0013 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0014 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0015 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0016 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0017 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0018 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0019 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0020 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0021 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0022 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0023 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0024 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0025 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0026 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0027 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0028 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0029 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0030 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0031 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0032 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0033 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0034 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0035 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0036 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0037 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0038 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0039 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0040 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0041 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0042 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0043 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0044 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0045 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0046 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0047 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0048 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0049 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0050 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0051 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0052 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0053 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0054 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0055 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0056 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0057 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0058 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0059 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0060 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0061 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0062 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0063 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0064 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0065 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0066 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0067 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0068 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0069 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0070 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0071 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0072 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0073 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0074 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0075 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0076 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0077 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0078 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0079 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0080 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0081 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0082 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0083 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0084 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0085 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0086 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0087 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0088 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0089 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0090 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0091 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0092 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0093 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0094 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0095 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0096 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0097 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0098 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0099 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0100 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0101 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0102 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0103 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0104 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0105 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0106 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0107 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0108 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0109 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0110 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0111 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0112 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0113 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0114 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0115 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0116 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0117 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0118 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0119 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0120 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0121 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0122 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0123 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0124 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0125 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0126 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0127 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0128 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0129 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0130 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0131 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0132 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0133 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0134 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0135 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0136 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0137 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0138 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0139 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0140 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0141 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0142 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0143 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0144 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0145 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0146 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0147 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0148 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0149 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0150 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0151 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0152 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0153 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0154 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0155 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0156 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0157 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0158 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0159 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0160 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0161 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0162 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0163 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0164 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0165 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0166 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0167 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0168 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0169 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0170 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0171 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0172 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0173 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0174 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0175 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0176 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0177 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0178 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0179 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0180 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0181 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0182 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0183 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0184 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0185 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0186 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0187 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0188 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0189 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0190 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0191 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0192 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0193 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0194 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0195 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0196 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0197 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0198 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0199 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0200 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0201 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0202 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0203 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0204 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0205 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0206 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0207 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0208 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0209 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0210 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0211 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0212 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0213 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0214 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0215 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0216 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0217 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0218 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0219 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0220 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0221 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0222 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0223 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0224 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0225 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0226 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0227 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0228 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0229 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0230 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0231 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0232 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0233 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0234 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0235 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0236 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0237 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0238 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0239 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0240 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0241 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0242 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0243 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0244 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0245 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0246 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0247 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0248 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0249 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0250 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0251 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0252 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0253 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0254 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0255 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0256 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0257 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0258 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0259 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0260 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0261 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0262 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0263 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0264 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0265 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0266 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0267 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0268 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0269 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0270 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0271 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0272 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0273 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0274 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0275 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0276 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0277 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0278 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0279 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0280 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0281 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0282 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0283 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0284 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0285 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0286 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0287 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0288 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0289 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0290 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0291 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0292 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0293 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0294 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0295 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0296 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0297 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0298 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0299 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0300 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0301 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0302 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0303 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0304 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0305 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0306 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0307 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0308 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0309 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0310 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0311 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0312 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0313 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0314 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0315 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0316 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0317 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0318 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0319 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0320 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0321 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0322 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0323 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0324 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0325 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0326 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0327 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0328 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0329 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0330 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0331 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0332 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0333 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0334 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0335 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0336 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0337 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0338 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0339 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0340 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0341 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0342 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0343 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0344 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0345 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0346 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0347 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0348 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0349 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0350 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0351 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0352 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0353 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0354 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0355 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0356 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0357 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0358 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0359 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0360 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0361 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0362 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0363 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0364 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0365 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0366 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0367 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0368 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0369 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0370 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0371 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0372 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0373 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0374 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0375 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0376 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0377 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0378 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0379 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0380 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0381 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0382 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0383 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0384 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0385 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0386 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0387 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0388 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0389 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0390 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0391 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0392 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0393 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0394 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0395 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0396 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0397 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0398 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.delta",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "shell",
+   "callId": "c-verify",
+   "text": "line 0399 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+  },
+  {
+   "type": "tool.started",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "read",
+   "kind": "file",
+   "summary": "read src/content/page0.json",
+   "callId": "c-read-0"
+  },
+  {
+   "type": "tool.finished",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "read",
+   "kind": "file",
+   "summary": "read src/content/page0.json",
+   "callId": "c-read-0"
+  },
+  {
+   "type": "tool.started",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "read",
+   "kind": "file",
+   "summary": "read src/content/page1.json",
+   "callId": "c-read-1"
+  },
+  {
+   "type": "tool.finished",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "read",
+   "kind": "file",
+   "summary": "read src/content/page1.json",
+   "callId": "c-read-1"
+  },
+  {
+   "type": "tool.started",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "read",
+   "kind": "file",
+   "summary": "read src/content/page2.json",
+   "callId": "c-read-2"
+  },
+  {
+   "type": "tool.finished",
+   "sessionId": "s1",
+   "runId": "r2",
+   "tool": "read",
+   "kind": "file",
+   "summary": "read src/content/page2.json",
+   "callId": "c-read-2"
+  },
+  {
+   "type": "session.status",
+   "sessionId": "s1",
+   "status": "idle",
+   "runId": "r2"
+  }
+ ]
+}

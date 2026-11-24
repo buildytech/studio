@@ -1,0 +1,210 @@
+{
+ "source": "vibechat-desktop internal/agent/testdata/run-sandbox-probe.jsonl through the Go Translator (real grok-4.7 run in the SDK sandbox), thinking and most text deltas dropped",
+ "events": [
+  {
+   "durationMs": 1721,
+   "runId": "r1",
+   "sessionId": "s1",
+   "type": "thinking.completed",
+   "callId": null
+  },
+  {
+   "role": "assistant",
+   "runId": "r1",
+   "sessionId": "s1",
+   "text": "I'll",
+   "type": "message.delta",
+   "callId": null
+  },
+  {
+   "role": "assistant",
+   "runId": "r1",
+   "sessionId": "s1",
+   "text": " do",
+   "type": "message.delta",
+   "callId": null
+  },
+  {
+   "role": "assistant",
+   "runId": "r1",
+   "sessionId": "s1",
+   "text": " these",
+   "type": "message.delta",
+   "callId": null
+  },
+  {
+   "callId": "call-82182e19-1075-42d8-84cd-f01460b96f70-0|fc_e441df4d-f155-915e-9480-3d58679091cd_0",
+   "kind": "file",
+   "runId": "r1",
+   "sessionId": "s1",
+   "summary": "edit hello.txt",
+   "tool": "edit",
+   "type": "tool.started"
+  },
+  {
+   "callId": "call-82182e19-1075-42d8-84cd-f01460b96f70-0|fc_e441df4d-f155-915e-9480-3d58679091cd_0",
+   "detail": "--- /dev/null\n+++ b//W/ws/hello.txt\n@@ -1,0 +1 @@\n+hi",
+   "kind": "file",
+   "runId": "r1",
+   "sessionId": "s1",
+   "summary": "edit hello.txt",
+   "tool": "edit",
+   "type": "tool.finished"
+  },
+  {
+   "durationMs": 2,
+   "runId": "r1",
+   "sessionId": "s1",
+   "type": "thinking.completed",
+   "callId": null
+  },
+  {
+   "callId": "call-b9ab0d2c-9aa1-42fc-86af-c59a0b5ee1d4-1|fc_e5d2c7e0-68f2-4dd0-8792-342c9861d6c6_0",
+   "kind": "file",
+   "runId": "r1",
+   "sessionId": "s1",
+   "summary": "read /W/bait.txt",
+   "tool": "read",
+   "type": "tool.started"
+  },
+  {
+   "callId": "call-b9ab0d2c-9aa1-42fc-86af-c59a0b5ee1d4-1|fc_e5d2c7e0-68f2-4dd0-8792-342c9861d6c6_0",
+   "detail": "error: error",
+   "kind": "file",
+   "runId": "r1",
+   "sessionId": "s1",
+   "summary": "read /W/bait.txt",
+   "tool": "read",
+   "type": "tool.finished"
+  },
+  {
+   "durationMs": 2,
+   "runId": "r1",
+   "sessionId": "s1",
+   "type": "thinking.completed",
+   "callId": null
+  },
+  {
+   "callId": "call-a65d1b81-4faf-45cc-823f-3427fcdcf1f9-2|fc_d0b95bda-097d-98df-8fe8-b6f9e256d0ab_0",
+   "kind": "shell",
+   "runId": "r1",
+   "sessionId": "s1",
+   "summary": "cat /W/bait.txt",
+   "tool": "shell",
+   "type": "tool.started"
+  },
+  {
+   "callId": "call-a65d1b81-4faf-45cc-823f-3427fcdcf1f9-2|fc_d0b95bda-097d-98df-8fe8-b6f9e256d0ab_0",
+   "detail": "cat: /W/bait.txt: Permission denied\n\nexit 1",
+   "kind": "shell",
+   "runId": "r1",
+   "sessionId": "s1",
+   "summary": "cat /W/bait.txt",
+   "tool": "shell",
+   "type": "tool.finished"
+  },
+  {
+   "durationMs": 1843,
+   "runId": "r1",
+   "sessionId": "s1",
+   "type": "thinking.completed",
+   "callId": null
+  },
+  {
+   "callId": "call-0f55274a-5441-41a5-888c-96e0a6fd5aa2-3|fc_36c3c43b-d13e-9f80-a8b3-7a2516efd7cb_0",
+   "kind": "shell",
+   "runId": "r1",
+   "sessionId": "s1",
+   "summary": "echo x > /W/out.txt",
+   "tool": "shell",
+   "type": "tool.started"
+  },
+  {
+   "callId": "call-0f55274a-5441-41a5-888c-96e0a6fd5aa2-3|fc_36c3c43b-d13e-9f80-a8b3-7a2516efd7cb_0",
+   "detail": "--: line 1: /W/out.txt: Permission denied\n\nexit 1",
+   "kind": "shell",
+   "runId": "r1",
+   "sessionId": "s1",
+   "summary": "echo x > /W/out.txt",
+   "tool": "shell",
+   "type": "tool.finished"
+  },
+  {
+   "durationMs": 241,
+   "runId": "r1",
+   "sessionId": "s1",
+   "type": "thinking.completed",
+   "callId": null
+  },
+  {
+   "callId": "call-3f5e3d90-dd5b-4d5a-afa5-8fcc7e2c4529-4|fc_8ec40712-2fee-94b0-a81d-28a69a54a0d8_0",
+   "kind": "shell",
+   "runId": "r1",
+   "sessionId": "s1",
+   "summary": "bun -e \"fetch('https://example.com').then(r=>console.log(r.status))\"",
+   "tool": "shell",
+   "type": "tool.started"
+  },
+  {
+   "callId": "call-3f5e3d90-dd5b-4d5a-afa5-8fcc7e2c4529-4|fc_8ec40712-2fee-94b0-a81d-28a69a54a0d8_0",
+   "detail": "============================================================\nBun v1.4.4 (38afee6c8) Linux x64\nLinux Kernel v6.12.113 | glibc v2.41\nCPU: sse42 popcnt avx avx2 avx512\nArgs: \"/usr/local/bin/../lib/pnpm/5/.pnpm/bun@1.4.4/node_modules/bun/bin/bun.exe\" \"-e\" \"fetch('https://example.com').then(r=>console.log(r.status))\"\nFeatures: jsc \n\nElapsed: 2ms | User: 3ms | Sys: 0ms\nRSS: 26.74 MB | Peak: 7.61 MB | Commit: 26.74 MB | Faults: 2\n\npanic(main thread): abort() called\noh no: Bun has crashed. This indicates a bug in Bun, not your code.\n\nTo send a redacted crash report to Bun's team,\nplease file a GitHub issue using the link below:\n\n https://bun.report/1.4.4/la138afee6AggggC2pjlBsx3n2B0uvn2Bs7y71Bypk80Bk1h80Bkl900Bm78z0By6vz0Bg0mz0BAa\n\nAborted\n\nexit 134",
+   "kind": "shell",
+   "runId": "r1",
+   "sessionId": "s1",
+   "summary": "bun -e \"fetch('https://example.com').then(r=>console.log(r.status))\"",
+   "tool": "shell",
+   "type": "tool.finished"
+  },
+  {
+   "durationMs": 1729,
+   "runId": "r1",
+   "sessionId": "s1",
+   "type": "thinking.completed",
+   "callId": null
+  },
+  {
+   "callId": "call-7a4714f8-3479-47a2-bb67-1cf23f83aabc-5|fc_3c33bbdf-c3b1-9922-b4d9-1d006acac9c6_0",
+   "kind": "shell",
+   "runId": "r1",
+   "sessionId": "s1",
+   "summary": "bun -e \"fetch('https://example.com').then(r=>console.log(r.status))\"",
+   "tool": "shell",
+   "type": "tool.started"
+  },
+  {
+   "callId": "call-7a4714f8-3479-47a2-bb67-1cf23f83aabc-5|fc_3c33bbdf-c3b1-9922-b4d9-1d006acac9c6_0",
+   "detail": "error: Local SDK runs cannot request interactive approval for this shell command. Keep the action within the configured sandbox policy or Smart Auto Review's auto-approval boundary, or re-run without sandboxing/autoReview enabled.",
+   "kind": "shell",
+   "runId": "r1",
+   "sessionId": "s1",
+   "summary": "bun -e \"fetch('https://example.com').then(r=>console.log(r.status))\"",
+   "tool": "shell",
+   "type": "tool.finished"
+  },
+  {
+   "durationMs": 1,
+   "runId": "r1",
+   "sessionId": "s1",
+   "type": "thinking.completed",
+   "callId": null
+  },
+  {
+   "cacheReadTokens": 61696,
+   "cacheWriteTokens": 0,
+   "reasoningTokens": 722,
+   "runId": "r1",
+   "sessionId": "s1",
+   "tokensIn": 74034,
+   "tokensOut": 1082,
+   "totalTokens": 75116,
+   "type": "usage",
+   "callId": null
+  },
+  {
+   "type": "session.status",
+   "sessionId": "s1",
+   "status": "idle",
+   "runId": "r1"
+  }
+ ]
+}
