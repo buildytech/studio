@@ -28,3 +28,9 @@ manifest no longer matched, 305 bare tags in 19 TSX files, about 260 literal str
 
 - The refactor runs file by file; each step shrinks the baseline and keeps the 62 tests green.
 - 8+4 is not enforced on the Studio (app layer); blocks taken from the registry keep their own 8+4.
+
+## Progress
+
+- Kit: `ui8kit@3.5.0 init --framework solid` + `add` (primitives in `src/kit/ui`, compositions in `src/compose`,
+  Lucide in `src/icons`); the vendored `src/ui` and its manifest are gone. `bun run check:kit` (`ui8kit check`
+  against `ui8kit.lock.json`) runs in `verify`. Theme values: `src/styles/studio-theme.css`.

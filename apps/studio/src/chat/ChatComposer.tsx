@@ -1,8 +1,5 @@
 import { Show, type JSX } from "solid-js"
-import { Button } from "../ui/button/button.solid"
-import { Group } from "../ui/group/group.solid"
-import { Text } from "../ui/text/text.solid"
-import { Textarea } from "../ui/textarea/textarea.solid"
+import { Button, Group, Text, Textarea } from "../compose"
 
 export type ComposerAttachment = {
   name: string

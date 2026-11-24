@@ -6,7 +6,7 @@ import { Settings } from "./Settings"
 import { Studio } from "./Studio"
 import { LOCAL_USER, api, clearLegacyBrowserToken } from "./api"
 import { HostProvider } from "./host/context"
-import "./ui8kit.css"
+import "./styles/app.css"
 import "./styles.css"
 
 clearLegacyBrowserToken()

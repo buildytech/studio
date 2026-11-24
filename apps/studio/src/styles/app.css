@@ -1,0 +1,3 @@
+/* Studio stylesheet entry: the generated kit entry, then the Studio theme in the same Tailwind build. */
+@import "./index.css";
+@import "./studio-theme.css";

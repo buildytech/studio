@@ -1,6 +1,5 @@
 import { For, Show, type JSX } from "solid-js"
-import { Badge } from "../ui/badge/badge.solid"
-import { Group } from "../ui/group/group.solid"
+import { Badge, Group } from "../compose"
 import type { AgentModel } from "../api"
 import {
   formatRuntimeLabel,

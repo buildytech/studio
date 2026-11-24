@@ -1,5 +1,5 @@
 import { For, Show, createEffect, createSignal, type JSX } from "solid-js"
-import { Text } from "../ui/text/text.solid"
+import { Text } from "../compose"
 import {
   FEEDBACK_DOWN_TAGS,
   type CachedChatMessage,

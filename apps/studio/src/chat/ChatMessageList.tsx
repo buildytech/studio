@@ -1,6 +1,5 @@
 import { For, Show, createMemo, type JSX } from "solid-js"
-import { Stack } from "../ui/stack/stack.solid"
-import { Text } from "../ui/text/text.solid"
+import { Stack, Text } from "../compose"
 import type { CachedChatMessage } from "../chat-store"
 import {
   ChatMessageBubble,

@@ -4,11 +4,7 @@
     "jsx": "preserve",
     "jsxImportSource": "solid-js",
     "types": ["vite/client", "bun"],
-    "paths": {
-      "@ui": ["./src/ui/index.solid.ts"]
-    },
     "skipLibCheck": true
   },
-  "include": ["src/**/*", "vite.config.ts"],
-  "exclude": ["src/ui/**", "src/utils/**"]
+  "include": ["src/**/*", "vite.config.ts"]
 }
