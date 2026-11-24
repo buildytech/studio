@@ -16,11 +16,11 @@ export const studioEditorTheme = EditorView.theme(
       lineHeight: "1.45",
     },
     ".cm-content": {
-      caretColor: "var(--accent)",
+      caretColor: "var(--brand)",
       padding: "0.5rem 0",
     },
     ".cm-cursor, .cm-dropCursor": {
-      borderLeftColor: "var(--accent)",
+      borderLeftColor: "var(--brand)",
     },
     "&.cm-focused .cm-selectionBackground, .cm-selectionBackground, .cm-content ::selection":
       {
@@ -31,7 +31,7 @@ export const studioEditorTheme = EditorView.theme(
     },
     ".cm-gutters": {
       backgroundColor: "var(--bg-elevated)",
-      color: "var(--muted)",
+      color: "var(--text-muted)",
       border: "none",
       borderRight: "1px solid var(--border)",
     },
@@ -41,7 +41,7 @@ export const studioEditorTheme = EditorView.theme(
     ".cm-foldPlaceholder": {
       backgroundColor: "var(--panel-muted)",
       border: "none",
-      color: "var(--muted)",
+      color: "var(--text-muted)",
     },
     ".cm-tooltip": {
       backgroundColor: "var(--panel)",

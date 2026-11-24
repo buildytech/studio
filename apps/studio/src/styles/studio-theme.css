@@ -35,6 +35,30 @@
   --sidebar-accent-foreground: #ededed;
   --sidebar-border: #282828;
   --sidebar-ring: #fab283;
+
+  /* Studio stylesheet names (styles.css, CodeMirror theme), on the tokens above where one exists. */
+  --bg: var(--background);
+  --bg-elevated: #0f0f0f;
+  --panel: var(--card);
+  --panel-muted: var(--secondary);
+  --border-muted: #232323;
+  --text: var(--secondary-foreground);
+  --text-strong: var(--foreground);
+  --text-muted: var(--muted-foreground);
+  --brand: var(--primary);
+  --accent-dim: #e89a6a;
+  --accent-emphasis: #ffc09a;
+  --link: #7698fd;
+  --cyan: #00c5df;
+  --info: #7dd3fc;
+  --danger: var(--destructive);
+  --ok: #49c970;
+  --warn: #f6c251;
+  --gray: #7f7f7f;
+  --white: #ffffff;
+  --shadow: #000000;
+  --scrollbar: #3a3a3a;
+  --scrollbar-hover: #525252;
 }
 
 @theme {
