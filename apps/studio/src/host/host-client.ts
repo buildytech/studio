@@ -80,7 +80,7 @@ export class HttpHostClient {
   readonly listMyCredentials = () =>
     this.request<{ credentials: UserCredential[] }>("/me/credentials")
   readonly putMyCredential = (runtime: string, providerId: string, key: string) =>
-    this.request<{ credential: UserCredential; warning?: string; account?: { email?: string; apiKeyName?: string } }>(
+    this.request<{ credential: UserCredential }>(
       `/me/credentials/${encodeURIComponent(runtime)}/${encodeURIComponent(providerId)}`,
       { method: "PUT", body: JSON.stringify({ key }) },
     )
