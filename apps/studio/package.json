@@ -6,9 +6,11 @@
     "dev": "vite",
     "build": "vite build",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "test": "bun test src",
+    "test": "bun test src scripts",
     "build:desktop": "vite build --mode desktop",
-    "check:kit": "ui8kit check"
+    "check:kit": "ui8kit check",
+    "rules:check": "bun scripts/rules-check.ts",
+    "rules:baseline": "bun scripts/rules-check.ts --write"
   },
   "dependencies": {
     "@buildy/agent-contract": "workspace:*",

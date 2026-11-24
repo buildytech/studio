@@ -21,7 +21,7 @@ manifest no longer matched, 305 bare tags in 19 TSX files, about 260 literal str
 - New code has a zero baseline. Files not yet refactored are listed in `rules/baseline.json` with their counts; the
   gate fails when a count grows and asks to re-record when it shrinks, so the list only goes down.
 - Words live in `src/i18n/ui.en.json` (DictionaryV04 shape `{ locale, messages }`); components call `t("key")`.
-- Colors and type sizes are tokens (`src/styles/tokens.css`); layout utilities are Tailwind classes; the brand theme
+- Colors and type sizes are tokens (`src/styles/studio-theme.css`); layout utilities are Tailwind classes; the brand theme
   keeps the existing dark palette.
 
 ## Consequences
@@ -34,3 +34,7 @@ manifest no longer matched, 305 bare tags in 19 TSX files, about 260 literal str
 - Kit: `ui8kit@3.5.0 init --framework solid` + `add` (primitives in `src/kit/ui`, compositions in `src/compose`,
   Lucide in `src/icons`); the vendored `src/ui` and its manifest are gone. `bun run check:kit` (`ui8kit check`
   against `ui8kit.lock.json`) runs in `verify`. Theme values: `src/styles/studio-theme.css`.
+- `bun run rules:check` (`apps/studio/scripts/rules-check.ts`, TypeScript AST, tested) gates `rules/baseline.json`.
+  First record (dbaaf8e + vendor-ui move): raw-native-tag 279, literal-text 124 (JSX text and read-out attributes),
+  hardcoded-color 121 (all in the legacy `styles.css`), svg-outside-icon 7, inline-style 3, raw-html 0, dynamic-tag 0.
+- Exceptions zone `src/vendor-ui/` (ADR 0004): `markdown.ts`, `MarkdownView.tsx` (the only HTML host), `codemirror/`.

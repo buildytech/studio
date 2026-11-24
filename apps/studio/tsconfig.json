@@ -6,5 +6,5 @@
     "types": ["vite/client", "bun"],
     "skipLibCheck": true
   },
-  "include": ["src/**/*", "vite.config.ts"]
+  "include": ["src/**/*", "scripts/**/*", "vite.config.ts"]
 }

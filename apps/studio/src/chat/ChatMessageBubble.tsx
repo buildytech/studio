@@ -1,11 +1,11 @@
-import { For, Show, createEffect, createSignal, type JSX } from "solid-js"
+import { For, Show, createSignal, type JSX } from "solid-js"
 import { Text } from "../compose"
 import {
   FEEDBACK_DOWN_TAGS,
   type CachedChatMessage,
   type FeedbackDownTag,
 } from "../chat-store"
-import { hydrateMermaid, renderMarkdown } from "../markdown"
+import { MarkdownView } from "../vendor-ui/MarkdownView"
 
 export type ChatFeedbackPayload = {
   rating: "up" | "down"
@@ -71,19 +71,10 @@ export function ChatMessageBubble(props: ChatMessageBubbleProps): JSX.Element {
   const [comment, setComment] = createSignal("")
   const [busy, setBusy] = createSignal(false)
   const [hint, setHint] = createSignal("")
-  let mdRoot: HTMLDivElement | undefined
 
   const latched = () => msg().feedback
   const disabled = () => Boolean(latched()) || busy()
 
-  // Markdown HTML + Mermaid SVG must run after sanitize; re-apply when text settles.
-  createEffect(() => {
-    const el = mdRoot
-    const text = msg().text
-    if (!el || role() !== "assistant" || msg().streaming) return
-    el.innerHTML = renderMarkdown(text)
-    void hydrateMermaid(el)
-  })
 
   const submit = async (payload: ChatFeedbackPayload) => {
     if (!props.onFeedback || disabled()) return
@@ -143,7 +134,7 @@ export function ChatMessageBubble(props: ChatMessageBubbleProps): JSX.Element {
                 </Text>
               }
             >
-              <div class="chat-md" ref={(el) => { mdRoot = el }} />
+              <MarkdownView class="chat-md" source={msg().text} />
             </Show>
             <Show when={props.showFeedback && msg().runId}>
               <div class="chat-feedback">

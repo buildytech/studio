@@ -9,8 +9,8 @@ import {
   api,
   type WorkspaceTreeNode,
 } from "../api"
-import { hydrateMermaid, renderMarkdown } from "../markdown"
-import { CodeEditor } from "./CodeEditor"
+import { CodeEditor } from "../vendor-ui/codemirror/CodeEditor"
+import { MarkdownView } from "../vendor-ui/MarkdownView"
 import {
   clampTreePct,
   persistTreeOpen,
@@ -139,7 +139,6 @@ export function WorkspaceEditor(props: WorkspaceEditorProps): JSX.Element {
   const [treePct, setTreePct] = createSignal(readTreePct())
   const [treeOpen, setTreeOpen] = createSignal(readTreeOpen())
   const [splitting, setSplitting] = createSignal(false)
-  let mdRoot: HTMLDivElement | undefined
   let bodyEl: HTMLDivElement | undefined
 
   const toggleTree = () => {
@@ -203,13 +202,6 @@ export function WorkspaceEditor(props: WorkspaceEditorProps): JSX.Element {
     void loadTree()
   })
 
-  createEffect(() => {
-    const el = mdRoot
-    const text = draft()
-    if (!el || view() !== "preview") return
-    el.innerHTML = renderMarkdown(text)
-    void hydrateMermaid(el)
-  })
 
   const openFile = async (filePath: string) => {
     if (dirty() && selected() && selected() !== filePath) {
@@ -412,12 +404,7 @@ export function WorkspaceEditor(props: WorkspaceEditorProps): JSX.Element {
                     />
                   }
                 >
-                  <div
-                    class="ws-md-preview chat-md"
-                    ref={(el) => {
-                      mdRoot = el
-                    }}
-                  />
+                  <MarkdownView class="ws-md-preview chat-md" source={draft()} />
                 </Show>
               </>
             )}
