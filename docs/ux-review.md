@@ -73,7 +73,7 @@ window, and one polite live region. Tests run on JSON fixtures of real streams.
 | Muted contrast (`--muted-foreground #8a8a8a`), six-step type tokens | done |
 | Preview empty state with «Start preview» | done |
 | Esc stops a run from the composer | done |
-| Settings copy from the dictionary, host-neutral | done; «Chat export» still precedes the key — open |
+| Settings: Cursor key first, copy from the dictionary, host-neutral | done |
 | `shortcuts.ts` shared map, `PanelToolbar`, host-offline notice with Retry, skeletons | open |
 | 222 app CSS classes → utilities | partial: dead rules removed, legacy `styles.css` remains (colours are tokens) |
 
