@@ -1,0 +1,19 @@
+{
+  "name": "buildy-studio",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "bun run --cwd apps/studio dev",
+    "build": "bun run --cwd apps/studio build",
+    "build:desktop": "bun run --cwd apps/studio build:desktop",
+    "test": "bun test scripts && bun run --cwd packages/agent-contract test && bun run --cwd packages/studio-panel-contract test && bun run --cwd apps/studio test",
+    "typecheck": "bun run --cwd packages/agent-contract typecheck && bun run --cwd packages/studio-panel-contract typecheck && bun run --cwd apps/studio typecheck",
+    "gen:host-seam": "bun scripts/gen-host-seam.ts",
+    "verify": "bun run typecheck && bun run test && bun run build:desktop"
+  },
+  "packageManager": "bun@1.4.4"
+}

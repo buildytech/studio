@@ -1,0 +1,25 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version-file: .bun-version
+      - run: bun install --frozen-lockfile
+      - name: Host seam drift (host-seam.json is generated from packages/agent-contract/src/host.ts)
+        run: bun run gen:host-seam && git diff --exit-code -- packages/agent-contract/host-seam.json
+      - run: bun run verify
+      - name: Working tree stays clean
+        run: git diff --exit-code
