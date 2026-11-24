@@ -74,8 +74,11 @@ window, and one polite live region. Tests run on JSON fixtures of real streams.
 | Preview empty state with «Start preview» | done |
 | Esc stops a run from the composer | done |
 | Settings: Cursor key first, copy from the dictionary, host-neutral | done |
-| `shortcuts.ts` shared map, `PanelToolbar`, host-offline notice with Retry, skeletons | open |
-| 222 app CSS classes → utilities | partial: dead rules removed, legacy `styles.css` remains (colours are tokens) |
+| Host-offline notice with Retry | done (`Studio.tsx`, resource refetch) |
+| `shortcuts.ts` shared map | debt: Enter / Shift+Enter / Esc already work per component; a shared map is worth it only with a second shortcut set (Ctrl/Cmd+K), not part of the refactor's «behaviour unchanged» scope |
+| `PanelToolbar` | debt: the kit `Panel`/`EditorTab` organisms are not reactive in Solid (props are destructured), so the panels keep their own toolbars until the kit is fixed |
+| Skeletons for loading | debt: needs design of the loading states; «Loading…» text kept |
+| App CSS classes → utilities | partial. Legacy `src/styles.css`: 2 477 → 2 329 lines, 272 → 255 class selectors, 379 rules, 0 hard-coded colours (all tokens), 102 `font-size` declarations. Debt: move each component's rules to utilities on its primitives, one screen per commit, with screenshot parity |
 
 ## Out of scope (kept as is)
 

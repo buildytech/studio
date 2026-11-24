@@ -77,7 +77,7 @@ export function Studio(props: { user: User }): JSX.Element {
   const [project, setProject] = createSignal<Project | null>(null)
   const [status, setStatus] = createSignal("idle")
   const [error, setError] = createSignal("")
-  const [hostCaps] = createResource(async () => {
+  const [hostCaps, { refetch: retryHostCaps }] = createResource(async () => {
     try {
       return await api.hostCapabilities()
     } catch {
@@ -284,6 +284,13 @@ export function Studio(props: { user: User }): JSX.Element {
         <For each={hostNotices(hostCaps())}>
           {(note) => <Box class="studio-banner">{note}</Box>}
         </For>
+        <Show when={!hostCaps()}>
+          <Box class="studio-banner">
+            <Button type="button" class="btn ghost" onClick={() => void retryHostCaps()}>
+              {t("common.retry")}
+            </Button>
+          </Box>
+        </Show>
       </Show>
 
       <Box
