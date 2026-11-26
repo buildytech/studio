@@ -178,6 +178,14 @@
     {
       "method": "DELETE",
       "path": "/desktop/connection"
+    },
+    {
+      "method": "GET",
+      "path": "/desktop/provision"
+    },
+    {
+      "method": "POST",
+      "path": "/desktop/provision"
     }
   ],
   "desktopConnection": [
@@ -190,5 +198,30 @@
     "serverOutdated",
     "problem"
   ],
-  "tunnelUser": "vibechat-tunnel"
+  "tunnelUser": "vibechat-tunnel",
+  "desktopProvision": [
+    "state",
+    "steps",
+    "address",
+    "hostKeyFingerprint",
+    "rollbackSeconds",
+    "problem"
+  ],
+  "desktopProvisionInput": [
+    "address",
+    "password",
+    "rootPublicKey"
+  ],
+  "provisionSteps": [
+    "connect",
+    "preflight",
+    "incus",
+    "container",
+    "server",
+    "egress",
+    "token",
+    "tunnel",
+    "verify",
+    "lockdown"
+  ]
 }

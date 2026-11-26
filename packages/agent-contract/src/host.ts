@@ -164,6 +164,8 @@ export const HOST_DESKTOP_ROUTES: readonly HostSeamRoute[] = [
   { method: "GET", path: "/desktop/connection" },
   { method: "PUT", path: "/desktop/connection" },
   { method: "DELETE", path: "/desktop/connection" },
+  { method: "GET", path: "/desktop/provision" },
+  { method: "POST", path: "/desktop/provision" },
 ]
 
 /** Why the app is not (or cannot stay) connected; `protocol_*` opens the update screen. */
@@ -221,6 +223,77 @@ export const DesktopConnectInputSchema = z.object({
   token: z.string().max(256).optional(),
 })
 export type DesktopConnectInput = z.infer<typeof DesktopConnectInputSchema>
+
+/**
+ * The setup wizard of a new server (level 1): the user enters the VPS address and the root password once; the app
+ * runs these steps over SSH as root on a Debian 13 host, each one check → act → check, so a second run continues
+ * where the first stopped. `POST /desktop/provision` starts a run (409 while one runs) and answers at once; `GET`
+ * answers the progress. The root password lives only in the app's memory for the run; the host token goes to the
+ * OS keychain; at the end the app connects like `PUT /desktop/connection` (local mode only: in the server's Studio
+ * the routes are not answered).
+ */
+export const DESKTOP_PROVISION_STEPS = [
+  "connect",
+  "preflight",
+  "incus",
+  "container",
+  "server",
+  "egress",
+  "token",
+  "tunnel",
+  "verify",
+  "lockdown",
+] as const
+export const DesktopProvisionStepIdSchema = z.enum(DESKTOP_PROVISION_STEPS)
+export type DesktopProvisionStepId = z.infer<typeof DesktopProvisionStepIdSchema>
+
+export const DesktopProvisionStepStateSchema = z.enum(["pending", "running", "done", "skipped", "failed"])
+export type DesktopProvisionStepState = z.infer<typeof DesktopProvisionStepStateSchema>
+
+/** Why a run stopped: `unsupported` is preflight's refusal (not Debian 13 amd64, too small); `not_confirmed` means the
+ * SSH lockdown was not confirmed and the server allows password login again within `rollbackSeconds`. */
+export const DesktopProvisionProblemCodeSchema = z.enum([
+  "unreachable",
+  "auth",
+  "host_key_changed",
+  "unsupported",
+  "step_failed",
+  "not_confirmed",
+  "bad_input",
+  "busy",
+])
+export type DesktopProvisionProblemCode = z.infer<typeof DesktopProvisionProblemCodeSchema>
+
+export const DesktopProvisionSchema = z.object({
+  state: z.enum(["idle", "running", "done", "failed"]),
+  /** Every step in DESKTOP_PROVISION_STEPS order. */
+  steps: z.array(
+    z.object({
+      id: DesktopProvisionStepIdSchema,
+      state: DesktopProvisionStepStateSchema,
+      /** Why it failed (never a secret). */
+      detail: z.string().optional(),
+    }),
+  ),
+  /** The server of the current or last run. */
+  address: z.string().optional(),
+  /** SHA256 fingerprint of the server's pinned SSH host key, once connected. */
+  hostKeyFingerprint: z.string().optional(),
+  /** The lockdown safety net: password login comes back after this many seconds unless the app confirms. */
+  rollbackSeconds: z.number().int().positive(),
+  problem: z.object({ code: DesktopProvisionProblemCodeSchema, message: z.string() }).optional(),
+})
+export type DesktopProvision = z.infer<typeof DesktopProvisionSchema>
+
+export const DesktopProvisionInputSchema = z.object({
+  /** host or host:port of the VPS (SSH, default port 22). */
+  address: z.string().min(1).max(255),
+  /** The root password, used for this run only (never stored). */
+  password: z.string().min(1).max(1024),
+  /** An optional public key line of the user's own for root, installed before password login is turned off. */
+  rootPublicKey: z.string().max(8192).optional(),
+})
+export type DesktopProvisionInput = z.infer<typeof DesktopProvisionInputSchema>
 
 /** Default SSH user of the tunnel (port forwarding only, no shell). */
 export const DESKTOP_TUNNEL_USER = "vibechat-tunnel" as const

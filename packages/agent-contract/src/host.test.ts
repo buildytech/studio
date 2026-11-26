@@ -2,6 +2,9 @@ import { describe, expect, test } from "bun:test"
 import {
   HOST_MIN_CLIENT_PROTOCOL,
   HOST_PROTOCOL,
+  DESKTOP_PROVISION_STEPS,
+  DesktopProvisionInputSchema,
+  DesktopProvisionSchema,
   HOST_DESKTOP_ROUTES,
   HOST_REMOTE_ROUTES,
   HOST_SEAM_ROUTES,
@@ -93,5 +96,20 @@ describe("desktop host seam (docs/adr/0002)", () => {
     })
     expect(remote.serverOutdated).toBe(true)
     expect(() => DesktopConnectInputSchema.parse({ address: "", user: "u" })).toThrow()
+  })
+
+  test("setup wizard: ten steps in order, progress and input parse", () => {
+    expect([...DESKTOP_PROVISION_STEPS]).toEqual(["connect", "preflight", "incus", "container", "server", "egress", "token", "tunnel", "verify", "lockdown"])
+    const p = DesktopProvisionSchema.parse({
+      state: "failed",
+      steps: DESKTOP_PROVISION_STEPS.map((id, i) => ({ id, state: i < 2 ? "done" : i === 2 ? "failed" : "pending" })),
+      address: "203.0.113.5",
+      rollbackSeconds: 300,
+      problem: { code: "unsupported", message: "Debian 13 is required" },
+    })
+    expect(p.steps).toHaveLength(10)
+    expect(() => DesktopProvisionSchema.parse({ ...p, steps: [{ id: "reboot", state: "done" }] })).toThrow()
+    expect(DesktopProvisionInputSchema.parse({ address: "203.0.113.5", password: "pw" }).rootPublicKey).toBeUndefined()
+    expect(() => DesktopProvisionInputSchema.parse({ address: "203.0.113.5", password: "" })).toThrow()
   })
 })

@@ -2,6 +2,8 @@ import {
   type AgentCapabilities,
   type DesktopConnectInput,
   type DesktopConnection,
+  type DesktopProvision,
+  type DesktopProvisionInput,
   type HostCapabilities,
 } from "@buildy/agent-contract"
 import { ApiError } from "../chat/banner"
@@ -84,6 +86,10 @@ export class HttpHostClient {
     this.request<DesktopConnection>("/desktop/connection", { method: "PUT", body: JSON.stringify(input) })
   readonly desktopDisconnect = (forget = false) =>
     this.request<DesktopConnection>(`/desktop/connection${forget ? "?forget=1" : ""}`, { method: "DELETE" })
+  /** The setup wizard of a new server (local mode only): its progress, and a new run. */
+  readonly desktopProvision = () => this.request<DesktopProvision>("/desktop/provision")
+  readonly desktopProvisionStart = (input: DesktopProvisionInput) =>
+    this.request<DesktopProvision>("/desktop/provision", { method: "POST", body: JSON.stringify(input) })
 
   /** Desktop host capabilities (docs/adr/0002); UI branches on these, never on host name. */
   readonly hostCapabilities = () => this.request<HostCapabilities>("/host/capabilities")

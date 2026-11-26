@@ -36,6 +36,8 @@ async function exercise(h: HostClient): Promise<void> {
   await h.desktopConnection()
   await h.desktopConnect({ address: "srv.example", user: "vibechat-tunnel", token: "t" })
   await h.desktopDisconnect(true)
+  await h.desktopProvision()
+  await h.desktopProvisionStart({ address: "203.0.113.5", password: "pw" })
   await h.cursorAccount()
   await h.listMyCredentials()
   await h.putMyCredential("cursor-sdk", "cursor", "k")
