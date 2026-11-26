@@ -190,6 +190,7 @@
   ],
   "desktopConnection": [
     "mode",
+    "connecting",
     "appVersion",
     "appProtocol",
     "sshPublicKey",

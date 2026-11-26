@@ -181,8 +181,13 @@ export const DesktopProblemCodeSchema = z.enum([
 export type DesktopProblemCode = z.infer<typeof DesktopProblemCodeSchema>
 
 export const DesktopConnectionSchema = z.object({
-  /** local: the window shows the app's own Studio; remote: the server's, through the tunnel. */
+  /**
+   * local: not connected, the window shows the app's start screen (connect a server / set up a new one; the app has no
+   * local agent); remote: the server's Studio, through the tunnel.
+   */
   mode: z.enum(["local", "remote"]),
+  /** A connect to the saved server is in progress (at start the app reconnects by itself). */
+  connecting: z.boolean().optional(),
   appVersion: z.string().min(1),
   /** `HOST_PROTOCOL` of the app's pinned contract. */
   appProtocol: z.number().int().positive(),
