@@ -1154,6 +1154,14 @@ button, input { font: inherit; }
 .ws-tree-toggle-icon {
   display: block;
 }
+.ws-zip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.ws-zip-icon {
+  display: block;
+}
 .ws-view-toggle {
   display: inline-flex;
   gap: 0.15rem;

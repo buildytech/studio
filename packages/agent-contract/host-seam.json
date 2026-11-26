@@ -90,6 +90,10 @@
       "path": "/projects/:id/brief"
     },
     {
+      "method": "GET",
+      "path": "/projects/:id/archive.zip"
+    },
+    {
       "method": "POST",
       "path": "/projects/:id/brief/from-image"
     },
@@ -186,6 +190,10 @@
     {
       "method": "POST",
       "path": "/desktop/provision"
+    },
+    {
+      "method": "POST",
+      "path": "/desktop/archive"
     }
   ],
   "desktopConnection": [
@@ -224,5 +232,12 @@
     "tunnel",
     "verify",
     "lockdown"
+  ],
+  "desktopArchive": [
+    "saved",
+    "file"
+  ],
+  "desktopArchiveInput": [
+    "projectId"
   ]
 }

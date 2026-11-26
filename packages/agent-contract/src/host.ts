@@ -84,6 +84,13 @@ export const HOST_SEAM_ROUTES: readonly HostSeamRoute[] = [
   { method: "PUT", path: "/projects/:id/file" },
   { method: "GET", path: "/projects/:id/brief" },
   { method: "PUT", path: "/projects/:id/brief" },
+  /**
+   * The project's source as a ZIP (`application/zip`, `Content-Disposition: attachment; filename="<slug>.zip"`),
+   * streamed: no `.git`, `node_modules`, build output or caches, local `.env*` files (`.env.example` stays), logs or
+   * the agent's tool config; symlinks are never followed. `?check=1` answers `ProjectArchiveCheck` (JSON) instead;
+   * too large: 413 `{ error }`.
+   */
+  { method: "GET", path: "/projects/:id/archive.zip" },
   { method: "POST", path: "/projects/:id/brief/from-image" },
   { method: "GET", path: "/projects/:id/agent/capabilities" },
   { method: "GET", path: "/projects/:id/agent/sessions" },
@@ -166,7 +173,36 @@ export const HOST_DESKTOP_ROUTES: readonly HostSeamRoute[] = [
   { method: "DELETE", path: "/desktop/connection" },
   { method: "GET", path: "/desktop/provision" },
   { method: "POST", path: "/desktop/provision" },
+  { method: "POST", path: "/desktop/archive" },
 ]
+
+/** `GET /projects/:id/archive.zip?check=1`: what the download would carry. */
+export const ProjectArchiveCheckSchema = z.object({
+  /** The download's file name (`<slug>.zip`). */
+  name: z.string().min(1),
+  files: z.number().int().nonnegative(),
+  /** Uncompressed bytes. */
+  bytes: z.number().int().nonnegative(),
+})
+export type ProjectArchiveCheck = z.infer<typeof ProjectArchiveCheckSchema>
+
+/**
+ * `POST /desktop/archive` (the server's Studio in the desktop app): the app asks where to save (the system's Save
+ * dialog) and writes the project's ZIP there from `GET /projects/:id/archive.zip` through the tunnel, because the
+ * app's webviews do not all save downloads. Not in the app (404): the Studio lets the browser download the route.
+ */
+export const DesktopArchiveInputSchema = z.object({
+  projectId: z.string().min(1).max(128),
+})
+export type DesktopArchiveInput = z.infer<typeof DesktopArchiveInputSchema>
+
+export const DesktopArchiveSchema = z.object({
+  /** false: the user closed the Save dialog. */
+  saved: z.boolean(),
+  /** Where the ZIP went (shown to the user). */
+  file: z.string().optional(),
+})
+export type DesktopArchive = z.infer<typeof DesktopArchiveSchema>
 
 /** Why the app is not (or cannot stay) connected; `protocol_*` opens the update screen. */
 export const DesktopProblemCodeSchema = z.enum([

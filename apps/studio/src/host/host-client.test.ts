@@ -38,6 +38,7 @@ async function exercise(h: HostClient): Promise<void> {
   await h.desktopDisconnect(true)
   await h.desktopProvision()
   await h.desktopProvisionStart({ address: "203.0.113.5", password: "pw" })
+  await h.desktopSaveArchive({ projectId: "p1" })
   await h.cursorAccount()
   await h.listMyCredentials()
   await h.putMyCredential("cursor-sdk", "cursor", "k")
@@ -56,6 +57,7 @@ async function exercise(h: HostClient): Promise<void> {
   await h.writeProjectFile("p1", "src/App.svelte", "x")
   await h.exportProjectBrief("p1")
   await h.importProjectBrief("p1", {})
+  await h.projectArchiveCheck("p1")
   await h.briefFromImage("p1", file)
   await h.agentCapabilities("p1")
   await h.agentSessions("p1")
@@ -79,6 +81,11 @@ describe("HostClient ↔ host seam contract (docs/adr/0002)", () => {
     const covered = new Set(calls.map((c) => matchRoute(c)!).map((r) => `${r.method} ${r.path}`))
     const missing = [...HOST_SEAM_ROUTES, ...HOST_DESKTOP_ROUTES].map((r) => `${r.method} ${r.path}`).filter((k) => !covered.has(k))
     expect(missing).toEqual([])
+  })
+
+  test("the archive URL is the seam route, for a browser download", () => {
+    const h = new HttpHostClient({ baseUrl: HOST_SEAM_PREFIX, fetch: recordingFetch([]) })
+    expect(matchRoute({ method: "GET", url: h.projectArchiveUrl("p1") })?.path).toBe("/projects/:id/archive.zip")
   })
 
   test("a cloud base URL prefixes every request and the auth hook adds headers", async () => {

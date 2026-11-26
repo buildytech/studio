@@ -1,10 +1,13 @@
 import {
   type AgentCapabilities,
   type DesktopConnectInput,
+  type DesktopArchive,
+  type DesktopArchiveInput,
   type DesktopConnection,
   type DesktopProvision,
   type DesktopProvisionInput,
   type HostCapabilities,
+  type ProjectArchiveCheck,
 } from "@buildy/agent-contract"
 import { ApiError } from "../chat/banner"
 import type { ExportableChatBundle } from "../chat/export-trace"
@@ -90,6 +93,14 @@ export class HttpHostClient {
   readonly desktopProvision = () => this.request<DesktopProvision>("/desktop/provision")
   readonly desktopProvisionStart = (input: DesktopProvisionInput) =>
     this.request<DesktopProvision>("/desktop/provision", { method: "POST", body: JSON.stringify(input) })
+  /** The server's Studio in the desktop app: the app's Save dialog, then the project's ZIP written there (404 elsewhere). */
+  readonly desktopSaveArchive = (input: DesktopArchiveInput) =>
+    this.request<DesktopArchive>("/desktop/archive", { method: "POST", body: JSON.stringify(input) })
+
+  /** The project's ZIP (a download, not JSON): for the browser; `projectArchiveCheck` asks first. */
+  readonly projectArchiveUrl = (id: string) => `${this.baseUrl}/projects/${encodeURIComponent(id)}/archive.zip`
+  readonly projectArchiveCheck = (id: string) =>
+    this.request<ProjectArchiveCheck>(`/projects/${encodeURIComponent(id)}/archive.zip?check=1`)
 
   /** Desktop host capabilities (docs/adr/0002); UI branches on these, never on host name. */
   readonly hostCapabilities = () => this.request<HostCapabilities>("/host/capabilities")

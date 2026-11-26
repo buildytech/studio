@@ -5,13 +5,14 @@
  */
 import { For, type JSX } from "solid-js"
 import { Dynamic } from "solid-js/web"
-import { ChevronDown, FilePen, FileText, Monitor, Search, Terminal, Wrench, ChevronLeft, ChevronRight, Ellipsis, ExternalLink, PanelLeftClose, PanelLeftOpen, Play, RotateCw, Paperclip, Plus, Square, X, type IconNode } from "lucide"
+import { ChevronDown, Download, FilePen, FileText, Monitor, Search, Terminal, Wrench, ChevronLeft, ChevronRight, Ellipsis, ExternalLink, PanelLeftClose, PanelLeftOpen, Play, RotateCw, Paperclip, Plus, Square, X, type IconNode } from "lucide"
 import { LucideIcon as Frame } from "../compose"
 
 const GLYPHS = {
   "chevron-down": ChevronDown,
   "chevron-left": ChevronLeft,
   "chevron-right": ChevronRight,
+  download: Download,
   ellipsis: Ellipsis,
   "external-link": ExternalLink,
   "file-pen": FilePen,

@@ -25,6 +25,7 @@ import { Box, Button, Text } from "../primitives"
 import { cssVars } from "../lib/css-vars"
 import { AppIcon } from "../app-icons"
 import { t } from "../i18n"
+import { ArchiveButton } from "./ArchiveButton"
 
 export type WorkspaceEditorProps = {
   projectId: string
@@ -280,6 +281,7 @@ export function WorkspaceEditor(props: WorkspaceEditorProps): JSX.Element {
                 <Box class="ws-code-toolbar">
                   <Text tag="span" class="ws-code-path">{t("editor.selectAFile")}</Text>
                   <Box class="ws-code-toolbar-right">
+                    <ArchiveButton projectId={props.projectId} onError={setError} />
                     <Button
                       type="button"
                       class="btn ghost compact ws-tree-toggle"
@@ -332,6 +334,7 @@ export function WorkspaceEditor(props: WorkspaceEditorProps): JSX.Element {
                         </Button>
                       </Box>
                     </Show>
+                    <ArchiveButton projectId={props.projectId} onError={setError} />
                     <Button
                       type="button"
                       class="btn ghost compact ws-tree-toggle"
