@@ -13,8 +13,6 @@ import { ServerSettings } from "./ServerSettings"
 
 // Long help texts: their own chunk, loaded when Settings shows them.
 const ServerHelp = lazy(() => import("./ServerHelp"))
-// The setup wizard of a new server: its own chunk and dictionary too.
-const ServerSetup = lazy(() => import("./ServerSetup"))
 
 type KeySlot = {
   id: string
@@ -149,9 +147,6 @@ export function Settings(props: {
         <Box class="settings-cards">
           <Show when={conn()}>
             {(c) => <ServerSettings conn={c()} onChange={setConn} />}
-          </Show>
-          <Show when={conn()?.mode === "local"}>
-            <ServerSetup onDone={() => void loadDesktopConnection(api.desktopConnection).then(setConn)} />
           </Show>
           <Show when={conn()}>
             {(c) => <ServerHelp conn={c()} />}

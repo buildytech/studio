@@ -6,3 +6,4 @@ coverage/
 .DS_Store
 .ui8px/extract/
 .ui8px/reports/
+dist-shell/

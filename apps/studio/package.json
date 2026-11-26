@@ -8,6 +8,7 @@
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "bun run test:unit && bun run test:dom",
     "build:desktop": "vite build --mode desktop",
+    "build:shell": "vite build --mode desktop --config vite.shell.config.ts && bun -e \"require('node:fs').renameSync('dist-shell/shell.html', 'dist-shell/index.html')\"",
     "check:kit": "ui8kit check",
     "rules:check": "bun scripts/rules-check.ts",
     "rules:baseline": "bun scripts/rules-check.ts --write",

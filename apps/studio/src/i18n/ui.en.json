@@ -134,13 +134,13 @@
     "server.copied": "Copied — Скопировано",
     "server.copy": "Copy — Копировать",
     "server.debianOnly": "The server must run Debian 13 (trixie); Ubuntu and other systems are not supported yet. — На сервере нужен Debian 13 (trixie); Ubuntu и другие системы пока не поддерживаются.",
-    "server.disconnect": "Use this computer — Работать на этом компьютере",
+    "server.disconnect": "Disconnect — Отключиться",
     "server.forget": "Forget server — Забыть сервер",
     "server.hostKey": "Pinned SSH host key: — Закреплённый SSH-ключ хоста:",
     "server.hostKeyFirst": "The first connect pins the server's SSH host key; later connects refuse any other key. — При первом подключении SSH-ключ хоста закрепляется; потом любой другой ключ отклоняется.",
     "server.keyHint": "Once, on the server as root: these lines create the tunnel user, which may only forward the app's two ports (no shell). — Один раз на сервере от root: эти строки создают пользователя туннеля, которому можно только пробрасывать два порта приложения (без shell).",
     "server.keyTitle": "This app's SSH key — SSH-ключ приложения",
-    "server.leadLocal": "Run the agent on your own server instead of this computer. The app connects over SSH; projects and the Cursor key stay on the server. — Агент работает на вашем сервере, а не на этом компьютере. Приложение подключается по SSH; проекты и ключ Cursor хранятся на сервере.",
+    "server.leadLocal": "Connect the app to your own server (Debian 13). The app connects over SSH; the agent, projects and the Cursor key stay on the server. — Подключите приложение к своему серверу (Debian 13). Приложение подключается по SSH; агент, проекты и ключ Cursor хранятся на сервере.",
     "server.leadRemote": "The window shows your server's Studio through an SSH tunnel. — Окно показывает Studio вашего сервера через SSH-туннель.",
     "server.outdated": "The server is older than this app. It updates itself daily from official releases; to update now, run sudo vibechat-server update on the server. — Сервер старее приложения. Он обновляется сам раз в день из официальных релизов; чтобы обновить сейчас, выполните на сервере sudo vibechat-server update.",
     "server.problem.auth": "The server refused the app's SSH key or the host token. — Сервер отклонил SSH-ключ приложения или токен хоста.",
@@ -170,6 +170,13 @@
     "settings.saveFailed": "Save failed",
     "settings.savedKey": "Saved key:",
     "settings.title": "API keys",
+    "shell.connect": "Connect a server — Подключить сервер",
+    "shell.connected": "Connected. Opening the server's Studio… — Подключено. Открывается Studio сервера…",
+    "shell.connecting": "Connecting to {address}… — Подключение к {address}…",
+    "shell.lead": "This app is a window to your own server: the agent, projects and previews run there (Debian 13, x86_64). Connect a server you already have, or let the app set up a fresh VPS. — Это приложение — окно к вашему серверу: агент, проекты и превью работают там (Debian 13, x86_64). Подключите готовый сервер или дайте приложению настроить новый VPS.",
+    "shell.loading": "Loading… — Загрузка…",
+    "shell.setup": "Set up a new server — Настроить новый сервер",
+    "shell.title": "BuildY VibeChat",
     "studio.account": "Account",
     "studio.accountCursor": "Cursor · {email}",
     "studio.chat": "Chat",
@@ -204,6 +211,6 @@
     "update.retry": "Check again — Проверить снова",
     "update.serverOld": "The server speaks protocol {server}, this app needs a newer one. The server updates itself daily from official releases; to update now, run sudo vibechat-server update on the server. — Сервер использует протокол {server}, приложению нужен новее. Сервер обновляется сам раз в день; чтобы обновить сейчас, выполните на сервере sudo vibechat-server update.",
     "update.title": "Update needed — Нужно обновление",
-    "update.useLocal": "Use this computer meanwhile — Пока работать на этом компьютере"
+    "update.useLocal": "Disconnect meanwhile — Пока отключиться"
   }
 }
