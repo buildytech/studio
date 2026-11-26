@@ -9,6 +9,7 @@
     "worktrees",
     "preview_local",
     "agent_sandbox",
+    "agent_unsandboxed",
     "templates"
   ],
   "routes": [

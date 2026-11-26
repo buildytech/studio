@@ -38,6 +38,13 @@ export const HostCapabilitiesSchema = z.object({
    * false and refuse agent prompts (fail closed).
    */
   agent_sandbox: z.boolean(),
+  /**
+   * The agent runs, but without the Cursor SDK sandbox (the desktop host on
+   * Windows: cursor-sdk-bridge has no filesystem sandbox on win32). Shell
+   * commands then have the user's own access to files and network; the
+   * Studio shows a warning. Optional: hosts that predate it omit it.
+   */
+  agent_unsandboxed: z.boolean().optional(),
   /** New projects can be scaffolded from the template registry. */
   templates: z.boolean(),
 })

@@ -18,6 +18,13 @@ describe("hostNotices", () => {
   test("fails closed visibly when the sandbox is missing", () => {
     expect(hostNotices({ ...full, agent_sandbox: false })[0]).toContain("agent is turned off")
   })
+  test("warns when the agent runs without the sandbox (Windows desktop host)", () => {
+    const notes = hostNotices({ ...full, agent_unsandboxed: true })
+    expect(notes).toHaveLength(1)
+    expect(notes[0]).toContain("without a sandbox")
+    expect(notes[0]).toContain("без песочницы")
+    expect(hostNotices({ ...full, agent_unsandboxed: false })).toEqual([])
+  })
   test("explains a missing host instead of a blank pane", () => {
     expect(hostNotices(null)[0]).toContain("not reachable")
   })

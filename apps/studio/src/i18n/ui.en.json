@@ -83,6 +83,7 @@
     "editor.showFileTree": "Show file tree",
     "editor.unsaved": "Unsaved",
     "editor.workspaceFiles": "Workspace files",
+    "host.agentUnsandboxed": "On Windows the agent runs without a sandbox: shell commands have your user's access to files and network. Open only trusted projects. Next versions will run the agent on your own server (Incus, Debian 13). — В Windows агент работает без песочницы: shell-команды имеют доступ вашего пользователя к файлам и сети. Открывайте только доверенные проекты. Следующие версии будут запускать агента на вашем сервере (Incus, Debian 13).",
     "nav.apps": "Apps",
     "nav.settings": "Settings",
     "panels.loading": "Loading {name}…",
