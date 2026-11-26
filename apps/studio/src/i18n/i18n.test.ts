@@ -30,3 +30,18 @@ describe("help dictionary", () => {
     }
   })
 })
+
+describe("setup dictionary", () => {
+  test("EN — RU, every step, state and problem of the contract has words", async () => {
+    const setup = (await import("./setup.en.json")).default
+    const { DESKTOP_PROVISION_STEPS, DesktopProvisionStepStateSchema, DesktopProvisionProblemCodeSchema } = await import("@buildy/agent-contract")
+    const keys = [
+      ...DESKTOP_PROVISION_STEPS.map((s) => `step.${s}`),
+      ...DesktopProvisionStepStateSchema.options.map((s) => `state.${s}`),
+      ...DesktopProvisionProblemCodeSchema.options.map((s) => `problem.${s}`),
+    ]
+    const messages = setup.messages as Record<string, string>
+    for (const k of keys) expect(messages[k], k).toBeString()
+    for (const [key, value] of Object.entries(messages)) expect(value.includes(" — "), key).toBe(true)
+  })
+})
