@@ -11,7 +11,7 @@ flowchart LR
     VM["Stores and services\n(chat reducer, tool-call model, panels, preview lifecycle)"]
     HC["HostClient interface\n(src/host)"]
     CT["packages/agent-contract\nhost.ts → host-seam.json"]
-    I18N["src/i18n/ui.en.json\n(dictionary)"]
+    I18N["src/i18n/ui.{en,ru}.json\n(dictionary)"]
     TOK["src/styles/tokens.css\n(colors, type scale)"]
     UI --> VM --> HC
     UI --> I18N
@@ -68,6 +68,6 @@ module-level `api` object is that same default client and is removed once every 
 - New seam route: `packages/agent-contract/src/host.ts` → `bun run gen:host-seam` → a `HostClient` method → the
   host's contract test.
 - New tool kind: a renderer in `chat/tools/renderers/` and one `register()` line.
-- New words: `src/i18n/ui.en.json`, then `t("key")`. Long help texts of a lazy card: their own DictionaryV04 file
-  (`src/i18n/help.en.json`, `th("key")`), so the entry bundle stays in budget.
+- New words: `src/i18n/ui.en.json` and `ui.ru.json`, then `t("key")`. Long help texts of a lazy card: their own DictionaryV04 files
+  (`src/i18n/help.en.json` / `help.ru.json`, `th("key")`), so the entry bundle stays in budget. Locale: `navigator.language`, default English.
 - New color or type size: `src/styles/tokens.css` only.

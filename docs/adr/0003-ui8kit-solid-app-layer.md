@@ -20,7 +20,7 @@ manifest no longer matched, 305 bare tags in 19 TSX files, about 260 literal str
   `literal-text`, `hardcoded-color`, `svg-outside-icon` over it.
 - New code has a zero baseline. Files not yet refactored are listed in `rules/baseline.json` with their counts; the
   gate fails when a count grows and asks to re-record when it shrinks, so the list only goes down.
-- Words live in `src/i18n/ui.en.json` (DictionaryV04 shape `{ locale, messages }`); components call `t("key")`.
+- Words live in `src/i18n/ui.en.json` and `ui.ru.json` (DictionaryV04 shape `{ locale, messages }` per language); components call `t("key")`. The locale is `navigator.language` (default English; `?lang=en|ru` overrides it).
 - Colors and type sizes are tokens (`src/styles/studio-theme.css`); layout utilities are Tailwind classes; the brand theme
   keeps the existing dark palette.
 

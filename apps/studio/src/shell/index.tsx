@@ -4,7 +4,7 @@ import { render } from "solid-js/web"
 import type { DesktopConnection } from "@buildy/agent-contract"
 import { api } from "../api"
 import { HostProvider } from "../host/context"
-import { t } from "../i18n"
+import { loadUiCatalog, t } from "../i18n"
 import { Box, Button, Text } from "../primitives"
 import { ServerSettings } from "../ServerSettings"
 import { UpdateScreen } from "../UpdateScreen"
@@ -102,4 +102,6 @@ function Shell(): JSX.Element {
   )
 }
 
-render(() => <Shell />, document.getElementById("root")!)
+void loadUiCatalog().then(() => {
+  render(() => <Shell />, document.getElementById("root")!)
+})

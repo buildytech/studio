@@ -1,6 +1,7 @@
 /* @refresh reload */
 import { Show, createSignal } from "solid-js"
 import { render } from "solid-js/web"
+import { loadUiCatalog } from "./i18n"
 import type { DesktopConnection } from "@buildy/agent-contract"
 import { loadDesktopConnection, needsUpdate } from "./desktop-connection"
 import { UpdateScreen } from "./UpdateScreen"
@@ -43,4 +44,6 @@ function App() {
   )
 }
 
-render(() => <App />, document.getElementById("root")!)
+void loadUiCatalog().then(() => {
+  render(() => <App />, document.getElementById("root")!)
+})

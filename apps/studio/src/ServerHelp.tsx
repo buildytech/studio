@@ -16,7 +16,7 @@ function Step(props: { text: HelpKey; params?: Record<string, string>; code?: st
 /**
  * Settings help of the desktop app's server mode: signing in to the server as root with an SSH key once password
  * login is off (key paths per OS, the provider's web console as the way back), and backups of the server's data
- * folder to an S3 bucket with restic. Prose from the help dictionary (i18n/help.en.json), command lines from server-help.ts.
+ * folder to an S3 bucket with restic. Prose from the help dictionary (i18n/help.en.json or help.ru.json), command lines from server-help.ts.
  */
 export default function ServerHelp(props: { conn: DesktopConnection }): JSX.Element {
   const address = () => props.conn.target?.address

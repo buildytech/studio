@@ -22,7 +22,7 @@ describe("hostNotices", () => {
     const notes = hostNotices({ ...full, agent_unsandboxed: true })
     expect(notes).toHaveLength(1)
     expect(notes[0]).toContain("without a sandbox")
-    expect(notes[0]).toContain("без песочницы")
+    expect(notes[0]).not.toContain("без песочницы")
     expect(hostNotices({ ...full, agent_unsandboxed: false })).toEqual([])
   })
   test("explains a missing host instead of a blank pane", () => {
