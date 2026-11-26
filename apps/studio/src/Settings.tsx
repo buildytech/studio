@@ -7,6 +7,9 @@ import {
 } from "./chat-export-prefs"
 import { t, type MessageKey } from "./i18n"
 import { Box, Button, Checkbox, Input, Label, Text } from "./primitives"
+import type { DesktopConnection } from "@buildy/agent-contract"
+import { loadDesktopConnection } from "./desktop-connection"
+import { ServerSettings } from "./ServerSettings"
 
 type KeySlot = {
   id: string
@@ -35,6 +38,8 @@ export function Settings(props: {
   const [busyId, setBusyId] = createSignal<string | null>(null)
   const [error, setError] = createSignal("")
   const [notice, setNotice] = createSignal("")
+  const [conn, setConn] = createSignal<DesktopConnection | null>(null)
+  void loadDesktopConnection(api.desktopConnection).then(setConn).catch(() => setConn(null))
   const [exportIncludeTrace, setExportIncludeTrace] = createSignal(
     ensureExportIncludeTraceDefault(),
   )
@@ -123,7 +128,9 @@ export function Settings(props: {
 
       <Box class="projects-hero">
         <Text tag="h1" class="projects-title">{t("settings.title")}</Text>
-        <Text class="projects-sub">{t("settings.lead")}</Text>
+        <Text class="projects-sub">
+          {conn()?.mode === "remote" ? t("settings.leadRemote") : t("settings.lead")}
+        </Text>
       </Box>
 
       <Show when={error()}>
@@ -135,6 +142,9 @@ export function Settings(props: {
 
       <Show when={loaded()} fallback={<Text class="muted">{t("common.loading")}</Text>}>
         <Box class="settings-cards">
+          <Show when={conn()}>
+            {(c) => <ServerSettings conn={c()} onChange={setConn} />}
+          </Show>
           <For each={SLOTS}>
             {(slot) => {
               const saved = () => findCred(slot)

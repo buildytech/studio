@@ -2,12 +2,15 @@ import { describe, expect, test } from "bun:test"
 import {
   HOST_MIN_CLIENT_PROTOCOL,
   HOST_PROTOCOL,
+  HOST_DESKTOP_ROUTES,
   HOST_REMOTE_ROUTES,
   HOST_SEAM_ROUTES,
   HOST_SESSION_PATH,
   HostCapabilitiesSchema,
   HostHelloSchema,
   HostTicketSchema,
+  DesktopConnectionSchema,
+  DesktopConnectInputSchema,
 } from "./host"
 
 describe("desktop host seam (docs/adr/0002)", () => {
@@ -66,5 +69,29 @@ describe("desktop host seam (docs/adr/0002)", () => {
     })
     expect(hello.capabilities.agent_sandbox).toBe(true)
     expect(() => HostTicketSchema.parse({ ticket: "short", expiresAt: "x" })).toThrow()
+  })
+
+  test("desktop routes are the app's own and collide with nothing", () => {
+    const others = new Set([...HOST_SEAM_ROUTES, ...HOST_REMOTE_ROUTES].map((r) => `${r.method} ${r.path}`))
+    for (const r of HOST_DESKTOP_ROUTES) {
+      expect(r.path.startsWith("/desktop/")).toBe(true)
+      expect(others.has(`${r.method} ${r.path}`)).toBe(false)
+    }
+  })
+
+  test("desktop connection parses both modes", () => {
+    const local = DesktopConnectionSchema.parse({ mode: "local", appVersion: "0.1.6", appProtocol: 1, sshPublicKey: "ssh-ed25519 AAAA vibechat" })
+    expect(local.target).toBeUndefined()
+    const remote = DesktopConnectionSchema.parse({
+      mode: "remote",
+      appVersion: "0.1.6",
+      appProtocol: 1,
+      sshPublicKey: "ssh-ed25519 AAAA vibechat",
+      target: { address: "srv.example", user: "vibechat-tunnel", hostKeyFingerprint: "SHA256:x", tokenSaved: true },
+      server: { version: "0.1.5", protocol: 1, minClientProtocol: 1, instanceId: "0123456789abcdef" },
+      serverOutdated: true,
+    })
+    expect(remote.serverOutdated).toBe(true)
+    expect(() => DesktopConnectInputSchema.parse({ address: "", user: "u" })).toThrow()
   })
 })

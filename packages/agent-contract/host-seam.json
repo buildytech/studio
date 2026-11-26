@@ -165,5 +165,30 @@
       "method": "POST",
       "path": "/auth/ticket"
     }
-  ]
+  ],
+  "desktop": [
+    {
+      "method": "GET",
+      "path": "/desktop/connection"
+    },
+    {
+      "method": "PUT",
+      "path": "/desktop/connection"
+    },
+    {
+      "method": "DELETE",
+      "path": "/desktop/connection"
+    }
+  ],
+  "desktopConnection": [
+    "mode",
+    "appVersion",
+    "appProtocol",
+    "sshPublicKey",
+    "target",
+    "server",
+    "serverOutdated",
+    "problem"
+  ],
+  "tunnelUser": "vibechat-tunnel"
 }

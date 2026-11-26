@@ -1,5 +1,7 @@
 import {
   type AgentCapabilities,
+  type DesktopConnectInput,
+  type DesktopConnection,
   type HostCapabilities,
 } from "@buildy/agent-contract"
 import { ApiError } from "../chat/banner"
@@ -72,6 +74,16 @@ export class HttpHostClient {
     return res.json() as Promise<T>
   }
 
+
+  /**
+   * The desktop app's connection to a VibeChat server (HOST_DESKTOP_ROUTES): answered by the desktop app in both
+   * modes; a server or a browser tab gets 404 (the Studio then hides the server settings).
+   */
+  readonly desktopConnection = () => this.request<DesktopConnection>("/desktop/connection")
+  readonly desktopConnect = (input: DesktopConnectInput) =>
+    this.request<DesktopConnection>("/desktop/connection", { method: "PUT", body: JSON.stringify(input) })
+  readonly desktopDisconnect = (forget = false) =>
+    this.request<DesktopConnection>(`/desktop/connection${forget ? "?forget=1" : ""}`, { method: "DELETE" })
 
   /** Desktop host capabilities (docs/adr/0002); UI branches on these, never on host name. */
   readonly hostCapabilities = () => this.request<HostCapabilities>("/host/capabilities")

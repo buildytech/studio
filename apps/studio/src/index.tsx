@@ -1,5 +1,9 @@
 /* @refresh reload */
+import { Show, createSignal } from "solid-js"
 import { render } from "solid-js/web"
+import type { DesktopConnection } from "@buildy/agent-contract"
+import { loadDesktopConnection, needsUpdate } from "./desktop-connection"
+import { UpdateScreen } from "./UpdateScreen"
 import { Route, Router } from "@solidjs/router"
 import { Projects } from "./Projects"
 import { Settings } from "./Settings"
@@ -18,13 +22,23 @@ clearLegacyBrowserToken()
  */
 function App() {
   const user = LOCAL_USER
+  // The desktop app's server connection: a protocol mismatch shows the update screen instead of the Studio.
+  const [conn, setConn] = createSignal<DesktopConnection | null>(null)
+  void loadDesktopConnection(api.desktopConnection).then(setConn).catch(() => setConn(null))
   return (
     <HostProvider client={api}>
-      <Router>
-        <Route path="/" component={() => <Projects user={user} />} />
-        <Route path="/p/:id" component={() => <Studio user={user} />} />
-        <Route path="/settings" component={() => <Settings user={user} />} />
-      </Router>
+      <Show
+        when={needsUpdate(conn()) && conn()}
+        fallback={
+          <Router>
+            <Route path="/" component={() => <Projects user={user} />} />
+            <Route path="/p/:id" component={() => <Studio user={user} />} />
+            <Route path="/settings" component={() => <Settings user={user} />} />
+          </Router>
+        }
+      >
+        {(c) => <UpdateScreen conn={c()} onChange={setConn} />}
+      </Show>
     </HostProvider>
   )
 }

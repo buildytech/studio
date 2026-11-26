@@ -149,3 +149,78 @@ export const HOST_REMOTE_ROUTES: readonly HostSeamRoute[] = [
   { method: "GET", path: "/host/hello" },
   { method: "POST", path: "/auth/ticket" },
 ]
+
+/**
+ * The desktop app's own routes (vibechat-desktop): the window's connection to a VibeChat server over SSH. Relative
+ * to `HOST_SEAM_PREFIX`. The desktop app answers them in both modes, so the Studio reaches them same-origin: its
+ * in-process host while the window shows the local Studio, its proxy in front of the SSH tunnel while the window
+ * shows the server's Studio. A server never answers them (404: the Studio hides the server settings).
+ *
+ * `PUT` connects (the host token goes to the OS keychain, never to disk; the first connect pins the server's SSH host
+ * key, later connects require the same key), then the app moves the window to the server's Studio. `DELETE` goes back
+ * to the local Studio; `?forget=1` also drops the pinned host key and the token.
+ */
+export const HOST_DESKTOP_ROUTES: readonly HostSeamRoute[] = [
+  { method: "GET", path: "/desktop/connection" },
+  { method: "PUT", path: "/desktop/connection" },
+  { method: "DELETE", path: "/desktop/connection" },
+]
+
+/** Why the app is not (or cannot stay) connected; `protocol_*` opens the update screen. */
+export const DesktopProblemCodeSchema = z.enum([
+  "protocol_app_old",
+  "protocol_server_old",
+  "host_key_changed",
+  "unreachable",
+  "auth",
+  "port_busy",
+  "bad_input",
+])
+export type DesktopProblemCode = z.infer<typeof DesktopProblemCodeSchema>
+
+export const DesktopConnectionSchema = z.object({
+  /** local: the window shows the app's own Studio; remote: the server's, through the tunnel. */
+  mode: z.enum(["local", "remote"]),
+  appVersion: z.string().min(1),
+  /** `HOST_PROTOCOL` of the app's pinned contract. */
+  appProtocol: z.number().int().positive(),
+  /** The app's SSH public key (one OpenSSH line) for the server's authorized_keys; the private key stays in the OS keychain. */
+  sshPublicKey: z.string(),
+  /** The saved server, if any. */
+  target: z
+    .object({
+      address: z.string().min(1),
+      user: z.string().min(1),
+      /** SHA256 fingerprint of the pinned SSH host key (`SHA256:…`); empty until the first connect. */
+      hostKeyFingerprint: z.string(),
+      /** A host token is in the keychain. */
+      tokenSaved: z.boolean(),
+    })
+    .optional(),
+  /** The server's hello, once connected (or when the protocol check failed). */
+  server: z
+    .object({
+      version: z.string().min(1),
+      protocol: z.number().int().positive(),
+      minClientProtocol: z.number().int().positive(),
+      instanceId: z.string().min(1),
+    })
+    .optional(),
+  /** The server's version is older than the app's (it updates itself daily from official releases). */
+  serverOutdated: z.boolean().optional(),
+  problem: z.object({ code: DesktopProblemCodeSchema, message: z.string() }).optional(),
+})
+export type DesktopConnection = z.infer<typeof DesktopConnectionSchema>
+
+export const DesktopConnectInputSchema = z.object({
+  /** host or host:port (SSH, default port 22). */
+  address: z.string().min(1).max(255),
+  /** SSH user on the server (the tunnel user). */
+  user: z.string().min(1).max(64),
+  /** The host token from `vibechat-server token new`; omitted to reuse the one in the keychain. */
+  token: z.string().max(256).optional(),
+})
+export type DesktopConnectInput = z.infer<typeof DesktopConnectInputSchema>
+
+/** Default SSH user of the tunnel (port forwarding only, no shell). */
+export const DESKTOP_TUNNEL_USER = "vibechat-tunnel" as const

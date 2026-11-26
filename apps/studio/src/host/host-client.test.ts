@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test"
-import { HOST_SEAM_PREFIX, HOST_SEAM_ROUTES, type HostSeamRoute } from "@buildy/agent-contract"
+import { HOST_DESKTOP_ROUTES, HOST_SEAM_PREFIX, HOST_SEAM_ROUTES, type HostSeamRoute } from "@buildy/agent-contract"
 import { HttpHostClient, type HostClient } from "./host-client"
 
 type Call = { method: string; url: string; body?: unknown }
@@ -26,13 +26,16 @@ function routeRegex(r: HostSeamRoute): RegExp {
 
 function matchRoute(c: Call): HostSeamRoute | undefined {
   const path = c.url.replace(/^https?:\/\/[^/]+/, "")
-  return HOST_SEAM_ROUTES.find((r) => r.method === c.method && routeRegex(r).test(path))
+  return [...HOST_SEAM_ROUTES, ...HOST_DESKTOP_ROUTES].find((r) => r.method === c.method && routeRegex(r).test(path))
 }
 
 /** Calls every HostClient method once with sample arguments. */
 async function exercise(h: HostClient): Promise<void> {
   const file = new File([new Uint8Array([1])], "shot.png", { type: "image/png" })
   await h.hostCapabilities()
+  await h.desktopConnection()
+  await h.desktopConnect({ address: "srv.example", user: "vibechat-tunnel", token: "t" })
+  await h.desktopDisconnect(true)
   await h.cursorAccount()
   await h.listMyCredentials()
   await h.putMyCredential("cursor-sdk", "cursor", "k")
@@ -72,7 +75,7 @@ describe("HostClient ↔ host seam contract (docs/adr/0002)", () => {
     const unmatched = calls.filter((c) => !matchRoute(c)).map((c) => `${c.method} ${c.url}`)
     expect(unmatched).toEqual([])
     const covered = new Set(calls.map((c) => matchRoute(c)!).map((r) => `${r.method} ${r.path}`))
-    const missing = HOST_SEAM_ROUTES.map((r) => `${r.method} ${r.path}`).filter((k) => !covered.has(k))
+    const missing = [...HOST_SEAM_ROUTES, ...HOST_DESKTOP_ROUTES].map((r) => `${r.method} ${r.path}`).filter((k) => !covered.has(k))
     expect(missing).toEqual([])
   })
 
