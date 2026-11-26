@@ -1,0 +1,29 @@
+{
+  "locale": "en",
+  "messages": {
+    "backup.bucket": "At your storage provider create a bucket and an access key limited to that bucket; note the S3 endpoint address. — У провайдера хранилища создайте бакет и ключ доступа только к этому бакету; запишите адрес S3 endpoint.",
+    "backup.check": "List the copies (check from time to time that new ones appear): — Список копий (время от времени проверяйте, что появляются новые):",
+    "backup.enable": "Turn the timer on and make the first copy right away: — Включите таймер и сразу сделайте первую копию:",
+    "backup.env": "Write these lines into it with your values (S3-ENDPOINT is the address from your provider, for example s3.example.com): — Запишите в него эти строки со своими значениями (S3-ENDPOINT — адрес от провайдера, например s3.example.com):",
+    "backup.init": "Create the repository in the bucket once: — Один раз создайте репозиторий в бакете:",
+    "backup.install": "Install restic and create a settings file only root can read: — Установите restic и создайте файл настроек, который может читать только root:",
+    "backup.password": "RESTIC_PASSWORD encrypts the copies. Keep it outside the server too, for example in a password manager: without it no copy can be restored. — RESTIC_PASSWORD шифрует копии. Храните его и вне сервера, например в менеджере паролей: без него ни одну копию не восстановить.",
+    "backup.restore": "Restore the latest copy (the server is stopped meanwhile; on a new server install vibechat-server first and use the same settings file): — Восстановление последней копии (сервер на это время останавливается; на новом сервере сначала установите vibechat-server и используйте тот же файл настроек):",
+    "backup.service": "Create the backup service (it also drops old copies, keeping 7 daily, 4 weekly and 6 monthly): — Создайте службу копирования (она же удаляет старые копии и оставляет 7 ежедневных, 4 еженедельных и 6 ежемесячных):",
+    "backup.timer": "And its daily timer: — И её ежедневный таймер:",
+    "backup.title": "Backups to S3 — Резервные копии в S3",
+    "backup.what": "All data of the server lives in {dir}: projects, chats, settings, the host token hash and the saved Cursor key. Back up this folder. — Все данные сервера лежат в {dir}: проекты, чаты, настройки, хеш токена хоста и сохранённый ключ Cursor. Копируйте эту папку.",
+    "backup.where": "Run the commands as root on the server (inside its container if vibechat-server runs in one). The example uses restic: it encrypts the copies, stores only what changed and works with any S3-compatible storage. — Выполняйте команды от root на сервере (внутри его контейнера, если vibechat-server работает в нём). В примере используется restic: он шифрует копии, хранит только изменения и работает с любым S3-совместимым хранилищем.",
+    "lead": "Signing in to the server yourself and keeping its data safe. — Как самому зайти на сервер и сберечь его данные.",
+    "ssh.appKey": "The app's own key (Server card) only carries this app's connection: it has no shell and cannot be used to sign in. — Собственный ключ приложения (карточка «Сервер») только несёт подключение этого приложения: оболочки у него нет, войти им нельзя.",
+    "ssh.console": "Key lost or no SSH access: open the server's web console (VNC or serial console) in your hosting provider's control panel, sign in there as root with the root password (no password set: use the panel's password reset or rescue mode) and add your public key again: — Ключ потерян или доступа по SSH нет: откройте веб-консоль сервера (VNC или серийную консоль) в панели управления хостинга, войдите там как root с паролем root (пароля нет: сбросьте его или включите режим восстановления в той же панели) и снова добавьте свой открытый ключ:",
+    "ssh.login": "Sign in from a terminal (PowerShell on Windows, Terminal on macOS and Linux); ssh finds a key in the usual place by itself: — Войдите из терминала (PowerShell в Windows, Терминал в macOS и Linux); ssh сам находит ключ в обычном месте:",
+    "ssh.newUnix": "No key yet and password login still works: make a key and send its public half to the server (macOS, Linux): — Ключа ещё нет, а вход по паролю пока работает: создайте ключ и отправьте его открытую часть на сервер (macOS, Linux):",
+    "ssh.newWindows": "The same in PowerShell on Windows (there is no ssh-copy-id there): — То же в PowerShell в Windows (ssh-copy-id там нет):",
+    "ssh.other": "A key somewhere else: add -i with the path to the private key, for example ssh -i path/to/key root@SERVER. — Ключ в другом месте: добавьте -i с путём к закрытому ключу, например ssh -i путь/к/ключу root@SERVER.",
+    "ssh.paths": "The private key usually lives here: Windows {windows}, macOS and Linux {unix} (older keys: id_rsa in the same folder). The .pub file next to it is the public half. — Закрытый ключ обычно лежит здесь: Windows {windows}, macOS и Linux {unix} (старые ключи: id_rsa в той же папке). Файл .pub рядом с ним — открытая часть.",
+    "ssh.title": "Sign in to the server with your SSH key — Вход на сервер по SSH-ключу",
+    "ssh.why": "When root password login is turned off on the server, root signs in over SSH only with a key whose public half is in /root/.ssh/authorized_keys: use the key you added when the server was created. — Когда на сервере выключен вход root по паролю, root входит по SSH только ключом, открытая часть которого есть в /root/.ssh/authorized_keys: используйте ключ, добавленный при создании сервера.",
+    "title": "Server help — Справка по серверу"
+  }
+}

@@ -68,5 +68,6 @@ module-level `api` object is that same default client and is removed once every 
 - New seam route: `packages/agent-contract/src/host.ts` → `bun run gen:host-seam` → a `HostClient` method → the
   host's contract test.
 - New tool kind: a renderer in `chat/tools/renderers/` and one `register()` line.
-- New words: `src/i18n/ui.en.json`, then `t("key")`.
+- New words: `src/i18n/ui.en.json`, then `t("key")`. Long help texts of a lazy card: their own DictionaryV04 file
+  (`src/i18n/help.en.json`, `th("key")`), so the entry bundle stays in budget.
 - New color or type size: `src/styles/tokens.css` only.

@@ -10,7 +10,11 @@ export const locale = dictionary.locale
 
 /** The message for `key`, with `{name}` placeholders filled from `vars`. */
 export function t(key: MessageKey, vars?: Record<string, string | number>): string {
-  const text: string = dictionary.messages[key]
+  return fill(dictionary.messages[key], vars)
+}
+
+/** `text` with `{name}` placeholders filled from `vars`; unknown ones stay. */
+export function fill(text: string, vars?: Record<string, string | number>): string {
   if (!vars) return text
   return text.replace(/\{(\w+)\}/g, (m, name: string) => (name in vars ? String(vars[name]) : m))
 }

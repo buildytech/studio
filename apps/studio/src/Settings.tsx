@@ -1,4 +1,4 @@
-import { For, Show, createSignal, type JSX } from "solid-js"
+import { For, Show, createSignal, lazy, type JSX } from "solid-js"
 import { A } from "@solidjs/router"
 import { api, type User, type UserCredential } from "./api"
 import {
@@ -10,6 +10,9 @@ import { Box, Button, Checkbox, Input, Label, Text } from "./primitives"
 import type { DesktopConnection } from "@buildy/agent-contract"
 import { loadDesktopConnection } from "./desktop-connection"
 import { ServerSettings } from "./ServerSettings"
+
+// Long help texts: their own chunk, loaded when Settings shows them.
+const ServerHelp = lazy(() => import("./ServerHelp"))
 
 type KeySlot = {
   id: string
@@ -144,6 +147,9 @@ export function Settings(props: {
         <Box class="settings-cards">
           <Show when={conn()}>
             {(c) => <ServerSettings conn={c()} onChange={setConn} />}
+          </Show>
+          <Show when={conn()}>
+            {(c) => <ServerHelp conn={c()} />}
           </Show>
           <For each={SLOTS}>
             {(slot) => {
