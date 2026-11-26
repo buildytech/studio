@@ -138,5 +138,32 @@
       "method": "POST",
       "path": "/projects/:id/agent/runs/:rid/feedback"
     }
+  ],
+  "protocol": 1,
+  "minClientProtocol": 1,
+  "hello": [
+    "seam",
+    "serverVersion",
+    "instanceId",
+    "protocol",
+    "minClientProtocol",
+    "previewPort",
+    "capabilities"
+  ],
+  "auth": {
+    "sessionPath": "/auth/session",
+    "cookie": "vibechat_session",
+    "ticketParam": "ticket",
+    "ticketTtlSeconds": 60
+  },
+  "remote": [
+    {
+      "method": "GET",
+      "path": "/host/hello"
+    },
+    {
+      "method": "POST",
+      "path": "/auth/ticket"
+    }
   ]
 }

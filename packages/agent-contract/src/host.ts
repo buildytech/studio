@@ -97,3 +97,55 @@ export const HOST_SEAM_ROUTES: readonly HostSeamRoute[] = [
   { method: "POST", path: "/projects/:id/agent/import" },
   { method: "POST", path: "/projects/:id/agent/runs/:rid/feedback" },
 ]
+
+/**
+ * Remote host (vibechat-server on the user's server, docs/adr/0002 addendum):
+ * the desktop app checks the protocol in `GET /host/hello` before it opens the
+ * window, and authenticates with the host token (32 random bytes; the server
+ * keeps only its sha256). The token never reaches the WebView: the app's Go
+ * side trades it (`Authorization: Bearer`) for a one-time ticket, the window
+ * opens `HOST_SESSION_PATH?ticket=…` and gets an HttpOnly SameSite=Strict
+ * session cookie. The in-process desktop host (Wails) has no auth and answers
+ * the ticket route with 404.
+ */
+export const HOST_PROTOCOL = 1 as const
+/** Oldest desktop app protocol this host still serves. */
+export const HOST_MIN_CLIENT_PROTOCOL = 1 as const
+/** Outside `HOST_SEAM_PREFIX`: trades `?ticket=` for the session cookie, then redirects to `/`. */
+export const HOST_SESSION_PATH = "/auth/session" as const
+export const HOST_SESSION_COOKIE = "vibechat_session" as const
+export const HOST_TICKET_PARAM = "ticket" as const
+/** One-time ticket lifetime (seconds). */
+export const HOST_TICKET_TTL_SECONDS = 60 as const
+
+export const HostHelloSchema = z.object({
+  /** Seam version (`HOST_SEAM_VERSION`). */
+  seam: z.string().min(1),
+  /** Server build version (the app warns when it is older than the app). */
+  serverVersion: z.string().min(1),
+  /** Stable random id of this server install (the app pins it next to the host key). */
+  instanceId: z.string().min(16),
+  protocol: z.number().int().positive(),
+  minClientProtocol: z.number().int().positive(),
+  /** Port of the preview gateway (`http://<projectId>.preview.localhost:<port>/`); the tunnel forwards the same port. */
+  previewPort: z.number().int().positive().optional(),
+  capabilities: HostCapabilitiesSchema,
+})
+export type HostHello = z.infer<typeof HostHelloSchema>
+
+export const HostTicketSchema = z.object({
+  ticket: z.string().min(32),
+  /** RFC 3339. */
+  expiresAt: z.string().min(1),
+})
+export type HostTicket = z.infer<typeof HostTicketSchema>
+
+/**
+ * Routes of the remote host that the desktop app (Go) calls, not the Studio;
+ * relative to `HOST_SEAM_PREFIX`. `GET /host/hello` needs no auth; `POST
+ * /auth/ticket` needs the Bearer host token (a session cookie is not enough).
+ */
+export const HOST_REMOTE_ROUTES: readonly HostSeamRoute[] = [
+  { method: "GET", path: "/host/hello" },
+  { method: "POST", path: "/auth/ticket" },
+]
