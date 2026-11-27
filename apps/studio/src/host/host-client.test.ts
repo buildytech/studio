@@ -58,6 +58,7 @@ async function exercise(h: HostClient): Promise<void> {
   await h.exportProjectBrief("p1")
   await h.importProjectBrief("p1", {})
   await h.projectArchiveCheck("p1")
+  await h.importProjectZip("p1", file)
   await h.briefFromImage("p1", file)
   await h.agentCapabilities("p1")
   await h.agentSessions("p1")

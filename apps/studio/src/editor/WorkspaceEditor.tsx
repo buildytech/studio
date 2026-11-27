@@ -25,7 +25,7 @@ import { Box, Button, Text } from "../primitives"
 import { cssVars } from "../lib/css-vars"
 import { AppIcon } from "../app-icons"
 import { t } from "../i18n"
-import { ArchiveButton } from "./ArchiveButton"
+import { ArchiveButton, ImportDropZone } from "./ArchiveButton"
 
 export type WorkspaceEditorProps = {
   projectId: string
@@ -35,6 +35,15 @@ export type WorkspaceEditorProps = {
 
 function isMarkdownPath(filePath: string): boolean {
   return /\.(md|mdx|markdown)$/i.test(filePath)
+}
+
+function countTreeFiles(nodes: WorkspaceTreeNode[]): number {
+  let n = 0
+  for (const node of nodes) {
+    if (node.type === "file") n += 1
+    if (node.children?.length) n += countTreeFiles(node.children)
+  }
+  return n
 }
 
 function TreeNode(props: {
@@ -281,7 +290,7 @@ export function WorkspaceEditor(props: WorkspaceEditorProps): JSX.Element {
                 <Box class="ws-code-toolbar">
                   <Text tag="span" class="ws-code-path">{t("editor.selectAFile")}</Text>
                   <Box class="ws-code-toolbar-right">
-                    <ArchiveButton projectId={props.projectId} onError={setError} />
+                    <ArchiveButton projectId={props.projectId} empty={countTreeFiles(tree()) === 0} onError={setError} onImported={() => void loadTree()} />
                     <Button
                       type="button"
                       class="btn ghost compact ws-tree-toggle"
@@ -296,9 +305,16 @@ export function WorkspaceEditor(props: WorkspaceEditorProps): JSX.Element {
                     </Button>
                   </Box>
                 </Box>
-                <Box class="pane-empty">
-                  <Text>{t("editor.selectAFileFrom")}</Text>
-                </Box>
+                <Show
+                  when={countTreeFiles(tree()) === 0}
+                  fallback={
+                    <Box class="pane-empty">
+                      <Text>{t("editor.selectAFileFrom")}</Text>
+                    </Box>
+                  }
+                >
+                  <ImportDropZone projectId={props.projectId} onError={setError} onImported={() => void loadTree()} />
+                </Show>
               </>
             }
           >
@@ -334,7 +350,7 @@ export function WorkspaceEditor(props: WorkspaceEditorProps): JSX.Element {
                         </Button>
                       </Box>
                     </Show>
-                    <ArchiveButton projectId={props.projectId} onError={setError} />
+                    <ArchiveButton projectId={props.projectId} empty={countTreeFiles(tree()) === 0} onError={setError} onImported={() => void loadTree()} />
                     <Button
                       type="button"
                       class="btn ghost compact ws-tree-toggle"

@@ -34,6 +34,7 @@ describe("dictionary", () => {
     expect(t("projects.updated", { when: "2m ago" })).toBe("Updated 2m ago")
     expect(t("projects.updated")).toBe("Updated {when}")
     expect(t("editor.zipDownload")).toBe("Download ZIP")
+    expect(t("editor.zipImport")).toBe("Import ZIP")
   })
 })
 
@@ -62,6 +63,7 @@ describe("locales", () => {
     assertCatalog(setupRu, "ru")
     assertSameKeysAndPlaceholders(setupEn.messages, setupRu.messages, "setup")
     expect(ruDictionary.messages["editor.zipDownload"]).toBe("Скачать ZIP")
+    expect(ruDictionary.messages["editor.zipImport"]).toBe("Импорт ZIP")
   })
 
   test("detectLocale: English default, navigator.language, ?lang override", () => {

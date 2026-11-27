@@ -95,6 +95,10 @@
     },
     {
       "method": "POST",
+      "path": "/projects/:id/import.zip"
+    },
+    {
+      "method": "POST",
       "path": "/projects/:id/brief/from-image"
     },
     {

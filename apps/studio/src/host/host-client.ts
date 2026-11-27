@@ -102,6 +102,31 @@ export class HttpHostClient {
   readonly projectArchiveCheck = (id: string) =>
     this.request<ProjectArchiveCheck>(`/projects/${encodeURIComponent(id)}/archive.zip?check=1`)
 
+  /** Import a Svelte or React ZIP into an empty project (multipart field `zip`). */
+  readonly importProjectZip = async (projectId: string, file: File) => {
+    const body = new FormData()
+    body.append("zip", file)
+    const res = await this.fetchImpl(
+      `${this.baseUrl}/projects/${encodeURIComponent(projectId)}/import.zip`,
+      { method: "POST", body, headers: this.headersFor(), credentials: this.credentials },
+    )
+    if (!res.ok) {
+      const json = await res.json().catch(() => ({}))
+      const msg =
+        typeof (json as { error?: unknown }).error === "string"
+          ? (json as { error: string }).error
+          : `HTTP ${res.status}`
+      throw new ApiError(res.status, msg)
+    }
+    return res.json() as Promise<{
+      ok: boolean
+      framework: "svelte" | "react"
+      files: number
+      project: { id: string; name: string; template_id: string }
+      verify: { ok: boolean; log?: string; error?: string }
+    }>
+  }
+
   /** Desktop host capabilities (docs/adr/0002); UI branches on these, never on host name. */
   readonly hostCapabilities = () => this.request<HostCapabilities>("/host/capabilities")
   readonly cursorAccount = () =>

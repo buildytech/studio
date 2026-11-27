@@ -91,6 +91,11 @@ export const HOST_SEAM_ROUTES: readonly HostSeamRoute[] = [
    * too large: 413 `{ error }`.
    */
   { method: "GET", path: "/projects/:id/archive.zip" },
+  /**
+   * Import a Svelte or React project ZIP into an empty workspace (`multipart/form-data` field `zip`, or a raw
+   * `application/zip` body). Only when the project has no files except `.git`; otherwise 409 `{ error }`.
+   */
+  { method: "POST", path: "/projects/:id/import.zip" },
   { method: "POST", path: "/projects/:id/brief/from-image" },
   { method: "GET", path: "/projects/:id/agent/capabilities" },
   { method: "GET", path: "/projects/:id/agent/sessions" },
