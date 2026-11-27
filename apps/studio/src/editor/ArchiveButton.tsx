@@ -2,7 +2,7 @@ import { createSignal, onCleanup, Show, type JSX } from "solid-js"
 import { AppIcon } from "../app-icons"
 import { useHost } from "../host/context"
 import { t } from "../i18n"
-import { Box, Button, Text } from "../primitives"
+import { Box, Button, Input, Text } from "../primitives"
 import { downloadArchive } from "./archive"
 
 /** Editor toolbar: Import ZIP when the project has no files, otherwise Download ZIP. Errors go to the editor's banner. */
@@ -68,13 +68,13 @@ export function ArchiveButton(props: {
           </Button>
         }
       >
-        <input
-          ref={input}
+        <Input
+          ref={(el) => {
+            input = el
+          }}
           type="file"
           accept=".zip,application/zip"
-          class="ws-zip-input"
-          aria-hidden="true"
-          tabIndex={-1}
+          hidden
           onChange={(e) => void runImport(e.currentTarget.files?.[0])}
         />
         <Button
@@ -135,11 +135,13 @@ export function ImportDropZone(props: {
         void run(file)
       }}
     >
-      <input
-        ref={input}
+      <Input
+        ref={(el) => {
+          input = el
+        }}
         type="file"
         accept=".zip,application/zip"
-        class="ws-zip-input"
+        hidden
         aria-label={t("editor.zipImport")}
         onChange={(e) => void run(e.currentTarget.files?.[0])}
       />
