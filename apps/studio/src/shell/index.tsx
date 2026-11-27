@@ -9,8 +9,12 @@ import { Box, Button, Text } from "../primitives"
 import { ServerSettings } from "../ServerSettings"
 import { UpdateScreen } from "../UpdateScreen"
 import { firstTab, shellView } from "./view"
+import { ThemeToggle } from "./ThemeToggle"
+import type { SetupView } from "../setup/model"
 import "../styles/app.css"
 import "../styles.css"
+import "../styles/shell-skin.css"
+import "./shell.css"
 
 const ServerSetup = lazy(() => import("../ServerSetup"))
 const ServerHelp = lazy(() => import("../ServerHelp"))
@@ -26,6 +30,7 @@ function Shell(): JSX.Element {
   const [conn, setConn] = createSignal<DesktopConnection | null>(null)
   const [tab, setTab] = createSignal<"connect" | "setup" | null>(null)
   const [error, setError] = createSignal("")
+  const [setupView, setSetupView] = createSignal<SetupView>("start")
   let timer: ReturnType<typeof setTimeout> | undefined
   const load = async () => {
     clearTimeout(timer)
@@ -54,11 +59,13 @@ function Shell(): JSX.Element {
           {(c) => <UpdateScreen conn={c()} onChange={onChange} />}
         </Match>
         <Match when={true}>
-          <Box tag="main" class="projects-page settings-page">
-            <Box class="projects-hero">
-              <Text tag="h1" class="projects-title">{t("shell.title")}</Text>
-              <Text class="projects-sub">{t("shell.lead")}</Text>
-            </Box>
+          <Box tag="main" class={current() === "setup" ? "projects-page settings-page shell-setup" : "projects-page settings-page"}>
+            <Show when={current() !== "setup"}>
+              <Box class="projects-hero">
+                <Text tag="h1" class="projects-title">{t("shell.title")}</Text>
+                <Text class="projects-sub">{t("shell.lead")}</Text>
+              </Box>
+            </Show>
             <Show when={error()}>
               <Text class="form-error settings-banner">{error()}</Text>
             </Show>
@@ -77,6 +84,7 @@ function Shell(): JSX.Element {
               <Match when={conn()}>
                 {(c) => (
                   <>
+                    <Show when={current() !== "setup" || setupView() === "start"}>
                     <Box class="settings-actions shell-choice" role="tablist">
                       <Button class={current() === "connect" ? "btn primary" : "btn ghost"} type="button" role="tab"
                         aria-selected={current() === "connect"} onClick={() => setTab("connect")}>
@@ -87,10 +95,13 @@ function Shell(): JSX.Element {
                         {t("shell.setup")}
                       </Button>
                     </Box>
-                    <Show when={current() === "setup"} fallback={<ServerSettings conn={c()} onChange={onChange} />}>
-                      <ServerSetup onDone={() => void load()} />
                     </Show>
-                    <ServerHelp conn={c()} />
+                    <Show when={current() === "setup"} fallback={<ServerSettings conn={c()} onChange={onChange} />}>
+                      <ServerSetup onDone={() => void load()} onView={setSetupView} />
+                    </Show>
+                    <Show when={current() !== "setup" || setupView() === "start"}>
+                      <ServerHelp conn={c()} />
+                    </Show>
                   </>
                 )}
               </Match>
@@ -98,6 +109,7 @@ function Shell(): JSX.Element {
           </Box>
         </Match>
       </Switch>
+      <ThemeToggle />
     </HostProvider>
   )
 }

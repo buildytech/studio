@@ -214,7 +214,10 @@
     "address",
     "hostKeyFingerprint",
     "rollbackSeconds",
-    "problem"
+    "problem",
+    "startedAt",
+    "now",
+    "log"
   ],
   "desktopProvisionInput": [
     "address",
@@ -233,6 +236,20 @@
     "verify",
     "lockdown"
   ],
+  "provisionSubsteps": {
+    "incus": [
+      "apt-update",
+      "install-packages",
+      "admin-init"
+    ],
+    "container": [
+      "storage-pool",
+      "bridge",
+      "profile",
+      "launch-image",
+      "wait-dns"
+    ]
+  },
   "desktopArchive": [
     "saved",
     "file"

@@ -3,6 +3,7 @@ import {
   HOST_MIN_CLIENT_PROTOCOL,
   HOST_PROTOCOL,
   DESKTOP_PROVISION_STEPS,
+  DESKTOP_PROVISION_SUBSTEPS,
   DesktopProvisionInputSchema,
   DesktopProvisionSchema,
   HOST_DESKTOP_ROUTES,
@@ -106,9 +107,24 @@ describe("desktop host seam (docs/adr/0002)", () => {
       address: "203.0.113.5",
       rollbackSeconds: 300,
       problem: { code: "unsupported", message: "Debian 13 is required" },
+      startedAt: 1_700_000_000_000,
+      now: 1_700_000_065_000,
+      log: [{ at: 1_700_000_000_000, text: "remote: setup of 203.0.113.5 started" }],
     })
     expect(p.steps).toHaveLength(10)
+    expect(() => DesktopProvisionSchema.parse({ ...p, now: undefined })).toThrow()
+    expect(() => DesktopProvisionSchema.parse({ ...p, log: Array.from({ length: 201 }, () => ({ at: 1, text: "x" })) })).toThrow()
     expect(() => DesktopProvisionSchema.parse({ ...p, steps: [{ id: "reboot", state: "done" }] })).toThrow()
+    // Substeps of incus and container, with their times.
+    expect([...DESKTOP_PROVISION_SUBSTEPS.incus, ...DESKTOP_PROVISION_SUBSTEPS.container]).toEqual([
+      "apt-update", "install-packages", "admin-init", "storage-pool", "bridge", "profile", "launch-image", "wait-dns",
+    ])
+    const withSubs = DesktopProvisionSchema.parse({
+      ...p,
+      steps: p.steps.map((s) => (s.id === "incus" ? { ...s, startedAt: 1, endedAt: 2, subs: [{ id: "apt-update", state: "done", startedAt: 1, endedAt: 2 }] } : s)),
+    })
+    expect(withSubs.steps[2]!.subs?.[0]?.id).toBe("apt-update")
+    expect(() => DesktopProvisionSchema.parse({ ...p, steps: [{ id: "incus", state: "running", subs: [{ id: "reboot", state: "done" }] }] })).toThrow()
     expect(DesktopProvisionInputSchema.parse({ address: "203.0.113.5", password: "pw" }).rootPublicKey).toBeUndefined()
     expect(() => DesktopProvisionInputSchema.parse({ address: "203.0.113.5", password: "" })).toThrow()
   })

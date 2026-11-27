@@ -291,6 +291,21 @@ export type DesktopProvisionStepId = z.infer<typeof DesktopProvisionStepIdSchema
 export const DesktopProvisionStepStateSchema = z.enum(["pending", "running", "done", "skipped", "failed"])
 export type DesktopProvisionStepState = z.infer<typeof DesktopProvisionStepStateSchema>
 
+/** Substeps of the long steps, in order (desktop/internal/provision.Substeps): the apply script reports each one as
+ * it starts, so the wizard shows real parts of the Incus install and the container build. */
+export const DESKTOP_PROVISION_SUBSTEPS = {
+  incus: ["apt-update", "install-packages", "admin-init"],
+  container: ["storage-pool", "bridge", "profile", "launch-image", "wait-dns"],
+} as const
+export const DesktopProvisionSubstepIdSchema = z.enum([
+  ...DESKTOP_PROVISION_SUBSTEPS.incus,
+  ...DESKTOP_PROVISION_SUBSTEPS.container,
+])
+export type DesktopProvisionSubstepId = z.infer<typeof DesktopProvisionSubstepIdSchema>
+
+/** Unix milliseconds of the app's clock. */
+const MsSchema = z.number().int().nonnegative()
+
 /** Why a run stopped: `unsupported` is preflight's refusal (not Debian 13 amd64, too small); `not_confirmed` means the
  * SSH lockdown was not confirmed and the server allows password login again within `rollbackSeconds`. */
 export const DesktopProvisionProblemCodeSchema = z.enum([
@@ -314,6 +329,20 @@ export const DesktopProvisionSchema = z.object({
       state: DesktopProvisionStepStateSchema,
       /** Why it failed (never a secret). */
       detail: z.string().optional(),
+      /** When the step started and ended (set once it ran). */
+      startedAt: MsSchema.optional(),
+      endedAt: MsSchema.optional(),
+      /** The substeps of incus and container (DESKTOP_PROVISION_SUBSTEPS), in order. */
+      subs: z
+        .array(
+          z.object({
+            id: DesktopProvisionSubstepIdSchema,
+            state: DesktopProvisionStepStateSchema,
+            startedAt: MsSchema.optional(),
+            endedAt: MsSchema.optional(),
+          }),
+        )
+        .optional(),
     }),
   ),
   /** The server of the current or last run. */
@@ -323,6 +352,12 @@ export const DesktopProvisionSchema = z.object({
   /** The lockdown safety net: password login comes back after this many seconds unless the app confirms. */
   rollbackSeconds: z.number().int().positive(),
   problem: z.object({ code: DesktopProvisionProblemCodeSchema, message: z.string() }).optional(),
+  /** When the current or last run started. */
+  startedAt: MsSchema.optional(),
+  /** The app's clock when it answered: elapsed times are `now - startedAt`, independent of the page's clock. */
+  now: MsSchema,
+  /** The last lines of the run's log (at most 200), oldest first; secrets are redacted by the app. */
+  log: z.array(z.object({ at: MsSchema, text: z.string() })).max(200),
 })
 export type DesktopProvision = z.infer<typeof DesktopProvisionSchema>
 

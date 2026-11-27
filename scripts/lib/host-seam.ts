@@ -5,6 +5,7 @@
  */
 import {
   DESKTOP_PROVISION_STEPS,
+  DESKTOP_PROVISION_SUBSTEPS,
   DESKTOP_TUNNEL_USER,
   DesktopArchiveInputSchema,
   DesktopArchiveSchema,
@@ -51,6 +52,7 @@ export function hostSeamJson(): string {
     desktopProvision: Object.keys(DesktopProvisionSchema.shape),
     desktopProvisionInput: Object.keys(DesktopProvisionInputSchema.shape),
     provisionSteps: [...DESKTOP_PROVISION_STEPS],
+    provisionSubsteps: { incus: [...DESKTOP_PROVISION_SUBSTEPS.incus], container: [...DESKTOP_PROVISION_SUBSTEPS.container] },
     desktopArchive: Object.keys(DesktopArchiveSchema.shape),
     desktopArchiveInput: Object.keys(DesktopArchiveInputSchema.shape),
   }

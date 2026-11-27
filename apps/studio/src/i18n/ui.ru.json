@@ -181,6 +181,7 @@
     "shell.lead": "Это приложение — окно к вашему серверу: агент, проекты и превью работают там (Debian 13, x86_64). Подключите готовый сервер или дайте приложению настроить новый VPS.",
     "shell.loading": "Загрузка…",
     "shell.setup": "Настроить новый сервер",
+    "shell.themeDark": "Тёмная тема",
     "shell.title": "BuildY VibeChat",
     "studio.account": "Аккаунт",
     "studio.accountCursor": "Cursor · {email}",

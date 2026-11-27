@@ -35,6 +35,9 @@
   --sidebar-accent-foreground: #ededed;
   --sidebar-border: #282828;
   --sidebar-ring: #fab283;
+  /* Success: a finished step, a passed check (the setup wizard); --ok below is the same colour. */
+  --success: #49c970;
+  --success-foreground: #08130c;
 
   /* Studio stylesheet names (styles.css, CodeMirror theme), on the tokens above where one exists. */
   --bg: var(--background);
@@ -52,7 +55,7 @@
   --cyan: #00c5df;
   --info: #7dd3fc;
   --danger: var(--destructive);
-  --ok: #49c970;
+  --ok: var(--success);
   --warn: #f6c251;
   --gray: #7f7f7f;
   --white: #ffffff;
@@ -75,6 +78,8 @@
 /* Status colours as utilities (text-ok, bg-danger/10…) for compositions styled with Tailwind. */
 @theme inline {
   --color-ok: var(--ok);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
   --color-warn: var(--warn);
   --color-info: var(--info);
   --color-danger: var(--danger);

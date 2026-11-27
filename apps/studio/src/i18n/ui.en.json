@@ -181,6 +181,7 @@
     "shell.lead": "This app is a window to your own server: the agent, projects and previews run there (Debian 13, x86_64). Connect a server you already have, or let the app set up a fresh VPS.",
     "shell.loading": "Loading…",
     "shell.setup": "Set up a new server",
+    "shell.themeDark": "Dark theme",
     "shell.title": "BuildY VibeChat",
     "studio.account": "Account",
     "studio.accountCursor": "Cursor · {email}",
