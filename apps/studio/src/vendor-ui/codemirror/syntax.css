@@ -1,0 +1,29 @@
+/* Code editor syntax colours (theme.ts): a dark and a light set, AA on the editor background (ADR 0007). Loads with the editor chunk only. */
+:root {
+  --syn-keyword: #fab283;
+  --syn-operator: #c8c8c8;
+  --syn-special: #ffc09a;
+  --syn-type: #e9c46a;
+  --syn-property: #9ecbff;
+  --syn-variable: #d6d6d6;
+  --syn-function: #82aaff;
+  --syn-string: #c3e88d;
+  --syn-number: #f78c6c;
+  --syn-comment: #7a7a7a;
+  --syn-meta: #8a8a8a;
+  --syn-invalid: #fc533a;
+}
+html:not(.dark) {
+  --syn-keyword: #a84a17;
+  --syn-operator: #3f3f46;
+  --syn-special: #8a3d14;
+  --syn-type: #7a5600;
+  --syn-property: #0b5c9e;
+  --syn-variable: #27272a;
+  --syn-function: #2f55c8;
+  --syn-string: #2b6e1f;
+  --syn-number: #b13d17;
+  --syn-comment: #6b6b73;
+  --syn-meta: #63636b;
+  --syn-invalid: #c8321f;
+}

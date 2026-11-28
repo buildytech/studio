@@ -1,24 +1,20 @@
-import { createSignal, type JSX } from "solid-js"
+import type { JSX } from "solid-js"
 import { ThemeIcon } from "../app-icons/theme-icons"
 import { t } from "../i18n"
 import { Button } from "../primitives"
-import { applyTheme, storedTheme, type Theme } from "./theme"
+import { initTheme, setThemePref, themeMode } from "../theme/prefs"
 
 /**
- * The start screen's theme switch (bottom right): the `dark` class on <html>, the same tokens in both (the light
- * values in styles/shell-skin.css); the state reaches ARIA only through the Button's `pressed` prop.
+ * The start screen's theme switch (bottom right): the `dark` class on <html> and the same tokens as the Studio
+ * (styles/studio-theme.css); the choice is the Studio's own (theme/prefs.ts, ADR 0007). The state reaches ARIA only
+ * through the Button's `pressed` prop.
  */
 export function ThemeToggle(): JSX.Element {
-  const [theme, setTheme] = createSignal<Theme>(storedTheme())
-  applyTheme(theme())
-  const flip = () => {
-    const next: Theme = theme() === "dark" ? "light" : "dark"
-    setTheme(next)
-    applyTheme(next, true)
-  }
+  initTheme()
+  const flip = () => setThemePref(themeMode() === "dark" ? "light" : "dark")
   return (
-    <Button class="shell-theme-toggle" type="button" pressed={theme() === "dark"} aria-label={t("shell.themeDark")} onClick={flip}>
-      <ThemeIcon name={theme() === "dark" ? "moon" : "sun"} />
+    <Button class="shell-theme-toggle" type="button" pressed={themeMode() === "dark"} aria-label={t("shell.themeDark")} onClick={flip}>
+      <ThemeIcon name={themeMode() === "dark" ? "moon" : "sun"} />
     </Button>
   )
 }

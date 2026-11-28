@@ -25,8 +25,10 @@ import { Box, Button, Text } from "../primitives"
 import { cssVars } from "../lib/css-vars"
 import { AppIcon } from "../app-icons"
 import { t } from "../i18n"
-import { ArchiveButton, ImportDropZone } from "./ArchiveButton"
+import { ArchiveButton, ImportDropZone, ImportZipLink } from "./ArchiveButton"
+import { countTreeFiles } from "./tree-count"
 import { WaitProgress } from "./WaitProgress"
+import "./editor-empty.css"
 
 export type WorkspaceEditorProps = {
   projectId: string
@@ -36,15 +38,6 @@ export type WorkspaceEditorProps = {
 
 function isMarkdownPath(filePath: string): boolean {
   return /\.(md|mdx|mdc|markdown)$/i.test(filePath)
-}
-
-function countTreeFiles(nodes: WorkspaceTreeNode[]): number {
-  let n = 0
-  for (const node of nodes) {
-    if (node.type === "file") n += 1
-    if (node.children?.length) n += countTreeFiles(node.children)
-  }
-  return n
 }
 
 function TreeNode(props: {
@@ -257,7 +250,12 @@ export function WorkspaceEditor(props: WorkspaceEditorProps): JSX.Element {
         <Box tag="aside" class="ws-tree-pane" aria-label={t("editor.workspaceFiles")} aria-hidden={!treeOpen()}>
           <Show
             when={tree().length > 0}
-            fallback={<Box class="pane-empty compact">{t("editor.noFilesYet")}</Box>}
+            fallback={
+              <Box class="pane-empty compact ws-tree-empty">
+                <Text>{t("editor.emptyLead")}</Text>
+                <ImportZipLink projectId={props.projectId} onError={onImportError} onImported={onImported} onImportStart={onImportStart} />
+              </Box>
+            }
           >
             <Box tag="ul" class="ws-tree">
               <For each={tree()}>

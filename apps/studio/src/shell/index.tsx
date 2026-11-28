@@ -1,5 +1,5 @@
 /* @refresh reload */
-import { Match, Show, Switch, createSignal, lazy, onCleanup, type JSX } from "solid-js"
+import { Match, Show, Switch, createEffect, createSignal, lazy, onCleanup, type JSX } from "solid-js"
 import { render } from "solid-js/web"
 import type { DesktopConnection } from "@buildy/agent-contract"
 import { api } from "../api"
@@ -13,13 +13,14 @@ import { ThemeToggle } from "./ThemeToggle"
 import type { SetupView } from "../setup/model"
 import "../styles/app.css"
 import "../styles.css"
-import "../styles/shell-skin.css"
 import "./shell.css"
 
 const ServerSetup = lazy(() => import("../ServerSetup"))
 const ServerHelp = lazy(() => import("../ServerHelp"))
 
 const POLL_MS = 1000
+/** How long "Connected. Opening the server's Studio…" may show before Try again and Back appear. */
+const STUCK_MS = 10_000
 
 /**
  * The desktop app's start screen: the app is a window to the owner's vibechat-server (Debian 13), with no local
@@ -47,6 +48,35 @@ function Shell(): JSX.Element {
   void load()
   onCleanup(() => clearTimeout(timer))
   const current = () => tab() ?? firstTab(conn())
+
+  // Connected, the app moves the window to the server's Studio itself; if this page is still here after
+  // STUCK_MS (the window was sent back here, or the Studio did not load), offer Try again and Back, never a dead end.
+  const [stuck, setStuck] = createSignal(false)
+  const [busy, setBusy] = createSignal(false)
+  let stuckTimer: ReturnType<typeof setTimeout> | undefined
+  createEffect(() => {
+    clearTimeout(stuckTimer)
+    setStuck(false)
+    if (shellView(conn()) === "connected") stuckTimer = setTimeout(() => setStuck(true), STUCK_MS)
+  })
+  onCleanup(() => clearTimeout(stuckTimer))
+  const act = async (op: () => Promise<DesktopConnection>) => {
+    if (busy()) return
+    setBusy(true)
+    try {
+      onChange(await op())
+    } catch (e) {
+      setError(e instanceof Error ? e.message : String(e))
+    } finally {
+      setBusy(false)
+    }
+  }
+  /** Reconnect to the saved server (the token from the keychain): a fresh ticket moves the window again. */
+  const retry = () => {
+    const target = conn()?.target
+    return act(() => (target ? api.desktopConnect({ address: target.address, user: target.user }) : api.desktopConnection()))
+  }
+  const back = () => act(() => api.desktopDisconnect(false))
   const onChange = (c: DesktopConnection) => {
     setConn(c)
     if (c.connecting) void load()
@@ -79,7 +109,13 @@ function Shell(): JSX.Element {
                 </Text>
               </Match>
               <Match when={shellView(conn()) === "connected"}>
-                <Text class="settings-card-sub">{t("shell.connected")}</Text>
+                <Text class="settings-card-sub" role="status">{stuck() ? t("shell.stuck") : t("shell.connected")}</Text>
+                <Show when={stuck()}>
+                  <Box class="settings-actions">
+                    <Button class="btn primary" type="button" disabled={busy()} onClick={() => void retry()}>{t("shell.retry")}</Button>
+                    <Button class="btn ghost" type="button" disabled={busy()} onClick={() => void back()}>{t("shell.back")}</Button>
+                  </Box>
+                </Show>
               </Match>
               <Match when={conn()}>
                 {(c) => (

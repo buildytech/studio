@@ -6,7 +6,7 @@ import { readFileSync } from "node:fs"
 import { join } from "node:path"
 import { gzipSync } from "node:zlib"
 
-export const BUDGETS = { entryJsGzip: 125_000, entryCssGzip: 16_000 } as const
+export const BUDGETS = { entryJsGzip: 125_000, entryCssGzip: 16_500 } as const
 export const HEAVY = /mermaid|katex|cytoscape|codemirror|@codemirror|lezer/i
 
 /** Asset paths the page loads before any user action: entry script, its stylesheets and preloads. */

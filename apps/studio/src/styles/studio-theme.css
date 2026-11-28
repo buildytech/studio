@@ -1,6 +1,8 @@
 /*
  * Studio theme: the one place for colour, radius and type tokens (ADR 0003).
- * The kit theme (styles/theme.css, generated) names the tokens; Studio is dark-only and sets their values here.
+ * The kit theme (styles/theme.css, generated) names the tokens; the Studio sets their values here: dark on :root,
+ * light when <html> has no `dark` class (ADR 0007: Light / Dark / System in Settings and the account menu). This is
+ * the default skin ("ember"); another skin overrides these custom properties on <html data-skin> (presets/skins.ts).
  * Components use the Tailwind utilities these tokens back (bg-card, text-muted-foreground, border-border…),
  * never literal colours.
  */
@@ -62,6 +64,46 @@
   --shadow: #000000;
   --scrollbar: #3a3a3a;
   --scrollbar-hover: #525252;
+
+}
+
+/* Light (no `dark` class on <html>): the same names, AA on every surface (formerly the start screen's shell-skin.css). */
+html:not(.dark) {
+  color-scheme: light;
+  --background: #ffffff;
+  --foreground: #121212;
+  --card: #ffffff;
+  --card-foreground: #121212;
+  --popover: #ffffff;
+  --popover-foreground: #121212;
+  --primary: #b8541f;
+  --primary-foreground: #ffffff;
+  --secondary: #f4f4f5;
+  --secondary-foreground: #27272a;
+  --muted: #f4f4f5;
+  --muted-foreground: #63636b;
+  --accent: #ececee;
+  --accent-foreground: #121212;
+  --destructive: #c8321f;
+  --destructive-foreground: #ffffff;
+  --destructive-hover: #a92818;
+  --border: #e4e4e7;
+  --input: #d4d4d8;
+  --ring: #b8541f;
+  --success: #17803f;
+  --success-foreground: #ffffff;
+  --bg-elevated: #fafafa;
+  --border-muted: #ececee;
+  --accent-dim: #9c4519;
+  --accent-emphasis: #853b15;
+  --link: #2f55c8;
+  --cyan: #007f91;
+  --info: #0b6aa2;
+  --warn: #a15c07;
+  --gray: #6b6b73;
+  --shadow: #18181b;
+  --scrollbar: #d4d4d8;
+  --scrollbar-hover: #a1a1aa;
 }
 
 @theme {

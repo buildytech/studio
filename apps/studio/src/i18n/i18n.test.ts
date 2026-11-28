@@ -40,7 +40,7 @@ describe("dictionary", () => {
 
 describe("locales", () => {
   test("EN dictionaries contain no Cyrillic", async () => {
-    const files = ["./ui.en.json", "./help.en.json", "./setup.en.json"] as const
+    const files = ["./ui.en.json", "./help.en.json", "./setup.en.json", "./settings.en.json"] as const
     for (const file of files) {
       const doc = (await import(file)).default as { messages: Record<string, string> }
       for (const [key, value] of Object.entries(doc.messages)) {
@@ -62,6 +62,11 @@ describe("locales", () => {
     assertCatalog(setupEn, "en")
     assertCatalog(setupRu, "ru")
     assertSameKeysAndPlaceholders(setupEn.messages, setupRu.messages, "setup")
+    const settingsEn = (await import("./settings.en.json")).default
+    const settingsRu = (await import("./settings.ru.json")).default
+    assertCatalog(settingsEn, "en")
+    assertCatalog(settingsRu, "ru")
+    assertSameKeysAndPlaceholders(settingsEn.messages, settingsRu.messages, "settings")
     expect(ruDictionary.messages["editor.zipDownload"]).toBe("Скачать ZIP")
     expect(ruDictionary.messages["editor.zipImport"]).toBe("Импорт ZIP")
   })

@@ -1,0 +1,25 @@
+/* Empty project (the Empty template): the tree pane's hint and its Import ZIP link. Loads with the editor chunk. */
+.ws-tree-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  text-align: left;
+  line-height: 1.45;
+}
+.ws-import-link {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--link);
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+.ws-import-link:hover:not(:disabled) { color: var(--text-strong); }
+.ws-import-link:disabled { opacity: 0.6; cursor: progress; }

@@ -12,7 +12,7 @@ describe("classifyChatError", () => {
     const b = classifyChatError(
       new ApiError(503, "Cursor API key not configured. Add it in Settings."),
     )
-    expect(b.settingsHref).toBe("/settings")
+    expect(b.settingsHref).toBe("/settings/models")
     expect(b.tone).toBe("danger")
   })
 
@@ -32,7 +32,7 @@ describe("classifyChatError", () => {
     const b = classifyChatError(
       new ApiError(403, "Model not allowed for this project"),
     )
-    expect(b.settingsHref).toBe("/settings")
+    expect(b.settingsHref).toBe("/settings/models")
   })
 
   test("generic error has no Settings link", () => {

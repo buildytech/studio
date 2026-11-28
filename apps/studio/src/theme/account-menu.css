@@ -1,0 +1,16 @@
+/* The account menu's theme switch (Studio.tsx, ADR 0007): Studio entry only, not the start screen. */
+.studio-account-heading {
+  display: block;
+  margin-top: 0.2rem;
+  padding: 0.35rem 0.55rem 0.15rem;
+  border-top: 1px solid var(--border);
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.studio-account-item.studio-account-radio {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  width: 100%;
+}
+.studio-account-item.studio-account-radio[aria-checked="true"] { color: var(--brand); }

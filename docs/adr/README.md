@@ -8,5 +8,6 @@
 | [0004](0004-exceptions-markdown-codemirror-mermaid.md) | Exceptions: markdown, CodeMirror, mermaid | accepted |
 | [0005](0005-tool-call-stream.md) | Tool calls in the chat: one normalized model, composite view, renderer registry | accepted |
 | [0006](0006-preview-frame.md) | The preview frame is an exception (vendor-ui zone) | accepted |
+| [0007](0007-settings-registry-theme-skins.md) | Settings as a section registry; Light / Dark / System and app skins | accepted |
 
 Format: context, decision, consequences. A decision changes only by a new ADR that supersedes the old one.

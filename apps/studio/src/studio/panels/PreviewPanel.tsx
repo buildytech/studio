@@ -6,6 +6,7 @@ import {
   type JSX,
 } from "solid-js"
 import { api } from "../../api"
+import { countTreeFiles } from "../../editor/tree-count"
 import {
   shouldAutoMountPreview,
   stableStatusWhileFramed,
@@ -140,6 +141,12 @@ export default function PreviewPanel(props: StudioPanelProps): JSX.Element {
     const id = props.projectId
     if (!id) return
     props.onError("")
+    // An empty project cannot start: the Editor and its Import ZIP instead of the host's 409.
+    const files = await api.listProjectFiles(id).catch(() => null)
+    if (files && countTreeFiles(files.tree) === 0) {
+      props.onActivate("code")
+      return
+    }
     autoFrameAttemptedProjectId = id
     clearFrame({ clearBooting: false })
     setBooting(true)

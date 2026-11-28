@@ -1,10 +1,12 @@
-/** Icon zone of the start screen's theme switch: Sun and Moon only (the shell's eager bundle). */
+/** Icon zone of the theme switches (start screen, account menu): Sun, Moon and Monitor only (both eager bundles). */
 import { For, type JSX } from "solid-js"
 import { Dynamic } from "solid-js/web"
-import { Moon, Sun, type IconNode } from "lucide"
+import { Monitor, Moon, Sun, type IconNode } from "lucide"
 import { Icon as Frame } from "../kit/ui/icon/icon.solid"
 
-const GLYPHS = { moon: Moon, sun: Sun } satisfies Record<string, IconNode>
+const GLYPHS = { moon: Moon, sun: Sun, monitor: Monitor } satisfies Record<string, IconNode>
+
+export type ThemeIconName = keyof typeof GLYPHS
 
 export function ThemeIcon(props: { name: keyof typeof GLYPHS; size?: number; class?: string }): JSX.Element {
   return (

@@ -16,6 +16,7 @@ import {
   type User,
 } from "./api"
 import { Chat } from "./Chat"
+import { countTreeFiles } from "./editor/tree-count"
 import { hostNotices } from "./host-capabilities"
 import {
   persistSidePct,
@@ -40,9 +41,19 @@ import {
 import { Box, Button, Text } from "./primitives"
 import { cssVars } from "./lib/css-vars"
 import { AppIcon } from "./app-icons"
-import { t } from "./i18n"
+import { t, type MessageKey } from "./i18n"
+import { ThemeIcon, type ThemeIconName } from "./app-icons/theme-icons"
+import { setThemePref, themePref, type ThemePref } from "./theme/prefs"
+import "./theme/account-menu.css"
 
 const CHAT_OPEN_KEY = "buildy.chatOpen"
+
+/** The account menu's quick theme switch (ADR 0007); Settings → Appearance has the same choice and the skins. */
+const THEME_ITEMS: { id: ThemePref; label: MessageKey; icon: ThemeIconName }[] = [
+  { id: "light", label: "theme.light", icon: "sun" },
+  { id: "dark", label: "theme.dark", icon: "moon" },
+  { id: "system", label: "theme.system", icon: "monitor" },
+]
 const STUDIO_PANELS = resolveStudioPanels(
   BUILTIN_STUDIO_PANELS,
   BUILTIN_STUDIO_PANEL_PROVIDERS,
@@ -172,6 +183,21 @@ export function Studio(props: { user: User }): JSX.Element {
     if (panelId) setLastPanelId(panelId)
   }
 
+  /**
+   * An empty project (the Empty template, before a ZIP) has nothing to preview: open the Editor, whose empty tree
+   * offers Import ZIP, instead of a preview that can only fail. Not persisted: other projects keep the last panel.
+   */
+  const openEditorWhenEmpty = async (id: string, cancelled: () => boolean) => {
+    try {
+      const res = await api.listProjectFiles(id)
+      if (cancelled() || countTreeFiles(res.tree) > 0) return
+      setActivePanelId("code")
+      setLastPanelId("code")
+    } catch {
+      /* the panels show their own errors */
+    }
+  }
+
   const setChatVisible = (open: boolean) => {
     setChatOpen(open)
     persistChatOpen(open)
@@ -221,6 +247,7 @@ export function Studio(props: { user: User }): JSX.Element {
         const p = res.projects.find((x) => x.id === id) ?? null
         setProject(p)
         if (!p) setError("Project not found")
+        else void openEditorWhenEmpty(id, () => cancelled)
       } catch (e) {
         if (!cancelled) setError(e instanceof Error ? e.message : String(e))
       }
@@ -262,7 +289,7 @@ export function Studio(props: { user: User }): JSX.Element {
               <AppIcon name="chevron-down" size={12} class="studio-account-caret" />
             </Button>
             <Show when={accountMenuOpen()}>
-              <Box class="studio-account-menu" role="menu">
+              <Box class="studio-account-menu" role="menu" aria-label={t("studio.account")}>
                 <A
                   class="studio-account-item"
                   href="/settings"
@@ -271,6 +298,23 @@ export function Studio(props: { user: User }): JSX.Element {
                 >
                   {t("nav.settings")}
                 </A>
+                <Box role="group" aria-labelledby="studio-theme-label">
+                  <Text tag="span" id="studio-theme-label" class="studio-account-heading">{t("theme.label")}</Text>
+                  <For each={THEME_ITEMS}>
+                    {(item) => (
+                      <Button
+                        type="button"
+                        class="studio-account-item studio-account-radio"
+                        role="menuitemradio"
+                        aria-checked={themePref() === item.id}
+                        onClick={() => setThemePref(item.id)}
+                      >
+                        <ThemeIcon name={item.icon} size={14} />
+                        <Text tag="span">{t(item.label)}</Text>
+                      </Button>
+                    )}
+                  </For>
+                </Box>
               </Box>
             </Show>
           </Box>

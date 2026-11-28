@@ -58,7 +58,7 @@ export function classifyChatError(err: unknown): ChatBannerModel {
   return {
     message,
     tone: reconnecting ? "warn" : "danger",
-    settingsHref: needsSettings || modelDenied ? "/settings" : undefined,
+    settingsHref: needsSettings || modelDenied ? "/settings/models" : undefined,
   }
 }
 

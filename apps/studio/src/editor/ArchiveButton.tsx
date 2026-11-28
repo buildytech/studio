@@ -156,3 +156,50 @@ export function ImportDropZone(props: {
     </Box>
   )
 }
+
+/** Empty file tree: the hint's "Import ZIP" link (the same import as the toolbar button and the drop zone). */
+export function ImportZipLink(props: {
+  projectId: string
+  onError: (message: string) => void
+  onImported?: () => void
+  onImportStart?: () => void
+}): JSX.Element {
+  const host = useHost()
+  const [busy, setBusy] = createSignal(false)
+  let input: HTMLInputElement | undefined
+
+  const run = async (file: File | undefined) => {
+    if (busy() || !file) return
+    setBusy(true)
+    props.onError("")
+    props.onImportStart?.()
+    try {
+      await host.importProjectZip(props.projectId, file)
+      props.onImported?.()
+    } catch (e) {
+      props.onError(t("editor.zipImportFailed", { reason: e instanceof Error ? e.message : String(e) }))
+    } finally {
+      setBusy(false)
+      if (input) input.value = ""
+    }
+  }
+
+  return (
+    <>
+      <Input
+        ref={(el) => {
+          input = el
+        }}
+        type="file"
+        accept=".zip,application/zip"
+        hidden
+        aria-label={t("editor.zipImport")}
+        onChange={(e) => void run(e.currentTarget.files?.[0])}
+      />
+      <Button type="button" class="ws-import-link" disabled={busy()} onClick={() => input?.click()}>
+        <AppIcon name="upload" size={13} />
+        <Text tag="span">{busy() ? t("editor.zipImportPreparing") : t("editor.zipImport")}</Text>
+      </Button>
+    </>
+  )
+}

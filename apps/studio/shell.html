@@ -4,6 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BuildY VibeChat</title>
+    <!-- Theme and skin before the first paint (ADR 0007; src/theme/prefs.ts and skin.ts keep the same keys). -->
+    <script>
+      (function () {
+        var d = document.documentElement, s
+        try { s = window.localStorage } catch (e) { return }
+        try {
+          var p = s.getItem("vibechat.theme") || s.getItem("buildy-shell-theme") || "dark"
+          var dark = p === "system" ? window.matchMedia("(prefers-color-scheme: dark)").matches : p !== "light"
+          d.classList.toggle("dark", dark)
+          var id = s.getItem("vibechat.skin"), css = s.getItem("vibechat.skin.css")
+          if (id && css) {
+            d.setAttribute("data-skin", id)
+            var el = document.createElement("style")
+            el.id = "vibechat-skin"
+            el.textContent = css
+            document.head.appendChild(el)
+          }
+        } catch (e) {}
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>
