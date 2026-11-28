@@ -11,6 +11,7 @@ export function ArchiveButton(props: {
   empty: boolean
   onError: (message: string) => void
   onImported?: () => void
+  onImportStart?: () => void
 }): JSX.Element {
   const host = useHost()
   const [busy, setBusy] = createSignal(false)
@@ -42,6 +43,7 @@ export function ArchiveButton(props: {
     setBusy(true)
     setStatus(t("editor.zipImportPreparing"))
     props.onError("")
+    props.onImportStart?.()
     try {
       await host.importProjectZip(props.projectId, file)
       setStatus(t("editor.zipImported"))
@@ -98,6 +100,7 @@ export function ImportDropZone(props: {
   projectId: string
   onError: (message: string) => void
   onImported?: () => void
+  onImportStart?: () => void
 }): JSX.Element {
   const host = useHost()
   const [over, setOver] = createSignal(false)
@@ -108,6 +111,7 @@ export function ImportDropZone(props: {
     if (busy() || !file) return
     setBusy(true)
     props.onError("")
+    props.onImportStart?.()
     try {
       await host.importProjectZip(props.projectId, file)
       props.onImported?.()

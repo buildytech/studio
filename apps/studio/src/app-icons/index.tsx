@@ -5,7 +5,7 @@
  */
 import { For, type JSX } from "solid-js"
 import { Dynamic } from "solid-js/web"
-import { ChevronDown, Download, FilePen, FileText, Monitor, Search, Terminal, Wrench, ChevronLeft, ChevronRight, Ellipsis, ExternalLink, PanelLeftClose, PanelLeftOpen, Play, RotateCw, Paperclip, Plus, Square, Upload, X, type IconNode } from "lucide"
+import { ChevronDown, Download, FilePen, FileText, LoaderCircle, Monitor, Search, Terminal, Wrench, ChevronLeft, ChevronRight, Ellipsis, ExternalLink, PanelLeftClose, PanelLeftOpen, Play, RotateCw, Paperclip, Plus, Square, Upload, X, type IconNode } from "lucide"
 import { LucideIcon as Frame } from "../compose"
 
 const GLYPHS = {
@@ -13,6 +13,7 @@ const GLYPHS = {
   "chevron-left": ChevronLeft,
   "chevron-right": ChevronRight,
   download: Download,
+  loader: LoaderCircle,
   upload: Upload,
   ellipsis: Ellipsis,
   "external-link": ExternalLink,
